@@ -1,0 +1,148 @@
+[gd_scene load_steps=11 format=3 uid="uid://ct1pleqq81l3g"]
+
+[ext_resource type="Script" path="res://scenes/player.gd" id="1_unixv"]
+[ext_resource type="Texture2D" uid="uid://7u7rndviyhil" path="res://assets/char_a_p1_0bas_humn_v01.png" id="2_feftq"]
+[ext_resource type="Texture2D" uid="uid://rnglwrgori7e" path="res://assets/cone-light.jpg" id="3_5sp7r"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kewgs"]
+size = Vector2(16, 8)
+
+[sub_resource type="Animation" id="Animation_5bicj"]
+resource_name = "walkDown"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 4), Vector2i(1, 4), Vector2i(2, 4), Vector2i(3, 4), Vector2i(4, 4), Vector2i(5, 4)]
+}
+
+[sub_resource type="Animation" id="Animation_55k60"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(1, 4)]
+}
+
+[sub_resource type="Animation" id="Animation_4mpbc"]
+resource_name = "walkUp"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 5), Vector2i(1, 5), Vector2i(2, 5), Vector2i(3, 5), Vector2i(4, 5), Vector2i(5, 5)]
+}
+
+[sub_resource type="Animation" id="Animation_6oosh"]
+resource_name = "walkRight"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 6), Vector2i(1, 6), Vector2i(2, 6), Vector2i(3, 6), Vector2i(4, 6), Vector2i(5, 6)]
+}
+
+[sub_resource type="Animation" id="Animation_rysk1"]
+resource_name = "walkLeft"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 7), Vector2i(1, 7), Vector2i(2, 7), Vector2i(3, 7), Vector2i(4, 7), Vector2i(5, 7)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gs60t"]
+_data = {
+"RESET": SubResource("Animation_55k60"),
+"walkDown": SubResource("Animation_5bicj"),
+"walkLeft": SubResource("Animation_rysk1"),
+"walkRight": SubResource("Animation_6oosh"),
+"walkUp": SubResource("Animation_4mpbc")
+}
+
+[node name="Player" type="CharacterBody2D"]
+z_index = 1
+position = Vector2(72, 104)
+scale = Vector2(0.75, 0.75)
+script = ExtResource("1_unixv")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(1.26667, 1)
+shape = SubResource("RectangleShape2D_kewgs")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(3, 3)
+position_smoothing_enabled = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(0, -10.6667)
+texture = ExtResource("2_feftq")
+hframes = 8
+vframes = 8
+frame = 33
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_gs60t")
+}
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(0, -10.6667)
+rotation = -1.5708
+color = Color(0.996078, 0.592157, 0.129412, 1)
+energy = 0.8
+shadow_enabled = true
+texture = ExtResource("3_5sp7r")
+offset = Vector2(0, 85)
+texture_scale = 0.5
+
+[node name="PointLight2DBack" type="PointLight2D" parent="."]
+position = Vector2(0, -10.6667)
+rotation = 1.5708
+color = Color(0.996078, 0.592157, 0.129412, 1)
+energy = 0.8
+shadow_enabled = true
+texture = ExtResource("3_5sp7r")
+offset = Vector2(-1, 0)
+texture_scale = 0.05
