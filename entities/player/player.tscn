@@ -1,8 +1,12 @@
-[gd_scene load_steps=11 format=3 uid="uid://ct1pleqq81l3g"]
+[gd_scene load_steps=16 format=3 uid="uid://ct1pleqq81l3g"]
 
-[ext_resource type="Script" path="res://scenes/player.gd" id="1_unixv"]
+[ext_resource type="Script" path="res://entities/player/player.gd" id="1_unixv"]
 [ext_resource type="Texture2D" uid="uid://7u7rndviyhil" path="res://assets/char_a_p1_0bas_humn_v01.png" id="2_feftq"]
 [ext_resource type="Texture2D" uid="uid://rnglwrgori7e" path="res://assets/cone-light.jpg" id="3_5sp7r"]
+[ext_resource type="Script" path="res://components/top_down_holder.gd" id="3_bfhb7"]
+[ext_resource type="Script" path="res://components/top_down_input/top_down_input.gd" id="4_6dr58"]
+[ext_resource type="Script" path="res://components/top_down_movement.gd" id="5_t0m2w"]
+[ext_resource type="Script" path="res://components/top_down_input/top_down_input_properties.gd" id="6_xbeno"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kewgs"]
 size = Vector2(16, 8)
@@ -99,6 +103,10 @@ _data = {
 "walkUp": SubResource("Animation_4mpbc")
 }
 
+[sub_resource type="Resource" id="Resource_xjqmc"]
+script = ExtResource("6_xbeno")
+speed = 150.0
+
 [node name="Player" type="CharacterBody2D"]
 z_index = 1
 position = Vector2(72, 104)
@@ -127,8 +135,10 @@ libraries = {
 "": SubResource("AnimationLibrary_gs60t")
 }
 
-[node name="LanternHolder" type="Node2D" parent="."]
+[node name="LanternHolder" type="Node2D" parent="." node_paths=PackedStringArray("actor")]
 position = Vector2(0, -10.6667)
+script = ExtResource("3_bfhb7")
+actor = NodePath("..")
 
 [node name="PointLight2D" type="PointLight2D" parent="LanternHolder"]
 position = Vector2(10.6667, 4.57764e-05)
@@ -149,3 +159,13 @@ shadow_enabled = true
 texture = ExtResource("3_5sp7r")
 offset = Vector2(-1, 0)
 texture_scale = 0.05
+
+[node name="TopDownInput" type="Node" parent="." node_paths=PackedStringArray("actor")]
+script = ExtResource("4_6dr58")
+actor = NodePath("..")
+properties = SubResource("Resource_xjqmc")
+
+[node name="TopDownMovement" type="Node" parent="." node_paths=PackedStringArray("actor", "animationPlayer")]
+script = ExtResource("5_t0m2w")
+actor = NodePath("..")
+animationPlayer = NodePath("../AnimationPlayer")
