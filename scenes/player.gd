@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 @onready var animationPlayer = $AnimationPlayer
+@onready var lanternHolder = $LanternHolder
 
 @export var SPEED = 125.0
 
@@ -21,6 +22,7 @@ func _physics_process(delta):
 	
 	if (velocity.length() > 0):
 		animationPlayer.play(animation)
+		lanternHolder.rotation = direction.angle()
 	else:
 		animationPlayer.stop()
 

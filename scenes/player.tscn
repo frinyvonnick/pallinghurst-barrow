@@ -7,6 +7,21 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kewgs"]
 size = Vector2(16, 8)
 
+[sub_resource type="Animation" id="Animation_55k60"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(1, 4)]
+}
+
 [sub_resource type="Animation" id="Animation_5bicj"]
 resource_name = "walkDown"
 length = 0.6
@@ -24,23 +39,8 @@ tracks/0/keys = {
 "values": [Vector2i(0, 4), Vector2i(1, 4), Vector2i(2, 4), Vector2i(3, 4), Vector2i(4, 4), Vector2i(5, 4)]
 }
 
-[sub_resource type="Animation" id="Animation_55k60"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame_coords")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [Vector2i(1, 4)]
-}
-
-[sub_resource type="Animation" id="Animation_4mpbc"]
-resource_name = "walkUp"
+[sub_resource type="Animation" id="Animation_rysk1"]
+resource_name = "walkLeft"
 length = 0.6
 loop_mode = 1
 tracks/0/type = "value"
@@ -53,7 +53,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [Vector2i(0, 5), Vector2i(1, 5), Vector2i(2, 5), Vector2i(3, 5), Vector2i(4, 5), Vector2i(5, 5)]
+"values": [Vector2i(0, 7), Vector2i(1, 7), Vector2i(2, 7), Vector2i(3, 7), Vector2i(4, 7), Vector2i(5, 7)]
 }
 
 [sub_resource type="Animation" id="Animation_6oosh"]
@@ -73,8 +73,8 @@ tracks/0/keys = {
 "values": [Vector2i(0, 6), Vector2i(1, 6), Vector2i(2, 6), Vector2i(3, 6), Vector2i(4, 6), Vector2i(5, 6)]
 }
 
-[sub_resource type="Animation" id="Animation_rysk1"]
-resource_name = "walkLeft"
+[sub_resource type="Animation" id="Animation_4mpbc"]
+resource_name = "walkUp"
 length = 0.6
 loop_mode = 1
 tracks/0/type = "value"
@@ -87,7 +87,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [Vector2i(0, 7), Vector2i(1, 7), Vector2i(2, 7), Vector2i(3, 7), Vector2i(4, 7), Vector2i(5, 7)]
+"values": [Vector2i(0, 5), Vector2i(1, 5), Vector2i(2, 5), Vector2i(3, 5), Vector2i(4, 5), Vector2i(5, 5)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gs60t"]
@@ -127,9 +127,12 @@ libraries = {
 "": SubResource("AnimationLibrary_gs60t")
 }
 
-[node name="PointLight2D" type="PointLight2D" parent="."]
+[node name="LanternHolder" type="Node2D" parent="."]
 position = Vector2(0, -10.6667)
-rotation = -1.5708
+
+[node name="PointLight2D" type="PointLight2D" parent="LanternHolder"]
+position = Vector2(10.6667, 4.57764e-05)
+rotation = 4.71239
 color = Color(0.996078, 0.592157, 0.129412, 1)
 energy = 0.8
 shadow_enabled = true
@@ -137,9 +140,9 @@ texture = ExtResource("3_5sp7r")
 offset = Vector2(0, 85)
 texture_scale = 0.5
 
-[node name="PointLight2DBack" type="PointLight2D" parent="."]
-position = Vector2(0, -10.6667)
-rotation = 1.5708
+[node name="PointLight2DBack" type="PointLight2D" parent="LanternHolder"]
+position = Vector2(10.6667, 4.06901e-05)
+rotation = 7.85398
 color = Color(0.996078, 0.592157, 0.129412, 1)
 energy = 0.8
 shadow_enabled = true
