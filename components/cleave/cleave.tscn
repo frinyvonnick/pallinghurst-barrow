@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://ddijfxjrhmvlf"]
+
+[ext_resource type="Script" path="res://components/cleave/cleave.gd" id="1_td2oy"]
+
+[node name="Cleave" type="Area2D"]
+position = Vector2(2.08165e-12, 2.08165e-12)
+script = ExtResource("1_td2oy")
+range = 500.0
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

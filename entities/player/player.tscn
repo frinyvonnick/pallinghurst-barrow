@@ -1,12 +1,18 @@
-[gd_scene load_steps=16 format=3 uid="uid://ct1pleqq81l3g"]
+[gd_scene load_steps=19 format=3 uid="uid://ct1pleqq81l3g"]
 
 [ext_resource type="Script" path="res://entities/player/player.gd" id="1_unixv"]
 [ext_resource type="Texture2D" uid="uid://7u7rndviyhil" path="res://assets/char_a_p1_0bas_humn_v01.png" id="2_feftq"]
 [ext_resource type="Texture2D" uid="uid://rnglwrgori7e" path="res://assets/cone-light.jpg" id="3_5sp7r"]
 [ext_resource type="Script" path="res://components/top_down_holder.gd" id="3_bfhb7"]
 [ext_resource type="Script" path="res://components/top_down_input/top_down_input.gd" id="4_6dr58"]
+[ext_resource type="PackedScene" uid="uid://ddijfxjrhmvlf" path="res://components/cleave/cleave.tscn" id="5_f4w8g"]
 [ext_resource type="Script" path="res://components/top_down_movement.gd" id="5_t0m2w"]
 [ext_resource type="Script" path="res://components/top_down_input/top_down_input_properties.gd" id="6_xbeno"]
+[ext_resource type="Script" path="res://components/health/health.gd" id="9_wpofo"]
+
+[sub_resource type="Resource" id="Resource_qbhym"]
+script = ExtResource("6_xbeno")
+speed = 150.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kewgs"]
 size = Vector2(16, 8)
@@ -107,11 +113,13 @@ _data = {
 script = ExtResource("6_xbeno")
 speed = 150.0
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("health") groups=["player"]]
 z_index = 1
 position = Vector2(72, 104)
 scale = Vector2(0.75, 0.75)
 script = ExtResource("1_unixv")
+topDownInputProperties = SubResource("Resource_qbhym")
+health = NodePath("Health")
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -160,6 +168,19 @@ texture = ExtResource("3_5sp7r")
 offset = Vector2(-1, 0)
 texture_scale = 0.05
 
+[node name="WeaponHolder" type="Node2D" parent="." node_paths=PackedStringArray("actor")]
+position = Vector2(0, -10.6667)
+script = ExtResource("3_bfhb7")
+actor = NodePath("..")
+
+[node name="Cleave" parent="WeaponHolder" node_paths=PackedStringArray("emitter") instance=ExtResource("5_f4w8g")]
+rotation = -1.1781
+speed = 20.0
+angle = 67.5
+range = 24.0
+radius = 5.0
+emitter = NodePath("../..")
+
 [node name="TopDownInput" type="Node" parent="." node_paths=PackedStringArray("actor")]
 script = ExtResource("4_6dr58")
 actor = NodePath("..")
@@ -169,3 +190,8 @@ properties = SubResource("Resource_xjqmc")
 script = ExtResource("5_t0m2w")
 actor = NodePath("..")
 animationPlayer = NodePath("../AnimationPlayer")
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("9_wpofo")
+
+[connection signal="health_changed" from="Health" to="." method="_on_health_changed"]
