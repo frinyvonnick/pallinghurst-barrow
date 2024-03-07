@@ -8,6 +8,19 @@ extends Node2D
 # The state machine node will set it.
 var state_machine = null
 var active = false
+var actor: Actor
+
+func _ready() -> void:
+	# The states are children of the `Player` node so their `_ready()` callback will execute first.
+	# That's why we wait for the `owner` to be ready first.
+	await owner.ready
+	# The `as` keyword casts the `owner` variable to the `Player` type.
+	# If the `owner` is not a `Player`, we'll get `null`.
+	actor = owner as Actor
+	# This check will tell us if we inadvertently assign a derived state script
+	# in a scene other than `Player.tscn`, which would be unintended. This can
+	# help prevent some bugs that are difficult to understand.
+	assert(actor != null)
 
 # Virtual function. Receives events from the `_unhandled_input()` callback.
 func handle_input(_event: InputEvent) -> void:

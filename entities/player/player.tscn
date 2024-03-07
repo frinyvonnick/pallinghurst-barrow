@@ -5,8 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://rnglwrgori7e" path="res://assets/cone-light.jpg" id="3_5sp7r"]
 [ext_resource type="Script" path="res://components/top_down_holder.gd" id="3_bfhb7"]
 [ext_resource type="Script" path="res://components/top_down_input/top_down_input.gd" id="4_6dr58"]
-[ext_resource type="PackedScene" uid="uid://ddijfxjrhmvlf" path="res://components/cleave/cleave.tscn" id="5_f4w8g"]
 [ext_resource type="Script" path="res://components/top_down_movement.gd" id="5_t0m2w"]
+[ext_resource type="PackedScene" uid="uid://ddijfxjrhmvlf" path="res://components/skills/cleave/cleave.tscn" id="6_ugq62"]
 [ext_resource type="Script" path="res://components/top_down_input/top_down_input_properties.gd" id="6_xbeno"]
 [ext_resource type="Script" path="res://components/health/health.gd" id="9_wpofo"]
 
@@ -173,25 +173,28 @@ position = Vector2(0, -10.6667)
 script = ExtResource("3_bfhb7")
 actor = NodePath("..")
 
-[node name="Cleave" parent="WeaponHolder" node_paths=PackedStringArray("emitter") instance=ExtResource("5_f4w8g")]
+[node name="Cleave" parent="WeaponHolder" node_paths=PackedStringArray("emitter") instance=ExtResource("6_ugq62")]
 rotation = -1.1781
 speed = 20.0
 angle = 67.5
-range = 24.0
-radius = 5.0
+radius = 2.0
+preparation_time = 0.1
+recovery_time = 0.25
 emitter = NodePath("../..")
+range = 24.0
 
 [node name="TopDownInput" type="Node" parent="." node_paths=PackedStringArray("actor")]
 script = ExtResource("4_6dr58")
 actor = NodePath("..")
 properties = SubResource("Resource_xjqmc")
 
-[node name="TopDownMovement" type="Node" parent="." node_paths=PackedStringArray("actor", "animationPlayer")]
+[node name="TopDownMovement" type="Node" parent="." node_paths=PackedStringArray("animationPlayer", "actor")]
 script = ExtResource("5_t0m2w")
-actor = NodePath("..")
 animationPlayer = NodePath("../AnimationPlayer")
+actor = NodePath("..")
 
-[node name="Health" type="Node" parent="."]
+[node name="Health" type="Node" parent="." node_paths=PackedStringArray("actor")]
 script = ExtResource("9_wpofo")
+actor = NodePath("..")
 
 [connection signal="health_changed" from="Health" to="." method="_on_health_changed"]

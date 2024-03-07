@@ -1,11 +1,17 @@
 [gd_scene load_steps=2 format=3 uid="uid://ddijfxjrhmvlf"]
 
-[ext_resource type="Script" path="res://components/cleave/cleave.gd" id="1_td2oy"]
+[ext_resource type="Script" path="res://components/skills/cleave/cleave.gd" id="1_vsub2"]
 
 [node name="Cleave" type="Area2D"]
 position = Vector2(2.08165e-12, 2.08165e-12)
-script = ExtResource("1_td2oy")
+script = ExtResource("1_vsub2")
+speed = null
+angle = null
 range = 500.0
+radius = null
+preparation_time = null
+recovery_time = null
+damage = null
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

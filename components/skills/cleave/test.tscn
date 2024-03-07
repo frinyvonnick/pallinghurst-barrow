@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bsweh38nfmook"]
 
-[ext_resource type="Script" path="res://components/cleave/test.gd" id="1_ofsrq"]
-[ext_resource type="PackedScene" uid="uid://ddijfxjrhmvlf" path="res://components/cleave/cleave.tscn" id="1_rht8k"]
+[ext_resource type="Script" path="res://components/skills/cleave/test.gd" id="1_ofsrq"]
+[ext_resource type="PackedScene" uid="uid://ddijfxjrhmvlf" path="res://components/skills/cleave/cleave.tscn" id="1_rht8k"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pesaj"]
 

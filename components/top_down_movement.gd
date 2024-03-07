@@ -1,7 +1,6 @@
 class_name TopDownMovement
-extends Node
+extends Movement
 
-@export var actor: Actor
 @export var animationPlayer: AnimationPlayer
 
 func _physics_process(delta):
@@ -20,4 +19,4 @@ func _physics_process(delta):
 	else:
 		animationPlayer.stop()
 	
-	actor.move_and_slide()
+	super(delta)

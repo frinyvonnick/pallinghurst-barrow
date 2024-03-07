@@ -1,11 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://ceaenypic3v6p"]
+[gd_scene load_steps=8 format=3 uid="uid://ceaenypic3v6p"]
 
 [ext_resource type="PackedScene" uid="uid://d313je3pdtsvf" path="res://scenes/torch.tscn" id="1_oyxdq"]
 [ext_resource type="PackedScene" uid="uid://ct1pleqq81l3g" path="res://entities/player/player.tscn" id="2_hgrke"]
 [ext_resource type="PackedScene" uid="uid://ctbifnnla5y4q" path="res://scenes/room_right.tscn" id="2_j2o6i"]
 [ext_resource type="PackedScene" uid="uid://bonfohiqdfelp" path="res://scenes/room_left.tscn" id="2_wwwff"]
 [ext_resource type="PackedScene" uid="uid://f7vlcjxc5en3" path="res://scenes/corridor.tscn" id="4_3ftun"]
-[ext_resource type="PackedScene" uid="uid://drnka0r15m1h5" path="res://entities/ghost/ghost.tscn" id="7_ycreh"]
+[ext_resource type="PackedScene" uid="uid://x1xqx7th2b5h" path="res://entities/black_arm/black_arm.tscn" id="6_4dmai"]
+[ext_resource type="PackedScene" uid="uid://drnka0r15m1h5" path="res://entities/ghost/ghost.tscn" id="7_2yav8"]
 
 [node name="Sandbox" type="Node2D"]
 
@@ -35,10 +36,13 @@ position = Vector2(448, 16)
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
 visible = false
-energy = 0.95
+energy = 0.62
 blend_mode = 1
 
-[node name="Ghost" parent="." instance=ExtResource("7_ycreh")]
-position = Vector2(378, 110)
-
 [node name="Player" parent="." instance=ExtResource("2_hgrke")]
+
+[node name="BlackArm" parent="." instance=ExtResource("6_4dmai")]
+position = Vector2(512, 104)
+
+[node name="Ghost" parent="." instance=ExtResource("7_2yav8")]
+position = Vector2(392, 104)

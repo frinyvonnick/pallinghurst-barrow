@@ -3,6 +3,8 @@
 class_name StateMachine
 extends Node
 
+@export var sight: Area2D
+
 # Emitted when transitioning to a new state.
 signal transitioned(state_name)
 
@@ -14,6 +16,7 @@ signal transitioned(state_name)
 
 func _ready() -> void:
 	await owner.ready
+	sight.body_exited.connect(_on_body_exited)
 	# The state machine assigns itself to the State objects' state_machine property.
 	for child in get_children():
 		child.state_machine = self
@@ -47,3 +50,10 @@ func transition_to(target_state_name: String, msg: Dictionary = {}) -> void:
 	state = get_node(target_state_name)
 	state.enter(msg)
 	emit_signal("transitioned", state.name)
+	
+func _on_body_exited(body):
+	if (body is Player):
+		_transition_to_retreat()
+		
+func _transition_to_retreat():
+	transition_to('retreat_state')
