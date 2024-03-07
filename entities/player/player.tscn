@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://ct1pleqq81l3g"]
+[gd_scene load_steps=20 format=3 uid="uid://ct1pleqq81l3g"]
 
 [ext_resource type="Script" path="res://entities/player/player.gd" id="1_unixv"]
 [ext_resource type="Texture2D" uid="uid://7u7rndviyhil" path="res://assets/char_a_p1_0bas_humn_v01.png" id="2_feftq"]
@@ -109,6 +109,10 @@ _data = {
 "walkUp": SubResource("Animation_4mpbc")
 }
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_85gw8"]
+radius = 2.5
+height = 32.0
+
 [sub_resource type="Resource" id="Resource_xjqmc"]
 script = ExtResource("6_xbeno")
 speed = 150.0
@@ -173,15 +177,21 @@ position = Vector2(0, -10.6667)
 script = ExtResource("3_bfhb7")
 actor = NodePath("..")
 
-[node name="Cleave" parent="WeaponHolder" node_paths=PackedStringArray("emitter") instance=ExtResource("6_ugq62")]
+[node name="Cleave" parent="WeaponHolder" node_paths=PackedStringArray("collisionShape2D", "emitter") instance=ExtResource("6_ugq62")]
 rotation = -1.1781
 speed = 20.0
 angle = 67.5
-radius = 2.0
 preparation_time = 0.1
 recovery_time = 0.25
+collisionShape2D = NodePath("CollisionShape2D")
 emitter = NodePath("../..")
+damage = 35.0
 range = 24.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WeaponHolder/Cleave"]
+position = Vector2(10.6667, 3.05176e-05)
+rotation = -1.5708
+shape = SubResource("CapsuleShape2D_85gw8")
 
 [node name="TopDownInput" type="Node" parent="." node_paths=PackedStringArray("actor")]
 script = ExtResource("4_6dr58")

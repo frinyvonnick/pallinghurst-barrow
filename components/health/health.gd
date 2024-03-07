@@ -15,14 +15,12 @@ func _ready():
 func reduce(amount):
 	var old_value = health
 	health -= amount
-	if health <= 0:
-		health_changed.emit(old_value, health)
+	health_changed.emit(old_value, health)
 		
 func increase(amount):
 	var old_value = health
 	health += amount
-	if health <= 0:
-		health_changed.emit(old_value, health)
+	health_changed.emit(old_value, health)
 		
 func _on_wounded(body, damage):
 	if(body == actor):

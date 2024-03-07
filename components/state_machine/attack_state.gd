@@ -9,10 +9,16 @@ func enter(msg:= {}):
 		return _transition_to_idle()
 	super()
 	skill = msg.get('skill')
+	skill.skillended.connect(_on_skillended)
+	skill.skillactived.connect(_on_skillactived)
 	# Don't stuck enemy until recovery
 	if (skill.is_recovering()): 
 		return _transition_to_idle()
 	skill.start()
+
+func exit():
+	skill.skillended.disconnect(_on_skillended)
+	skill.skillactived.disconnect(_on_skillactived)
 
 # Don't stuck enemy until recovery
 func _on_skillactived():

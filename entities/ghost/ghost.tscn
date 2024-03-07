@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://drnka0r15m1h5"]
+[gd_scene load_steps=16 format=3 uid="uid://drnka0r15m1h5"]
 
 [ext_resource type="Script" path="res://entities/ghost/ghost.gd" id="1_0bhh2"]
 [ext_resource type="Texture2D" uid="uid://d2cpo8mrghh3a" path="res://assets/000.png" id="2_ekrsw"]
@@ -18,6 +18,10 @@ height = 24.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_76jyq"]
 radius = 60.0333
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_toash"]
+radius = 2.5
+height = 32.0
 
 [sub_resource type="LabelSettings" id="LabelSettings_tep7l"]
 font_size = 8
@@ -74,14 +78,21 @@ actor = NodePath("..")
 script = ExtResource("8_ech6b")
 actor = NodePath("..")
 
-[node name="Cleave" parent="WeaponHolder" instance=ExtResource("9_1hien")]
+[node name="Cleave" parent="WeaponHolder" node_paths=PackedStringArray("collisionShape2D", "emitter") instance=ExtResource("9_1hien")]
 rotation = -1.1781
 speed = 20.0
 angle = 67.5
-radius = 5.0
+preparation_time = 0.25
 recovery_time = 2.0
+collisionShape2D = NodePath("CollisionShape2D")
+emitter = NodePath("../..")
 damage = 10.0
 range = 24.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WeaponHolder/Cleave"]
+position = Vector2(16, -2.10879e-12)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_toash")
 
 [node name="Label" type="Label" parent="." node_paths=PackedStringArray("stateMachine")]
 offset_left = -18.0

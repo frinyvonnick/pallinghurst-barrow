@@ -1,18 +1,11 @@
-class_name Cleave
+class_name Tick
 extends Skill
 
-@export var speed: float = 2.0
-@export var angle: float = 270.0
-
 @export var preparation_time: float = 0.25
+@export var active_time: float = 0.1
 @export var recovery_time: float = 0.5
 
-var targetRotation
 var elapsedTime = 0.0
-
-func _ready():
-	super()
-	targetRotation = deg_to_rad(angle)
 
 func _physics_process(delta):
 	if (_state == States.PREPARE):
@@ -23,9 +16,9 @@ func _physics_process(delta):
 			_state = States.ACTIVE
 	
 	if (_state == States.ACTIVE):
-		rotation = lerpf(rotation, targetRotation, speed * delta)
-		if (snappedf(rotation, 0.01) >= snappedf(targetRotation, 0.01)):
-			skillactived.emit()
+		# Play some animation
+		if (elapsedTime >= active_time):
+			elapsedTime = 0
 			_state = States.RECOVERY
 
 	if (_state == States.RECOVERY):

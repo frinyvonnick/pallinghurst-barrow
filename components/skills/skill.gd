@@ -1,7 +1,7 @@
 class_name Skill
 extends Area2D
 
-@onready var collisionShape2D = $CollisionShape2D
+@export var collisionShape2D: CollisionShape2D
 @export var emitter: Actor
 @export var damage: float = 35.0
 @export var range: float = 32.0
@@ -15,11 +15,13 @@ var _state : int = States.READY
 var startPosition: Vector2
 var startScale: Vector2
 var startRotation: float
+var bodiesAlreadyHit: Array[PhysicsBody2D] = []
 
 func _ready():
 	startPosition = position
 	startRotation = rotation
 	startScale = scale
+	body_entered.connect(_on_body_entered)
 	collisionShape2D.set_disabled(true)
 
 func start():
@@ -43,8 +45,8 @@ func end():
 	skillended.emit()
 	
 func cancel(): 
-	reset()
-	skillended.emit()
+	# TODO : Maybe a bit too harsh
+	_state == States.RECOVERY
 	
 func _on_body_entered(body): 
 	if (body == emitter): return

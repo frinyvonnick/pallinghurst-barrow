@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cqegoxve6kb63"]
+[gd_scene load_steps=14 format=3 uid="uid://cqegoxve6kb63"]
 
 [ext_resource type="Script" path="res://entities/black_arm/black_hand/black_hand.gd" id="1_c1ty3"]
 [ext_resource type="Texture2D" uid="uid://d2cpo8mrghh3a" path="res://assets/000.png" id="2_u26yr"]
@@ -8,20 +8,24 @@
 [ext_resource type="Script" path="res://components/state_machine/attack_state.gd" id="6_sg6el"]
 [ext_resource type="Script" path="res://components/top_down_holder.gd" id="7_nokr4"]
 [ext_resource type="Script" path="res://components/state_machine/retreat_state.gd" id="7_rcuv6"]
-[ext_resource type="PackedScene" uid="uid://ddijfxjrhmvlf" path="res://components/skills/cleave/cleave.tscn" id="8_8bc1h"]
 [ext_resource type="Script" path="res://entities/ghost/label.gd" id="9_6ihvd"]
+[ext_resource type="Script" path="res://components/skills/tick/tick.gd" id="9_wg50m"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sbtt0"]
 radius = 8.0
 height = 24.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_yncp3"]
+radius = 8.0
+
 [sub_resource type="LabelSettings" id="LabelSettings_tep7l"]
 font_size = 8
 
-[node name="BlackHand" type="CharacterBody2D" node_paths=PackedStringArray("attack", "stateMachine")]
+[node name="BlackHand" type="CharacterBody2D" node_paths=PackedStringArray("stateMachine")]
 z_index = 1
+collision_layer = 2
+collision_mask = 2
 script = ExtResource("1_c1ty3")
-attack = NodePath("WeaponHolder/Cleave")
 stateMachine = NodePath("StateMachine")
 metadata/_edit_group_ = true
 
@@ -43,7 +47,7 @@ script = ExtResource("4_tenro")
 [node name="seek_state" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("navigationAgent", "skills")]
 script = ExtResource("5_pl6rd")
 navigationAgent = NodePath("../../NavigationAgent2D")
-skills = [NodePath("../../WeaponHolder/Cleave")]
+skills = [NodePath("../../WeaponHolder/Tick")]
 
 [node name="attack_state" type="Node2D" parent="StateMachine"]
 script = ExtResource("6_sg6el")
@@ -56,14 +60,15 @@ navigationAgent = NodePath("../../NavigationAgent2D")
 script = ExtResource("7_nokr4")
 actor = NodePath("..")
 
-[node name="Cleave" parent="WeaponHolder" instance=ExtResource("8_8bc1h")]
-rotation = -1.1781
-speed = 20.0
-angle = 67.5
-radius = 5.0
-recovery_time = 2.0
-damage = 10.0
-range = 24.0
+[node name="Tick" type="Area2D" parent="WeaponHolder" node_paths=PackedStringArray("collisionShape2D", "emitter")]
+script = ExtResource("9_wg50m")
+collisionShape2D = NodePath("CollisionShape2D")
+emitter = NodePath("../..")
+range = 4.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WeaponHolder/Tick"]
+shape = SubResource("CircleShape2D_yncp3")
+debug_color = Color(0.905882, 0.247059, 0.305882, 0.419608)
 
 [node name="Label" type="Label" parent="." node_paths=PackedStringArray("stateMachine")]
 offset_left = -18.0
@@ -78,6 +83,3 @@ stateMachine = NodePath("../StateMachine")
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 navigation_layers = 2
 debug_enabled = true
-
-[connection signal="skillactived" from="WeaponHolder/Cleave" to="StateMachine/attack_state" method="_on_skillactived"]
-[connection signal="skillended" from="WeaponHolder/Cleave" to="StateMachine/attack_state" method="_on_skillended"]
