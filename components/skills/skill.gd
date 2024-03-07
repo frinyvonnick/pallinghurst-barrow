@@ -1,10 +1,11 @@
 class_name Skill
-extends Area2D
+extends HitBox
 
 @export var collisionShape2D: CollisionShape2D
 @export var emitter: Actor
 @export var damage: float = 35.0
 @export var range: float = 32.0
+@export var type: AttackEvent.Types = AttackEvent.Types.PHYSICAL
 
 signal skillended
 signal skillactived
@@ -21,8 +22,8 @@ func _ready():
 	startPosition = position
 	startRotation = rotation
 	startScale = scale
-	body_entered.connect(_on_body_entered)
 	collisionShape2D.set_disabled(true)
+	super()
 
 func start():
 	if (_state != States.READY):
@@ -48,12 +49,17 @@ func cancel():
 	# TODO : Maybe a bit too harsh
 	_state == States.RECOVERY
 	
-func _on_body_entered(body): 
+func handle(hurt_box):
+	var body = hurt_box.owner
 	if (body == emitter): return
-	Events.emit_signal('actor_attacked', body, damage)
+	var event = AttackEvent.new(damage, type, body)
+	Events.emit_signal('actor_attacked', event)
 
-func reset(): 
-	_state = States.READY
+func reset_transform():
 	position = startPosition
 	rotation = startRotation
 	scale = startScale
+
+func reset(): 
+	_state = States.READY
+	reset_transform()

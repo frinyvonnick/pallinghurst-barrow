@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://ct1pleqq81l3g"]
+[gd_scene load_steps=24 format=3 uid="uid://ct1pleqq81l3g"]
 
 [ext_resource type="Script" path="res://entities/player/player.gd" id="1_unixv"]
 [ext_resource type="Texture2D" uid="uid://7u7rndviyhil" path="res://assets/char_a_p1_0bas_humn_v01.png" id="2_feftq"]
@@ -8,7 +8,7 @@
 [ext_resource type="Script" path="res://components/top_down_movement.gd" id="5_t0m2w"]
 [ext_resource type="PackedScene" uid="uid://ddijfxjrhmvlf" path="res://components/skills/cleave/cleave.tscn" id="6_ugq62"]
 [ext_resource type="Script" path="res://components/top_down_input/top_down_input_properties.gd" id="6_xbeno"]
-[ext_resource type="Script" path="res://components/health/health.gd" id="9_wpofo"]
+[ext_resource type="Script" path="res://components/health.gd" id="9_4f0ke"]
 
 [sub_resource type="Resource" id="Resource_qbhym"]
 script = ExtResource("6_xbeno")
@@ -109,6 +109,17 @@ _data = {
 "walkUp": SubResource("Animation_4mpbc")
 }
 
+[sub_resource type="Gradient" id="Gradient_bxfoe"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_fayur"]
+gradient = SubResource("Gradient_bxfoe")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_crcbn"]
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_85gw8"]
 radius = 2.5
 height = 32.0
@@ -117,12 +128,16 @@ height = 32.0
 script = ExtResource("6_xbeno")
 speed = 150.0
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("health") groups=["player"]]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_aettp"]
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("swordAttack", "lanternAttack", "health") groups=["player"]]
 z_index = 1
 position = Vector2(72, 104)
 scale = Vector2(0.75, 0.75)
 script = ExtResource("1_unixv")
 topDownInputProperties = SubResource("Resource_qbhym")
+swordAttack = NodePath("WeaponHolder/Cleave")
+lanternAttack = NodePath("LanternHolder/Cleave")
 health = NodePath("Health")
 metadata/_edit_group_ = true
 
@@ -152,9 +167,12 @@ position = Vector2(0, -10.6667)
 script = ExtResource("3_bfhb7")
 actor = NodePath("..")
 
-[node name="PointLight2D" type="PointLight2D" parent="LanternHolder"]
-position = Vector2(10.6667, 4.57764e-05)
-rotation = 4.71239
+[node name="TorchLight" type="Node2D" parent="LanternHolder"]
+visible = false
+
+[node name="PointLight2D" type="PointLight2D" parent="LanternHolder/TorchLight"]
+position = Vector2(10.6667, 6.10352e-05)
+rotation = -1.5708
 color = Color(0.996078, 0.592157, 0.129412, 1)
 energy = 0.8
 shadow_enabled = true
@@ -162,15 +180,34 @@ texture = ExtResource("3_5sp7r")
 offset = Vector2(0, 85)
 texture_scale = 0.5
 
-[node name="PointLight2DBack" type="PointLight2D" parent="LanternHolder"]
-position = Vector2(10.6667, 4.06901e-05)
-rotation = 7.85398
+[node name="PointLight2DBack" type="PointLight2D" parent="LanternHolder/TorchLight"]
+position = Vector2(10.6667, 4.57764e-05)
+rotation = 1.57079
 color = Color(0.996078, 0.592157, 0.129412, 1)
 energy = 0.8
 shadow_enabled = true
 texture = ExtResource("3_5sp7r")
 offset = Vector2(-1, 0)
 texture_scale = 0.05
+
+[node name="Cleave" parent="LanternHolder" node_paths=PackedStringArray("collisionShape2D", "emitter") instance=ExtResource("6_ugq62")]
+speed = 20.0
+angle = 67.5
+preparation_time = 0.1
+recovery_time = 2.0
+collisionShape2D = NodePath("CollisionShape2D")
+emitter = NodePath("../..")
+type = 1
+
+[node name="PointLight2D" type="PointLight2D" parent="LanternHolder/Cleave"]
+position = Vector2(16, 3.05176e-05)
+texture = SubResource("GradientTexture2D_fayur")
+texture_scale = 1.5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LanternHolder/Cleave"]
+position = Vector2(16, 3.05176e-05)
+scale = Vector2(3.75, 3.75)
+shape = SubResource("CircleShape2D_crcbn")
 
 [node name="WeaponHolder" type="Node2D" parent="." node_paths=PackedStringArray("actor")]
 position = Vector2(0, -10.6667)
@@ -185,7 +222,6 @@ preparation_time = 0.1
 recovery_time = 0.25
 collisionShape2D = NodePath("CollisionShape2D")
 emitter = NodePath("../..")
-damage = 35.0
 range = 24.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WeaponHolder/Cleave"]
@@ -203,8 +239,15 @@ script = ExtResource("5_t0m2w")
 animationPlayer = NodePath("../AnimationPlayer")
 actor = NodePath("..")
 
-[node name="Health" type="Node" parent="." node_paths=PackedStringArray("actor")]
-script = ExtResource("9_wpofo")
+[node name="Health" type="Area2D" parent="." node_paths=PackedStringArray("actor")]
+script = ExtResource("9_4f0ke")
 actor = NodePath("..")
+sensible_types = Array[int]([0])
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Health"]
+position = Vector2(-0.683, -13.333)
+scale = Vector2(0.9, 1.1)
+shape = SubResource("CapsuleShape2D_aettp")
+
+[connection signal="skillactived" from="LanternHolder/Cleave" to="." method="_on_lantern_skillactived"]
 [connection signal="health_changed" from="Health" to="." method="_on_health_changed"]

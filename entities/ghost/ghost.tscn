@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://drnka0r15m1h5"]
+[gd_scene load_steps=17 format=3 uid="uid://drnka0r15m1h5"]
 
 [ext_resource type="Script" path="res://entities/ghost/ghost.gd" id="1_0bhh2"]
 [ext_resource type="Texture2D" uid="uid://d2cpo8mrghh3a" path="res://assets/000.png" id="2_ekrsw"]
@@ -7,17 +7,21 @@
 [ext_resource type="Script" path="res://components/state_machine/idle_state.gd" id="4_fkawd"]
 [ext_resource type="Script" path="res://components/state_machine/seek_state.gd" id="5_y4i0s"]
 [ext_resource type="Script" path="res://components/state_machine/attack_state.gd" id="6_0e83e"]
-[ext_resource type="Script" path="res://components/health/health.gd" id="6_4fh1u"]
 [ext_resource type="Script" path="res://components/top_down_holder.gd" id="8_ech6b"]
+[ext_resource type="Script" path="res://components/health.gd" id="8_y1vcw"]
 [ext_resource type="PackedScene" uid="uid://ddijfxjrhmvlf" path="res://components/skills/cleave/cleave.tscn" id="9_1hien"]
 [ext_resource type="Script" path="res://entities/ghost/label.gd" id="10_5iem6"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sbtt0"]
-radius = 8.0
-height = 24.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sq7dq"]
+radius = 4.0
+height = 16.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_76jyq"]
 radius = 60.0333
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_argf6"]
+radius = 8.0
+height = 26.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_toash"]
 radius = 2.5
@@ -38,7 +42,8 @@ hframes = 8
 vframes = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CapsuleShape2D_sbtt0")
+position = Vector2(0, 2)
+shape = SubResource("CapsuleShape2D_sq7dq")
 
 [node name="Sight" type="Area2D" parent="."]
 
@@ -70,9 +75,13 @@ skills = [NodePath("../../WeaponHolder/Cleave")]
 [node name="attack_state" type="Node2D" parent="StateMachine"]
 script = ExtResource("6_0e83e")
 
-[node name="Health" type="Node" parent="." node_paths=PackedStringArray("actor")]
-script = ExtResource("6_4fh1u")
+[node name="Health" type="Area2D" parent="." node_paths=PackedStringArray("actor")]
+script = ExtResource("8_y1vcw")
 actor = NodePath("..")
+sensible_types = Array[int]([0])
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Health"]
+shape = SubResource("CapsuleShape2D_argf6")
 
 [node name="WeaponHolder" type="Node2D" parent="." node_paths=PackedStringArray("actor")]
 script = ExtResource("8_ech6b")
@@ -82,12 +91,11 @@ actor = NodePath("..")
 rotation = -1.1781
 speed = 20.0
 angle = 67.5
-preparation_time = 0.25
 recovery_time = 2.0
 collisionShape2D = NodePath("CollisionShape2D")
 emitter = NodePath("../..")
 damage = 10.0
-range = 24.0
+range = 32.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WeaponHolder/Cleave"]
 position = Vector2(16, -2.10879e-12)
