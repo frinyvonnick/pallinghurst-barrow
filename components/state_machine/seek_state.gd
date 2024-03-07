@@ -15,12 +15,14 @@ func enter(_msg := {}):
 		return _transition_to_idle()
 	super()
 	target = _msg.get('target')
+	navigationAgent.velocity_computed.connect(_on_velocity_computed)
 	_set_target_position()
 	
 func exit():
 	target = null
 	time_elapsed = 0
 	actor.velocity = Vector2.ZERO
+	navigationAgent.velocity_computed.disconnect(_on_velocity_computed)
 	super()
 
 func update(delta):
@@ -32,14 +34,22 @@ func update(delta):
 	
 func physics_update(delta):
 	var direction = owner.global_position.direction_to(navigationAgent.get_next_path_position()).normalized()
-	actor.velocity = direction * speed
-	if (actor.velocity.length() > 0):
-		actor.set_direction(direction)
-	actor.move_and_slide()
+	
+	if (navigationAgent.avoidance_enabled):
+		# To avoid obstacles
+		navigationAgent.velocity = direction * speed
+	else:
+		_on_velocity_computed(direction * speed)
 	
 	_check_can_attack()
 
 ### PRIVATE METHODS ###
+
+func _on_velocity_computed(safe_velocity: Vector2):
+	actor.velocity = safe_velocity
+	if (actor.velocity.length() > 0):
+		actor.set_direction(safe_velocity.normalized())
+	actor.move_and_slide()
 
 func _transition_to_idle():
 	state_machine.transition_to('idle_state')

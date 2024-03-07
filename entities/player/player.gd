@@ -6,6 +6,10 @@ extends Actor
 @export var lanternAttack: Skill
 @export var health: Health
 
+@export var attackLight: PointLight2D
+@export var wanderingLight: PointLight2D
+@export var wanderingLantern: TopDownHolder
+
 @onready var topDownInput = $TopDownInput
 
 var current_skill: Skill
@@ -17,19 +21,16 @@ func _on_health_changed(old_value, new_value):
 func _ready():
 	if topDownInputProperties:
 		topDownInput.properties = topDownInputProperties
-	change_skill()
+	_change_skill()
 	super()
 
 func _physics_process(delta):
 	if (Input.is_action_just_pressed("attack")):
-		if (!current_skill.is_recovering()):
-			if (current_skill == lanternAttack):
-				current_skill.rotate(deg_to_rad(-67.5))
-			current_skill.start()
+		_start_attack()
 	if (Input.is_action_just_pressed("switch_weapon")):
-		change_skill()
+		_change_skill()
 
-func change_skill():
+func _change_skill():
 	if (current_skill == swordAttack):
 		current_skill = lanternAttack
 		
@@ -37,13 +38,38 @@ func change_skill():
 		swordAttack.hide()
 		lanternAttack.process_mode = Node.PROCESS_MODE_INHERIT
 		lanternAttack.show()
+		_turn_on_wandering_lantern()
 	else:
 		current_skill = swordAttack
 		
 		lanternAttack.process_mode = Node.PROCESS_MODE_DISABLED
 		lanternAttack.hide()
+		_turn_off_wandering_lantern()
 		swordAttack.process_mode = Node.PROCESS_MODE_INHERIT
 		swordAttack.show()
 		
-func _on_lantern_skillactived():
-	current_skill.reset_transform()
+
+func _start_attack():
+	if (current_skill.is_recovering()): return
+	
+	if (current_skill == lanternAttack):
+		wanderingLight.hide()
+		attackLight.show()
+		current_skill.rotate(deg_to_rad(-67.5))
+	current_skill.start()
+	
+	
+func _turn_on_wandering_lantern():
+	wanderingLantern.process_mode = Node.PROCESS_MODE_INHERIT
+	wanderingLantern.show()
+
+func _turn_off_wandering_lantern():
+	wanderingLantern.process_mode = Node.PROCESS_MODE_DISABLED
+	wanderingLantern.hide()
+	
+func _end_attack():
+	attackLight.hide()
+	wanderingLight.show()
+
+func _on_lantern_skillactivated():
+	_end_attack()

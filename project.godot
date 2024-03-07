@@ -19,6 +19,18 @@ config/icon="res://icon.svg"
 
 Events="*res://components/Events.gd"
 
+[debug]
+
+shapes/navigation/enable_edge_connections=false
+shapes/navigation/enable_edge_connections_xray=false
+shapes/navigation/enable_edge_lines=false
+shapes/navigation/enable_edge_lines_xray=false
+shapes/navigation/enable_geometry_face_random_color=false
+shapes/navigation/enable_link_connections=false
+shapes/navigation/enable_link_connections_xray=false
+shapes/navigation/enable_agent_paths=false
+shapes/navigation/enable_agent_paths_xray=false
+
 [input]
 
 up={
