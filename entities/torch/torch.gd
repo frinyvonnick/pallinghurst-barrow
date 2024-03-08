@@ -1,3 +1,4 @@
+class_name Torch
 extends Node2D
 
 @onready var pointLight : PointLight2D = $PointLight2D
@@ -6,6 +7,7 @@ extends Node2D
 
 var rng = RandomNumberGenerator.new()
 var timeElapsed = 0
+var is_off: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -29,3 +31,10 @@ func _process(delta):
 	
 func remap_range(value, ia, ib, oa, ob):
 	return (value - ia) / (ib - ia) * (ob - oa) + oa
+
+func turn_off():
+	is_off = true
+	pointLight.energy = 0
+	
+func turn_on():
+	is_off = false

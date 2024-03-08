@@ -6,10 +6,11 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4r2m6"]
 
-[node name="BlackArm" type="Node2D" node_paths=PackedStringArray("sightCollisionShape")]
+[node name="BlackArm" type="Node2D" node_paths=PackedStringArray("sightCollisionShape", "black_hand")]
 script = ExtResource("1_3qpdo")
 radius = 50.0
 sightCollisionShape = NodePath("Sight/CollisionShape2D")
+black_hand = NodePath("BlackHand")
 
 [node name="Marker2D" type="Marker2D" parent="."]
 

@@ -9,3 +9,6 @@ func _ready():
 
 func set_direction(v: Vector2):
 	direction = v
+
+func reset_position():
+	global_position = initial_position

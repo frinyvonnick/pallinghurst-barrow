@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cgox05j8pbeaq"]
+[gd_scene load_steps=20 format=3 uid="uid://cgox05j8pbeaq"]
 
 [ext_resource type="Script" path="res://entities/boss/boss.gd" id="1_374jo"]
 [ext_resource type="Texture2D" uid="uid://d2cpo8mrghh3a" path="res://assets/000.png" id="2_pqcj8"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://components/state_machine/seek_state.gd" id="6_rh6ex"]
 [ext_resource type="Script" path="res://components/state_machine/attack_state.gd" id="7_sul30"]
 [ext_resource type="Script" path="res://components/combat/health.gd" id="8_cvta6"]
+[ext_resource type="Script" path="res://entities/boss/phase_state.gd" id="8_emxmt"]
 [ext_resource type="Script" path="res://components/top_down_holder.gd" id="9_ve1hc"]
 [ext_resource type="PackedScene" uid="uid://ddijfxjrhmvlf" path="res://components/combat/skills/cleave/cleave.tscn" id="10_0366a"]
 [ext_resource type="Script" path="res://components/combat/skills/rush.gd" id="11_41u4p"]
@@ -33,9 +34,13 @@ height = 32.0
 [sub_resource type="LabelSettings" id="LabelSettings_tep7l"]
 font_size = 8
 
-[node name="Boss" type="CharacterBody2D"]
+[node name="Boss" type="CharacterBody2D" node_paths=PackedStringArray("attack", "health", "stateMachine", "phaseState")]
 z_index = 1
 script = ExtResource("1_374jo")
+attack = NodePath("WeaponHolder/Cleave")
+health = NodePath("Health")
+stateMachine = NodePath("StateMachine")
+phaseState = NodePath("StateMachine/phase_state")
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -59,8 +64,9 @@ debug_path_custom_color = Color(1, 0.423529, 1, 1)
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("sight")]
 script = ExtResource("3_e5cqn")
-sight = NodePath("../Sight")
 initial_state = NodePath("idle_state")
+sight = NodePath("../Sight")
+can_retreat = false
 
 [node name="retreat_state" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("navigationAgent")]
 script = ExtResource("4_mtqug")
@@ -76,6 +82,10 @@ skills = [NodePath("../../WeaponHolder/Cleave"), NodePath("../../WeaponHolder/Ru
 
 [node name="attack_state" type="Node2D" parent="StateMachine"]
 script = ExtResource("7_sul30")
+
+[node name="phase_state" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("navigationAgent")]
+script = ExtResource("8_emxmt")
+navigationAgent = NodePath("../../NavigationAgent2D")
 
 [node name="Health" type="Area2D" parent="." node_paths=PackedStringArray("actor")]
 script = ExtResource("8_cvta6")

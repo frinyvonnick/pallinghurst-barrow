@@ -1,7 +1,9 @@
+class_name BlackArm
 extends Node2D
 
 @export var radius: float = 100
 @export var sightCollisionShape: CollisionShape2D
+@export var black_hand: BlackHand
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -26,3 +28,6 @@ func generate_circle_polygon(radius: float, num_sides: int, position: Vector2) -
 		vector = vector.rotated(angle_delta)
 
 	return polygon
+
+func reset():
+	black_hand.reset_position()

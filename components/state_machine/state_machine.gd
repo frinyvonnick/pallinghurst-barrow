@@ -3,13 +3,13 @@
 class_name StateMachine
 extends Node
 
+# Path to the initial active state. We export it to be able to pick the initial state in the inspector.
+@export var initial_state := NodePath()
 @export var sight: Area2D
+@export var can_retreat:bool = true
 
 # Emitted when transitioning to a new state.
 signal transitioned(state_name)
-
-# Path to the initial active state. We export it to be able to pick the initial state in the inspector.
-@export var initial_state := NodePath()
 
 # The current active state. At the start of the game, we get the `initial_state`.
 @onready var state: State = get_node(initial_state)
@@ -52,6 +52,7 @@ func transition_to(target_state_name: String, msg: Dictionary = {}) -> void:
 	emit_signal("transitioned", state.name)
 	
 func _on_body_exited(body):
+	if (!can_retreat): return
 	if (body is Player):
 		_transition_to_retreat()
 		

@@ -1,28 +1,70 @@
 class_name PhaseState
 extends State
 
-func physics_update():
-
 @export var marker: Marker2D
-@export var preparation_time: float = 0.25
-@export var active_time: float = 0.1
-@export var recovery_time: float = 0.5
+@export var active_time: float = 5
+@export var navigationAgent: NavigationAgent2D
+
+@export var torchs: Array[Torch]
+@export var black_arms: Array[BlackArm]
+
+enum States {READY = 0, PREPARE = 1, ACTIVE = 2}
+var _state : int = States.READY
 
 var elapsedTime = 0.0
+var speed = 100
 
-func physics_update():
-	var distance_to_marker = (marker.global_position - actor.global_position).length()
-	if (distance_to_marker > 0):
-		# Play some animation
-		if (elapsedTime >= preparation_time):
-			elapsedTime = 0
-			collisionShape2D.set_disabled(false)
-			_state = States.ACTIVE
+func enter(msg:={}):
+	var boss = actor as Boss
+	boss.health.set_invulnerable(true)
+	navigationAgent.target_position = marker.global_position
+	_state = States.PREPARE
+	
+func exit():
+	var boss = actor as Boss
+	_show_torchs()
+	_hide_black_arms()
+	boss.health.set_invulnerable(false)
+	
+func physics_update(delta):
+	if (_state == States.PREPARE):
+		var direction = actor.global_position.direction_to(navigationAgent.get_next_path_position()).normalized()
+		actor.velocity = direction * speed
+		if (actor.velocity.length() > 0):
+			actor.set_direction(direction)
+		actor.move_and_slide()
+		if (navigationAgent.distance_to_target() <= 1):
+			_set_to_active()
 	
 	if (_state == States.ACTIVE):
-		# Play some animation
 		if (elapsedTime >= active_time):
 			elapsedTime = 0
-			_state = States.RECOVERY
+			state_machine.transition_to('idle_state')
 
 	elapsedTime += delta
+
+func _set_to_active():
+	_hide_torchs()
+	_show_black_arms()
+	_state = States.ACTIVE
+
+func _hide_torchs():
+	for torch in torchs:
+		torch.process_mode = Node.PROCESS_MODE_DISABLED
+		torch.turn_off()
+		
+func _show_torchs():
+	for torch in torchs:
+		torch.process_mode = Node.PROCESS_MODE_INHERIT
+		torch.turn_on()
+		
+func _hide_black_arms():
+	for black_arm: BlackArm in black_arms:
+		black_arm.process_mode = Node.PROCESS_MODE_DISABLED
+		black_arm.hide()
+		black_arm.reset()
+		
+func _show_black_arms():
+	for black_arm in black_arms:
+		black_arm.process_mode = Node.PROCESS_MODE_INHERIT
+		black_arm.show()

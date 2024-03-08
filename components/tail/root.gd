@@ -1,7 +1,7 @@
 class_name Root
 extends Node2D
 
-@onready var path2D = $Path2D
+@export var path2D: Path2D
 
 @export var color: Color = Color.html("#111111")
 @export var width: int = 2

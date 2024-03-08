@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://d313je3pdtsvf"]
 
-[ext_resource type="Script" path="res://scenes/torch.gd" id="1_4a3pe"]
+[ext_resource type="Script" path="res://entities/torch/torch.gd" id="1_4a3pe"]
 [ext_resource type="TileSet" uid="uid://n5sh4h1hppd7" path="res://assets/dungeon.tres" id="1_7jaqt"]
 
 [sub_resource type="Gradient" id="Gradient_2x23o"]
