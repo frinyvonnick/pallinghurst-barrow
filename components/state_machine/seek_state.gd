@@ -11,9 +11,7 @@ var time_elapsed = 0
 var target: PhysicsBody2D
 
 func enter(_msg := {}):
-	if !_msg.has('target'):
-		# Maybe should throw an error to help dev
-		return _transition_to_idle()
+	assert(_msg.target)
 	super()
 	target = _msg.get('target')
 	# sort skills by range
@@ -60,7 +58,7 @@ func _transition_to_idle():
 	state_machine.transition_to('idle_state')
 	
 func _transition_to_attack(skill):
-	state_machine.transition_to('attack_state', {skill = skill})
+	state_machine.transition_to('attack_state', {skill = skill, target = target})
 
 func sort_skills_by_range_ascending(a: Skill, b: Skill):
 		if a.range < b.range:
@@ -76,4 +74,4 @@ func _set_target_position():
 func _check_can_attack():
 	for skill in skills:
 		if (skill.can_use(target.global_position)):
-			_transition_to_attack(skill)
+			return _transition_to_attack(skill)

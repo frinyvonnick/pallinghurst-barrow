@@ -9,7 +9,7 @@
 [ext_resource type="Script" path="res://components/top_down_holder.gd" id="7_nokr4"]
 [ext_resource type="Script" path="res://components/state_machine/retreat_state.gd" id="7_rcuv6"]
 [ext_resource type="Script" path="res://entities/ghost/label.gd" id="9_6ihvd"]
-[ext_resource type="Script" path="res://components/combat/skills/tick/tick.gd" id="9_wg50m"]
+[ext_resource type="Script" path="res://components/combat/skills/tick.gd" id="9_jituk"]
 [ext_resource type="Script" path="res://components/combat/hurt_box.gd" id="11_xgr1e"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sbtt0"]
@@ -66,7 +66,7 @@ actor = NodePath("..")
 [node name="Tick" type="Area2D" parent="WeaponHolder" node_paths=PackedStringArray("collisionShape2D", "emitter")]
 collision_layer = 0
 collision_mask = 0
-script = ExtResource("9_wg50m")
+script = ExtResource("9_jituk")
 collisionShape2D = NodePath("CollisionShape2D")
 emitter = NodePath("../..")
 range = 16.0

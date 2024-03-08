@@ -1,16 +1,17 @@
-[gd_scene load_steps=17 format=3 uid="uid://drnka0r15m1h5"]
+[gd_scene load_steps=19 format=3 uid="uid://sy7b12moq4wi"]
 
-[ext_resource type="Script" path="res://entities/ghost/ghost.gd" id="1_0bhh2"]
-[ext_resource type="Texture2D" uid="uid://d2cpo8mrghh3a" path="res://assets/000.png" id="2_ekrsw"]
-[ext_resource type="Script" path="res://components/state_machine/state_machine.gd" id="3_3ql63"]
-[ext_resource type="Script" path="res://components/state_machine/retreat_state.gd" id="4_7icx3"]
-[ext_resource type="Script" path="res://components/state_machine/idle_state.gd" id="4_fkawd"]
-[ext_resource type="Script" path="res://components/state_machine/seek_state.gd" id="5_y4i0s"]
-[ext_resource type="Script" path="res://components/state_machine/attack_state.gd" id="6_0e83e"]
-[ext_resource type="Script" path="res://components/top_down_holder.gd" id="8_ech6b"]
-[ext_resource type="Script" path="res://components/combat/health.gd" id="8_wynx1"]
-[ext_resource type="Script" path="res://entities/ghost/label.gd" id="10_5iem6"]
-[ext_resource type="PackedScene" uid="uid://ddijfxjrhmvlf" path="res://components/combat/skills/cleave/cleave.tscn" id="10_dlra6"]
+[ext_resource type="Script" path="res://entities/ghost/ghost.gd" id="1_04qeu"]
+[ext_resource type="Texture2D" uid="uid://d2cpo8mrghh3a" path="res://assets/000.png" id="2_dqbc8"]
+[ext_resource type="Script" path="res://components/state_machine/state_machine.gd" id="3_5eq4l"]
+[ext_resource type="Script" path="res://components/state_machine/retreat_state.gd" id="4_f563m"]
+[ext_resource type="Script" path="res://components/state_machine/idle_state.gd" id="5_8s0hi"]
+[ext_resource type="Script" path="res://components/state_machine/seek_state.gd" id="6_uamo8"]
+[ext_resource type="Script" path="res://components/state_machine/attack_state.gd" id="7_ypw64"]
+[ext_resource type="Script" path="res://components/combat/health.gd" id="8_e26pw"]
+[ext_resource type="Script" path="res://components/top_down_holder.gd" id="9_eis8o"]
+[ext_resource type="PackedScene" uid="uid://ddijfxjrhmvlf" path="res://components/combat/skills/cleave/cleave.tscn" id="10_laxoy"]
+[ext_resource type="Script" path="res://entities/ghost/label.gd" id="11_4dyrr"]
+[ext_resource type="Script" path="res://components/combat/skills/rush.gd" id="11_iw7jy"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sq7dq"]
 radius = 4.0
@@ -27,17 +28,19 @@ height = 26.0
 radius = 2.5
 height = 32.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_pqdsb"]
+
 [sub_resource type="LabelSettings" id="LabelSettings_tep7l"]
 font_size = 8
 
-[node name="Ghost" type="CharacterBody2D" node_paths=PackedStringArray("attack")]
+[node name="Warrior" type="CharacterBody2D" node_paths=PackedStringArray("attack")]
 z_index = 1
-script = ExtResource("1_0bhh2")
+script = ExtResource("1_04qeu")
 attack = NodePath("WeaponHolder/Cleave")
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_ekrsw")
+texture = ExtResource("2_dqbc8")
 hframes = 8
 vframes = 8
 
@@ -56,27 +59,27 @@ debug_enabled = true
 debug_path_custom_color = Color(1, 0.423529, 1, 1)
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("sight")]
-script = ExtResource("3_3ql63")
+script = ExtResource("3_5eq4l")
 sight = NodePath("../Sight")
 initial_state = NodePath("idle_state")
 
 [node name="retreat_state" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("navigationAgent")]
-script = ExtResource("4_7icx3")
+script = ExtResource("4_f563m")
 navigationAgent = NodePath("../../NavigationAgent2D")
 
 [node name="idle_state" type="Node2D" parent="StateMachine"]
-script = ExtResource("4_fkawd")
+script = ExtResource("5_8s0hi")
 
 [node name="seek_state" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("navigationAgent", "skills")]
-script = ExtResource("5_y4i0s")
+script = ExtResource("6_uamo8")
 navigationAgent = NodePath("../../NavigationAgent2D")
-skills = [NodePath("../../WeaponHolder/Cleave")]
+skills = [NodePath("../../WeaponHolder/Cleave"), NodePath("../../WeaponHolder/Rush")]
 
 [node name="attack_state" type="Node2D" parent="StateMachine"]
-script = ExtResource("6_0e83e")
+script = ExtResource("7_ypw64")
 
 [node name="Health" type="Area2D" parent="." node_paths=PackedStringArray("actor")]
-script = ExtResource("8_wynx1")
+script = ExtResource("8_e26pw")
 actor = NodePath("..")
 sensible_types = Array[int]([0])
 
@@ -84,10 +87,10 @@ sensible_types = Array[int]([0])
 shape = SubResource("CapsuleShape2D_argf6")
 
 [node name="WeaponHolder" type="Node2D" parent="." node_paths=PackedStringArray("actor")]
-script = ExtResource("8_ech6b")
+script = ExtResource("9_eis8o")
 actor = NodePath("..")
 
-[node name="Cleave" parent="WeaponHolder" node_paths=PackedStringArray("collisionShape2D", "emitter") instance=ExtResource("10_dlra6")]
+[node name="Cleave" parent="WeaponHolder" node_paths=PackedStringArray("collisionShape2D", "emitter") instance=ExtResource("10_laxoy")]
 rotation = -1.1781
 speed = 20.0
 angle = 67.5
@@ -102,6 +105,19 @@ position = Vector2(16, -2.10879e-12)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_toash")
 
+[node name="Rush" type="Area2D" parent="WeaponHolder" node_paths=PackedStringArray("navigationAgent", "collisionShape2D", "emitter")]
+script = ExtResource("11_iw7jy")
+recovery_time = 5.0
+navigationAgent = NodePath("../../NavigationAgent2D")
+collisionShape2D = NodePath("CollisionShape2D")
+emitter = NodePath("../..")
+damage = 2.08165e-12
+range = 200.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WeaponHolder/Rush"]
+position = Vector2(8, 0)
+shape = SubResource("CircleShape2D_pqdsb")
+
 [node name="Label" type="Label" parent="." node_paths=PackedStringArray("stateMachine")]
 offset_left = -18.0
 offset_top = -32.0
@@ -109,7 +125,7 @@ offset_right = 22.0
 offset_bottom = -9.0
 label_settings = SubResource("LabelSettings_tep7l")
 horizontal_alignment = 1
-script = ExtResource("10_5iem6")
+script = ExtResource("11_4dyrr")
 stateMachine = NodePath("../StateMachine")
 
 [connection signal="body_entered" from="Sight" to="StateMachine/idle_state" method="_on_body_entered"]

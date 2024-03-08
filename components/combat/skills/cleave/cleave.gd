@@ -10,7 +10,7 @@ extends Skill
 var targetRotation
 var elapsedTime = 0.0
 
-func _ready():
+func start(msg:= {}):
 	super()
 	targetRotation = deg_to_rad(angle)
 

@@ -25,7 +25,7 @@ func _ready():
 	collisionShape2D.set_disabled(true)
 	super()
 
-func start():
+func start(msg:= {}):
 	if (_state != States.READY):
 		return
 	_state = States.PREPARE
