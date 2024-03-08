@@ -5,10 +5,10 @@
 [ext_resource type="Texture2D" uid="uid://rnglwrgori7e" path="res://assets/cone-light.jpg" id="3_5sp7r"]
 [ext_resource type="Script" path="res://components/top_down_holder.gd" id="3_bfhb7"]
 [ext_resource type="Script" path="res://components/top_down_input/top_down_input.gd" id="4_6dr58"]
-[ext_resource type="Script" path="res://components/top_down_movement.gd" id="5_t0m2w"]
-[ext_resource type="PackedScene" uid="uid://ddijfxjrhmvlf" path="res://components/skills/cleave/cleave.tscn" id="6_ugq62"]
+[ext_resource type="PackedScene" uid="uid://ddijfxjrhmvlf" path="res://components/combat/skills/cleave/cleave.tscn" id="6_ugq62"]
 [ext_resource type="Script" path="res://components/top_down_input/top_down_input_properties.gd" id="6_xbeno"]
-[ext_resource type="Script" path="res://components/health.gd" id="9_4f0ke"]
+[ext_resource type="Script" path="res://components/movement/top_down_movement.gd" id="8_x7b01"]
+[ext_resource type="Script" path="res://components/combat/health.gd" id="9_qruve"]
 
 [sub_resource type="Resource" id="Resource_fvknp"]
 script = ExtResource("6_xbeno")
@@ -253,14 +253,14 @@ actor = NodePath("..")
 properties = SubResource("Resource_xjqmc")
 
 [node name="TopDownMovement" type="Node" parent="." node_paths=PackedStringArray("animationPlayer", "actor")]
-script = ExtResource("5_t0m2w")
+script = ExtResource("8_x7b01")
 animationPlayer = NodePath("../AnimationPlayer")
 actor = NodePath("..")
 
 [node name="Health" type="Area2D" parent="." node_paths=PackedStringArray("actor")]
 collision_layer = 0
 collision_mask = 0
-script = ExtResource("9_4f0ke")
+script = ExtResource("9_qruve")
 actor = NodePath("..")
 sensible_types = Array[int]([0])
 

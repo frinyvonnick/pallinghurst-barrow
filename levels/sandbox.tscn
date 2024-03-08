@@ -45,6 +45,4 @@ blend_mode = 1
 position = Vector2(512, 104)
 
 [node name="Ghost" parent="." instance=ExtResource("7_2yav8")]
-process_mode = 4
-visible = false
 position = Vector2(392, 104)

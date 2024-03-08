@@ -9,8 +9,8 @@
 [ext_resource type="Script" path="res://components/top_down_holder.gd" id="7_nokr4"]
 [ext_resource type="Script" path="res://components/state_machine/retreat_state.gd" id="7_rcuv6"]
 [ext_resource type="Script" path="res://entities/ghost/label.gd" id="9_6ihvd"]
-[ext_resource type="Script" path="res://components/skills/tick/tick.gd" id="9_wg50m"]
-[ext_resource type="Script" path="res://components/hurt_box.gd" id="11_qkfr3"]
+[ext_resource type="Script" path="res://components/combat/skills/tick/tick.gd" id="9_wg50m"]
+[ext_resource type="Script" path="res://components/combat/hurt_box.gd" id="11_xgr1e"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sbtt0"]
 radius = 8.0
@@ -95,7 +95,7 @@ avoidance_mask = 4
 debug_path_custom_color = Color(1, 0.0823529, 1, 1)
 
 [node name="HurtBox" type="Area2D" parent="."]
-script = ExtResource("11_qkfr3")
+script = ExtResource("11_xgr1e")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 shape = SubResource("CircleShape2D_yt8rc")

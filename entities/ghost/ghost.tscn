@@ -8,8 +8,8 @@
 [ext_resource type="Script" path="res://components/state_machine/seek_state.gd" id="5_y4i0s"]
 [ext_resource type="Script" path="res://components/state_machine/attack_state.gd" id="6_0e83e"]
 [ext_resource type="Script" path="res://components/top_down_holder.gd" id="8_ech6b"]
-[ext_resource type="Script" path="res://components/health.gd" id="8_y1vcw"]
-[ext_resource type="PackedScene" uid="uid://ddijfxjrhmvlf" path="res://components/skills/cleave/cleave.tscn" id="9_1hien"]
+[ext_resource type="Script" path="res://components/combat/health.gd" id="8_y1vcw"]
+[ext_resource type="PackedScene" uid="uid://ddijfxjrhmvlf" path="res://components/combat/skills/cleave/cleave.tscn" id="9_1hien"]
 [ext_resource type="Script" path="res://entities/ghost/label.gd" id="10_5iem6"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sq7dq"]
