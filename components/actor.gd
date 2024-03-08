@@ -1,6 +1,8 @@
 class_name Actor
 extends CharacterBody2D
 
+@export var health: Health
+
 var direction: Vector2 = Vector2.RIGHT
 var initial_position: Vector2
 

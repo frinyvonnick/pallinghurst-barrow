@@ -4,7 +4,6 @@ extends Actor
 # Marquer le skills comme cancealable et boucler sur le tableau.
 # Si un est actif alors on le cancel.
 @export var attack: Skill
-@export var health: Health
 @export var stateMachine: StateMachine
 @export var marker: Marker2D
 @export var phaseState: PhaseState

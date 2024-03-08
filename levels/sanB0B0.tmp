@@ -1,0 +1,54 @@
+[gd_scene load_steps=9 format=3 uid="uid://ceaenypic3v6p"]
+
+[ext_resource type="PackedScene" uid="uid://d313je3pdtsvf" path="res://entities/torch/torch.tscn" id="1_oyxdq"]
+[ext_resource type="PackedScene" uid="uid://ct1pleqq81l3g" path="res://entities/player/player.tscn" id="2_hgrke"]
+[ext_resource type="PackedScene" uid="uid://ctbifnnla5y4q" path="res://scenes/room_right.tscn" id="2_j2o6i"]
+[ext_resource type="PackedScene" uid="uid://bonfohiqdfelp" path="res://scenes/room_left.tscn" id="2_wwwff"]
+[ext_resource type="PackedScene" uid="uid://f7vlcjxc5en3" path="res://scenes/corridor.tscn" id="4_3ftun"]
+[ext_resource type="PackedScene" uid="uid://x1xqx7th2b5h" path="res://entities/black_arm/black_arm.tscn" id="6_4dmai"]
+[ext_resource type="PackedScene" uid="uid://drnka0r15m1h5" path="res://entities/ghost/ghost.tscn" id="7_2yav8"]
+[ext_resource type="PackedScene" uid="uid://sy7b12moq4wi" path="res://entities/warrior/warrior.tscn" id="8_es40a"]
+
+[node name="Sandbox" type="Node2D"]
+
+[node name="RoomLeftEntrance" parent="." instance=ExtResource("2_wwwff")]
+y_sort_enabled = true
+position = Vector2(432, 96)
+
+[node name="RoomRightEntrance" parent="." instance=ExtResource("2_j2o6i")]
+
+[node name="Corridor" parent="." instance=ExtResource("4_3ftun")]
+y_sort_enabled = true
+position = Vector2(256, 96)
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+visible = false
+color = Color(0.0666667, 0.0666667, 0.0666667, 1)
+
+[node name="Torch" parent="." instance=ExtResource("1_oyxdq")]
+z_index = 1
+position = Vector2(88, 16)
+energy = Vector2(0.8, 1.2)
+texture_scale = Vector2(2.5, 3)
+
+[node name="Torch2" parent="." instance=ExtResource("1_oyxdq")]
+z_index = 1
+position = Vector2(448, 16)
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+visible = false
+energy = 0.62
+blend_mode = 1
+
+[node name="Player" parent="." instance=ExtResource("2_hgrke")]
+
+[node name="BlackArm" parent="." instance=ExtResource("6_4dmai")]
+position = Vector2(512, 104)
+
+[node name="Ghost" parent="." instance=ExtResource("7_2yav8")]
+process_mode = 4
+visible = false
+position = Vector2(392, 104)
+
+[node name="Warrior" parent="." instance=ExtResource("8_es40a")]
+position = Vector2(392, 104)

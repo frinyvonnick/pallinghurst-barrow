@@ -4,7 +4,6 @@ extends Actor
 @export var topDownInputProperties: TopDownInputProperties
 @export var swordAttack: Skill
 @export var lanternAttack: Skill
-@export var health: Health
 
 @export var attackLight: PointLight2D
 @export var wanderingLight: PointLight2D

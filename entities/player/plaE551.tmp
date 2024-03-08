@@ -131,7 +131,7 @@ speed = 150.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_aettp"]
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("swordAttack", "lanternAttack", "attackLight", "wanderingLight", "wanderingLantern", "health") groups=["player"]]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("swordAttack", "lanternAttack", "health", "attackLight", "wanderingLight", "wanderingLantern") groups=["player"]]
 z_index = 1
 position = Vector2(72, 104)
 scale = Vector2(0.75, 0.75)
@@ -139,10 +139,10 @@ script = ExtResource("1_unixv")
 topDownInputProperties = SubResource("Resource_fvknp")
 swordAttack = NodePath("WeaponHolder/Cleave")
 lanternAttack = NodePath("LanternAttackHolder/Cleave")
+health = NodePath("Health")
 attackLight = NodePath("LanternAttackHolder/Cleave/PointLight2D")
 wanderingLight = NodePath("LanternWanderingHolder/PointLight2D")
 wanderingLantern = NodePath("LanternWanderingHolder")
-health = NodePath("Health")
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -253,13 +253,13 @@ script = ExtResource("4_6dr58")
 actor = NodePath("..")
 properties = SubResource("Resource_xjqmc")
 
-[node name="TopDownDodge" type="Node" parent="." node_paths=PackedStringArray("actor")]
-script = ExtResource("9_mfhbn")
-actor = NodePath("..")
-
 [node name="TopDownMovement" type="Node" parent="." node_paths=PackedStringArray("animationPlayer", "actor")]
 script = ExtResource("8_x7b01")
 animationPlayer = NodePath("../AnimationPlayer")
+actor = NodePath("..")
+
+[node name="TopDownDodge" type="Node" parent="." node_paths=PackedStringArray("actor")]
+script = ExtResource("9_mfhbn")
 actor = NodePath("..")
 
 [node name="Health" type="Area2D" parent="." node_paths=PackedStringArray("actor")]

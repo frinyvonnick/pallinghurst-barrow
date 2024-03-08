@@ -15,16 +15,14 @@ var elapsedTime = 0.0
 var speed = 100
 
 func enter(msg:={}):
-	var boss = actor as Boss
-	boss.health.set_invulnerable(true)
+	actor.health.set_invulnerable(true)
 	navigationAgent.target_position = marker.global_position
 	_state = States.PREPARE
 	
 func exit():
-	var boss = actor as Boss
 	_show_torchs()
 	_hide_black_arms()
-	boss.health.set_invulnerable(false)
+	actor.health.set_invulnerable(false)
 	
 func physics_update(delta):
 	if (_state == States.PREPARE):
