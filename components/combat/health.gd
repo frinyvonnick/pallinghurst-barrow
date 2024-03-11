@@ -22,11 +22,20 @@ func reduce(amount):
 	if (invulnerable): return
 	var old_value = health
 	health -= amount
+	Events.emit_signal('health_changed', actor, old_value, health)
+	# TODO : Remove for general signal
 	health_changed.emit(old_value, health)
 		
 func increase(amount):
 	var old_value = health
 	health += amount
+	Events.emit_signal('health_changed', actor, old_value, health)
+	health_changed.emit(old_value, health)
+
+func reset():
+	var old_value = health
+	health = max
+	Events.emit_signal('health_changed', actor, old_value, health)
 	health_changed.emit(old_value, health)
 		
 func _on_wounded(event):

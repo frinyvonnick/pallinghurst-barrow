@@ -1,6 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://ceaenypic3v6p"]
+[gd_scene load_steps=11 format=3 uid="uid://ceaenypic3v6p"]
 
+[ext_resource type="Script" path="res://levels/sandbox.gd" id="1_2qsne"]
 [ext_resource type="PackedScene" uid="uid://d313je3pdtsvf" path="res://entities/torch/torch.tscn" id="1_oyxdq"]
+[ext_resource type="PackedScene" uid="uid://cfwhbeq4x0et2" path="res://components/ui/UI.tscn" id="1_tx7e4"]
 [ext_resource type="PackedScene" uid="uid://ct1pleqq81l3g" path="res://entities/player/player.tscn" id="2_hgrke"]
 [ext_resource type="PackedScene" uid="uid://ctbifnnla5y4q" path="res://scenes/room_right.tscn" id="2_j2o6i"]
 [ext_resource type="PackedScene" uid="uid://bonfohiqdfelp" path="res://scenes/room_left.tscn" id="2_wwwff"]
@@ -10,6 +12,9 @@
 [ext_resource type="PackedScene" uid="uid://sy7b12moq4wi" path="res://entities/warrior/warrior.tscn" id="8_es40a"]
 
 [node name="Sandbox" type="Node2D"]
+script = ExtResource("1_2qsne")
+
+[node name="Ui" parent="." instance=ExtResource("1_tx7e4")]
 
 [node name="RoomLeftEntrance" parent="." instance=ExtResource("2_wwwff")]
 y_sort_enabled = true

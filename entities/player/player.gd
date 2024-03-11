@@ -15,6 +15,7 @@ var current_skill: Skill
 
 func _on_health_changed(old_value, new_value):
 	if (new_value <= 0 && is_inside_tree()):
+		health.reset()
 		get_tree().reload_current_scene()
 
 func _ready():

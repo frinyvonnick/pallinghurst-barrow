@@ -1,0 +1,95 @@
+[gd_scene load_steps=10 format=3 uid="uid://bre5f8sesk6jw"]
+
+[ext_resource type="Shader" path="res://levels/test_animation.gdshader" id="1_77yhq"]
+[ext_resource type="Texture2D" path="res://assets/move_rodolphe.png" id="2_nhl1g"]
+[ext_resource type="Texture2D" uid="uid://udasxd6aawua" path="res://assets/white-circle-free-png.webp" id="3_p8i2s"]
+[ext_resource type="Shader" path="res://levels/test_animation_health.gdshader" id="3_py0eb"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xw8s6"]
+shader = ExtResource("1_77yhq")
+shader_parameter/brightness = 0.0
+shader_parameter/contrast = 1.0
+shader_parameter/saturation = 1.0
+shader_parameter/redVal = 1.0
+shader_parameter/greenVal = 1.0
+shader_parameter/blueVal = 1.0
+shader_parameter/tint_color = Color(1, 1, 1, 1)
+shader_parameter/tint_effect_factor = 0.0
+
+[sub_resource type="Animation" id="Animation_7t45x"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_0sk0e"]
+resource_name = "move_left"
+length = 0.8
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:material")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.05),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("ShaderMaterial_xw8s6")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tqtx4"]
+_data = {
+"RESET": SubResource("Animation_7t45x"),
+"move_left": SubResource("Animation_0sk0e")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dbkb4"]
+shader = ExtResource("3_py0eb")
+shader_parameter/color = Color(1, 0.34902, 0.356863, 1)
+shader_parameter/background_color = Color(0.0666667, 0.0666667, 0.0666667, 1)
+shader_parameter/health = 0.76
+
+[node name="TestAnimation" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_xw8s6")
+texture = ExtResource("2_nhl1g")
+hframes = 8
+vframes = 2
+frame = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_tqtx4")
+}
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_dbkb4")
+position = Vector2(200, 0)
+rotation = -1.5708
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("3_p8i2s")

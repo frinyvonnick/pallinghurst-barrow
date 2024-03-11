@@ -1,0 +1,59 @@
+[gd_scene load_steps=7 format=3 uid="uid://cfwhbeq4x0et2"]
+
+[ext_resource type="PackedScene" uid="uid://4p5h0ge0qj1u" path="res://components/ui/text_box.tscn" id="1_nhv68"]
+[ext_resource type="Script" path="res://components/ui/UI.gd" id="1_u3i1f"]
+[ext_resource type="Shader" path="res://levels/test_animation_health.gdshader" id="3_qmk22"]
+[ext_resource type="Texture2D" uid="uid://udasxd6aawua" path="res://assets/white-circle-free-png.webp" id="4_nm0d2"]
+[ext_resource type="Script" path="res://components/ui/health_bar.gd" id="5_7ks40"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p6sd0"]
+shader = ExtResource("3_qmk22")
+shader_parameter/color = Color(0.682353, 0, 0, 1)
+shader_parameter/background_color = null
+shader_parameter/health = 1.0
+
+[node name="Ui" type="CanvasLayer" node_paths=PackedStringArray("text_box")]
+script = ExtResource("1_u3i1f")
+text_box = NodePath("Control/Dialogue/TextBox")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Dialogue" type="MarginContainer" parent="Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="TextBox" parent="Control/Dialogue" instance=ExtResource("1_nhv68")]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+
+[node name="Battle" type="MarginContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+grow_vertical = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Control/Battle"]
+material = SubResource("ShaderMaterial_p6sd0")
+position = Vector2(128, -128)
+rotation = -1.5708
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("4_nm0d2")
+script = ExtResource("5_7ks40")

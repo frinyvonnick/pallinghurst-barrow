@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=3 uid="uid://4p5h0ge0qj1u"]
+
+[ext_resource type="FontFile" uid="uid://dt305t1pocmd2" path="res://assets/InstrumentSerif-Italic.ttf" id="1_don5q"]
+[ext_resource type="Script" path="res://components/ui/text_box.gd" id="1_jl50l"]
+
+[sub_resource type="Gradient" id="Gradient_p1ub8"]
+offsets = PackedFloat32Array(0.924603, 1)
+colors = PackedColorArray(0.900794, 0.900794, 0.900794, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_fcj7a"]
+gradient = SubResource("Gradient_p1ub8")
+width = 48
+height = 48
+fill = 2
+fill_from = Vector2(0.5, 0.5)
+
+[node name="TextBox" type="MarginContainer" node_paths=PackedStringArray("label")]
+clip_contents = true
+offset_right = 900.0
+offset_bottom = 173.0
+size_flags_horizontal = 0
+script = ExtResource("1_jl50l")
+label = NodePath("MarginContainer/Label")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+layout_mode = 2
+texture = SubResource("GradientTexture2D_fcj7a")
+region_rect = Rect2(16, 16, 32, 16)
+patch_margin_right = 16
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="Label" type="Label" parent="MarginContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(900, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_don5q")
+theme_override_font_sizes/font_size = 16
+autowrap_mode = 2
