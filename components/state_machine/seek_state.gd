@@ -27,6 +27,7 @@ func exit():
 	super()
 
 func update(delta):
+	super(delta)
 	if (time_elapsed >= 0.1):
 		_set_target_position()
 		time_elapsed = 0
@@ -34,6 +35,8 @@ func update(delta):
 	time_elapsed += delta
 	
 func physics_update(delta):
+	super(delta)
+	
 	var direction = owner.global_position.direction_to(navigationAgent.get_next_path_position()).normalized()
 	
 	if (navigationAgent.avoidance_enabled):
@@ -43,6 +46,8 @@ func physics_update(delta):
 		# Prevent to do micro movements to adjust position
 		if (navigationAgent.distance_to_target() > distance_target):
 			_on_velocity_computed(direction * speed)
+		else: 
+			actor.velocity = Vector2.ZERO
 	
 	_check_can_attack()
 
@@ -52,7 +57,9 @@ func _on_velocity_computed(safe_velocity: Vector2):
 	actor.velocity = safe_velocity
 	if (actor.velocity.length() > 0):
 		actor.set_direction(safe_velocity.normalized())
-	actor.move_and_slide()
+	
+	if (!"topDownMovement" in actor):
+		actor.move_and_slide()
 
 func _transition_to_idle():
 	state_machine.transition_to('idle_state')

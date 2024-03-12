@@ -18,7 +18,9 @@ func physics_update(delta):
 	actor.velocity = direction * speed
 	if (actor.velocity.length() > 0):
 		actor.set_direction(direction)
-	actor.move_and_slide()
+	
+	if (!"topDownMovement" in actor):
+		actor.move_and_slide()
 
 func _transition_to_idle():
 	state_machine.transition_to('idle_state')

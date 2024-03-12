@@ -29,12 +29,12 @@ func handle_input(_event: InputEvent) -> void:
 
 # Virtual function. Corresponds to the `_process()` callback.
 func update(_delta: float) -> void:
-	pass
+	if (active == false): return
 
 
 # Virtual function. Corresponds to the `_physics_process()` callback.
 func physics_update(_delta: float) -> void:
-	pass
+	if (active == false): return
 
 
 # Virtual function. Called by the state machine upon changing the active state. The `msg` parameter

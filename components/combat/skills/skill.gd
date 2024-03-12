@@ -51,9 +51,11 @@ func cancel():
 	
 func handle(hurt_box):
 	var body = hurt_box.owner
-	if (body == emitter): return
+	# Prevent hitting self or already hitted target
+	if (body == emitter || bodiesAlreadyHit.has(body)): return
 	var event = AttackEvent.new(damage, type, body)
 	Events.emit_signal('actor_attacked', event)
+	bodiesAlreadyHit.append(body)
 
 func reset_transform():
 	position = startPosition
@@ -61,5 +63,6 @@ func reset_transform():
 	scale = startScale
 
 func reset(): 
+	bodiesAlreadyHit.clear()
 	_state = States.READY
 	reset_transform()

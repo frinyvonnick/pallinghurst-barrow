@@ -1,9 +1,9 @@
 [gd_scene load_steps=10 format=3 uid="uid://bre5f8sesk6jw"]
 
-[ext_resource type="Shader" path="res://levels/test_animation.gdshader" id="1_77yhq"]
+[ext_resource type="Shader" path="res://levels/test/test_animation.gdshader" id="1_77yhq"]
 [ext_resource type="Texture2D" uid="uid://diifdtbdubtx1" path="res://assets/move_rodolphe.png" id="2_nhl1g"]
 [ext_resource type="Texture2D" uid="uid://udasxd6aawua" path="res://assets/white-circle-free-png.webp" id="3_p8i2s"]
-[ext_resource type="Shader" path="res://levels/test_animation_health.gdshader" id="3_py0eb"]
+[ext_resource type="Shader" path="res://levels/test/test_animation_health.gdshader" id="3_py0eb"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xw8s6"]
 shader = ExtResource("1_77yhq")

@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://d4kbkw3h1muo5"]
+
+[ext_resource type="TileSet" uid="uid://n5sh4h1hppd7" path="res://assets/dungeon.tres" id="1_ggco3"]
+
+[node name="Flag" type="Node2D"]
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource("1_ggco3")
+format = 2
+layer_0/tile_data = PackedInt32Array(-1, 720896, 0, 65535, 720896, 1)

@@ -12,6 +12,9 @@ func enter(msg:= {}):
 	var bodies = state_machine.sight.get_overlapping_bodies().filter(comparator)
 	if (bodies.size() > 0):
 		_transition_to_seek(bodies[0])
+	
+func physics_update(delta):
+	actor.velocity = Vector2.ZERO
 		
 func exit():
 	state_machine.sight.body_entered.disconnect(_on_body_entered)

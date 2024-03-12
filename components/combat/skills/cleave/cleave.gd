@@ -13,13 +13,33 @@ var elapsedTime = 0.0
 
 func start(msg:= {}):
 	super()
-	animation_name = msg.animation_name
-	targetRotation = deg_to_rad(angle)
+	if ("target" in msg): 
+		animation_name = _get_animation_name(emitter.global_position.direction_to(msg.target.global_position))
+	else:
+		animation_name = _get_animation_name(null)
+		
+func _get_animation_name(pDirection):
+	var direction = pDirection
+	if (direction == null):
+		direction = emitter.direction
+	
+	var animation = "attack"
+	if (direction.x < 0):
+		animation += "Left"
+	elif (direction.x > 0):
+		animation += "Right"
+	elif (direction.y < 0):
+		animation += "Up"	
+	elif (direction.y > 0):
+		animation += "Down"
+	return animation
 	
 func activate():
 	_state = States.ACTIVE
+	emitter.topDownMovement.skip_animation = true
 	emitter.animationPlayer.play(animation_name)
 	await emitter.animationPlayer.animation_finished
+	emitter.topDownMovement.skip_animation = false
 	skillactived.emit()
 	_state = States.RECOVERY
 

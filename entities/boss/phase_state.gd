@@ -2,7 +2,7 @@ class_name PhaseState
 extends State
 
 @export var marker: Marker2D
-@export var active_time: float = 5
+@export var active_time: float = 10
 @export var navigationAgent: NavigationAgent2D
 
 @export var torchs: Array[Torch]
@@ -30,9 +30,9 @@ func physics_update(delta):
 		actor.velocity = direction * speed
 		if (actor.velocity.length() > 0):
 			actor.set_direction(direction)
-		actor.move_and_slide()
 		if (navigationAgent.distance_to_target() <= 1):
 			_set_to_active()
+			actor.velocity = Vector2.ZERO
 	
 	if (_state == States.ACTIVE):
 		if (elapsedTime >= active_time):
@@ -42,6 +42,7 @@ func physics_update(delta):
 	elapsedTime += delta
 
 func _set_to_active():
+	actor.set_direction(Vector2.DOWN)
 	_hide_torchs()
 	_show_black_arms()
 	_state = States.ACTIVE

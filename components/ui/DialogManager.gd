@@ -23,6 +23,7 @@ func start_dialog(pLines):
 	text_box.show()
 
 func _unhandled_input(event):
+	if (ui == null): return
 	if (Input.is_action_just_pressed("interact")):
 		current_line += 1
 		if (current_line >= lines.size()):

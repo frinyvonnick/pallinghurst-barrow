@@ -11,6 +11,7 @@ func _physics_process(delta):
 
 func animate():
 	if (skip_animation): return
+	
 	var animation = "walk"
 	if (actor.velocity.length() > 0):
 		animation = "walk"

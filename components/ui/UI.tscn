@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://4p5h0ge0qj1u" path="res://components/ui/text_box.tscn" id="1_nhv68"]
 [ext_resource type="Script" path="res://components/ui/UI.gd" id="1_u3i1f"]
-[ext_resource type="Shader" path="res://levels/test_animation_health.gdshader" id="3_qmk22"]
+[ext_resource type="Shader" path="res://levels/test/test_animation_health.gdshader" id="3_qmk22"]
 [ext_resource type="Texture2D" uid="uid://udasxd6aawua" path="res://assets/white-circle-free-png.webp" id="4_nm0d2"]
 [ext_resource type="Script" path="res://components/ui/health_bar.gd" id="5_7ks40"]
 

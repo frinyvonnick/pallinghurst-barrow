@@ -11,6 +11,10 @@ extends Actor
 @export var torchs: Array[Torch]
 @export var black_arms: Array[BlackArm]
 
+@export var weaponSprite: Sprite2D
+@export var use_hammer: bool
+@export var topDownMovement: TopDownMovement
+
 var firstThird = false
 var secondThird = false
 
@@ -19,6 +23,10 @@ func _ready():
 	phaseState.marker = marker
 	phaseState.torchs = torchs
 	phaseState.black_arms = black_arms
+	
+	weaponSprite.frame = 0
+	if (use_hammer):
+		weaponSprite.frame = 2
 
 func _on_health_changed(old_value, new_value):
 	if (!firstThird && new_value <= health.max / 3 * 2):

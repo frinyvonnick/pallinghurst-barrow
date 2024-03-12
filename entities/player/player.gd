@@ -55,26 +55,9 @@ func _start_attack():
 		attackLight.show()
 		# current_skill.rotate(deg_to_rad(-67.5))
 		
-	topDownMovement.skip_animation = true
-	print('Start ', _get_animation_name())
-	current_skill.start({animation_name=_get_animation_name()})
+	current_skill.start()
 	await current_skill.skillactived
-	print('Activated')
-	topDownMovement.skip_animation = false
 
-# Should move to Cleave or Skill? Or maybe it is dependent of the actor
-func _get_animation_name():
-	var animation = "attack"
-	if (direction.x < 0):
-		animation += "Left"
-	elif (direction.x > 0):
-		animation += "Right"
-	elif (direction.y < 0):
-		animation += "Up"	
-	elif (direction.y > 0):
-		animation += "Down"
-	return animation
-	
 func _turn_on_wandering_lantern():
 	wanderingLantern.process_mode = Node.PROCESS_MODE_INHERIT
 	wanderingLantern.show()

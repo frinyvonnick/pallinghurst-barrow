@@ -1295,7 +1295,6 @@ z_index = 1
 position = Vector2(-12, -12)
 
 [node name="SwordCleave" parent="TopDownHolder/Anchor" node_paths=PackedStringArray("collisionShape2D", "emitter") instance=ExtResource("6_t88dn")]
-visible = false
 z_index = 1
 position = Vector2(0, 0)
 rotation = -3.73326
