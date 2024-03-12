@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://sy7b12moq4wi"]
+[gd_scene load_steps=18 format=3 uid="uid://sy7b12moq4wi"]
 
 [ext_resource type="Script" path="res://entities/ghost/ghost.gd" id="1_04qeu"]
 [ext_resource type="Texture2D" uid="uid://d2cpo8mrghh3a" path="res://assets/000.png" id="2_dqbc8"]
@@ -8,7 +8,6 @@
 [ext_resource type="Script" path="res://components/state_machine/seek_state.gd" id="6_uamo8"]
 [ext_resource type="Script" path="res://components/state_machine/attack_state.gd" id="7_ypw64"]
 [ext_resource type="Script" path="res://components/combat/health.gd" id="8_e26pw"]
-[ext_resource type="Script" path="res://components/top_down_holder.gd" id="9_eis8o"]
 [ext_resource type="PackedScene" uid="uid://ddijfxjrhmvlf" path="res://components/combat/skills/cleave/cleave.tscn" id="10_laxoy"]
 [ext_resource type="Script" path="res://entities/ghost/label.gd" id="11_4dyrr"]
 [ext_resource type="Script" path="res://components/combat/skills/rush.gd" id="11_iw7jy"]
@@ -60,8 +59,8 @@ debug_path_custom_color = Color(1, 0.423529, 1, 1)
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("sight")]
 script = ExtResource("3_5eq4l")
-sight = NodePath("../Sight")
 initial_state = NodePath("idle_state")
+sight = NodePath("../Sight")
 
 [node name="retreat_state" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("navigationAgent")]
 script = ExtResource("4_f563m")
@@ -86,9 +85,7 @@ sensible_types = Array[int]([0])
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Health"]
 shape = SubResource("CapsuleShape2D_argf6")
 
-[node name="WeaponHolder" type="Node2D" parent="." node_paths=PackedStringArray("actor")]
-script = ExtResource("9_eis8o")
-actor = NodePath("..")
+[node name="WeaponHolder" type="Node2D" parent="."]
 
 [node name="Cleave" parent="WeaponHolder" node_paths=PackedStringArray("collisionShape2D", "emitter") instance=ExtResource("10_laxoy")]
 rotation = -1.1781

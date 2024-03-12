@@ -1239,6 +1239,7 @@ animationPlayer = NodePath("AnimationPlayer")
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 21.3333)
 scale = Vector2(1.26667, 1)
 shape = SubResource("RectangleShape2D_kewgs")
 
@@ -1284,7 +1285,7 @@ sensible_types = Array[int]([0])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Health"]
 position = Vector2(-0.683, -13.333)
-scale = Vector2(0.9, 1.1)
+scale = Vector2(1, 2.365)
 shape = SubResource("CapsuleShape2D_aettp")
 
 [node name="TopDownHolder" type="Node2D" parent="."]
@@ -1322,11 +1323,6 @@ position = Vector2(0, -10.6667)
 position = Vector2(16, 0)
 texture = SubResource("GradientTexture2D_fayur")
 texture_scale = 1.5
-
-[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="TopDownHolder/Anchor/LanternWanderingHolder"]
-position = Vector2(21.3333, 3.05176e-05)
-radius = 20.0
-avoidance_layers = 4
 
 [node name="LanternAttackHolder" type="Node2D" parent="TopDownHolder/Anchor"]
 position = Vector2(0, -10.6667)
@@ -1380,6 +1376,13 @@ position = Vector2(-0.0719219, 0.244106)
 scale = Vector2(0.285714, 0.285714)
 texture = SubResource("GradientTexture2D_fayur")
 texture_scale = 1.5
+
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="TopDownHolder/Anchor/LanternAttackHolder/Cleave/CollisionShape2D"]
+position = Vector2(-3.33786e-06, 8.58307e-06)
+rotation = 2.36841
+scale = Vector2(0.285714, 0.285714)
+radius = 20.0
+avoidance_layers = 4
 
 [connection signal="health_changed" from="Health" to="." method="_on_health_changed"]
 [connection signal="skillactived" from="TopDownHolder/Anchor/LanternAttackHolder/Cleave" to="." method="_on_lantern_skillactivated"]

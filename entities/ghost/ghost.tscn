@@ -30,10 +30,11 @@ height = 32.0
 [sub_resource type="LabelSettings" id="LabelSettings_tep7l"]
 font_size = 8
 
-[node name="Ghost" type="CharacterBody2D" node_paths=PackedStringArray("attack")]
+[node name="Ghost" type="CharacterBody2D" node_paths=PackedStringArray("attack", "health")]
 z_index = 1
 script = ExtResource("1_0bhh2")
 attack = NodePath("WeaponHolder/Cleave")
+health = NodePath("Health")
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -57,8 +58,8 @@ debug_path_custom_color = Color(1, 0.423529, 1, 1)
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("sight")]
 script = ExtResource("3_3ql63")
-sight = NodePath("../Sight")
 initial_state = NodePath("idle_state")
+sight = NodePath("../Sight")
 
 [node name="retreat_state" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("navigationAgent")]
 script = ExtResource("4_7icx3")

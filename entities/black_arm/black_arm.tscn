@@ -22,6 +22,7 @@ use_edge_connections = false
 navigation_layers = 2
 
 [node name="Root" parent="." node_paths=PackedStringArray("anchor", "actor") instance=ExtResource("3_0ai2f")]
+color = Color(0.0392157, 0.137255, 0.192157, 1)
 anchor = NodePath("../Marker2D")
 actor = NodePath("../BlackHand")
 

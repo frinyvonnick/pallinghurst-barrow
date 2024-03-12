@@ -34,13 +34,13 @@ height = 32.0
 [sub_resource type="LabelSettings" id="LabelSettings_tep7l"]
 font_size = 8
 
-[node name="Boss" type="CharacterBody2D" node_paths=PackedStringArray("attack", "health", "stateMachine", "phaseState")]
+[node name="Boss" type="CharacterBody2D" node_paths=PackedStringArray("attack", "stateMachine", "phaseState", "health")]
 z_index = 1
 script = ExtResource("1_374jo")
 attack = NodePath("WeaponHolder/Cleave")
-health = NodePath("Health")
 stateMachine = NodePath("StateMachine")
 phaseState = NodePath("StateMachine/phase_state")
+health = NodePath("Health")
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
