@@ -41,7 +41,6 @@ z_index = 1
 position = Vector2(448, 16)
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
-visible = false
 energy = 0.62
 blend_mode = 1
 
