@@ -1,7 +1,7 @@
 [gd_scene load_steps=16 format=3 uid="uid://cqegoxve6kb63"]
 
 [ext_resource type="Script" path="res://entities/black_arm/black_hand/black_hand.gd" id="1_c1ty3"]
-[ext_resource type="Texture2D" uid="uid://d2cpo8mrghh3a" path="res://assets/000.png" id="2_u26yr"]
+[ext_resource type="Texture2D" uid="uid://ctobkwm4e1wgt" path="res://assets/black_hand.png" id="2_u25r7"]
 [ext_resource type="Script" path="res://components/state_machine/state_machine.gd" id="3_0x0ae"]
 [ext_resource type="Script" path="res://components/state_machine/idle_state.gd" id="4_tenro"]
 [ext_resource type="Script" path="res://components/state_machine/seek_state.gd" id="5_pl6rd"]
@@ -32,7 +32,7 @@ stateMachine = NodePath("StateMachine")
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_u26yr")
+texture = ExtResource("2_u25r7")
 hframes = 8
 vframes = 8
 
@@ -99,3 +99,5 @@ script = ExtResource("11_xgr1e")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 shape = SubResource("CircleShape2D_yt8rc")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]

@@ -2,6 +2,7 @@ class_name Actor
 extends CharacterBody2D
 
 @export var health: Health
+@export var animationPlayer: AnimationPlayer
 
 var direction: Vector2 = Vector2.RIGHT
 var initial_position: Vector2

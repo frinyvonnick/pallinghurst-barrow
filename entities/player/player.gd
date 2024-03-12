@@ -1,27 +1,25 @@
 class_name Player
 extends Actor
 
-@export var topDownInputProperties: TopDownInputProperties
-@export var swordAttack: Skill
-@export var lanternAttack: Skill
+@export var swordAttack: Cleave
+@export var lanternAttack: Cleave
+var current_skill: Cleave
 
 @export var attackLight: PointLight2D
 @export var wanderingLight: PointLight2D
-@export var wanderingLantern: TopDownHolder
-
-@onready var topDownInput = $TopDownInput
-
-var current_skill: Skill
-
-func _on_health_changed(old_value, new_value):
-	if (new_value <= 0 && is_inside_tree()):
-		health.reset()
-		get_tree().reload_current_scene()
+@export var wanderingLantern: Node2D
+@export var topDownDodge: TopDownDodge
+@export var topDownMovement: TopDownMovement
+@export var topDownInput: TopDownInput
+@export var topDownInputProperties: TopDownInputProperties
 
 func _ready():
 	if topDownInputProperties:
 		topDownInput.properties = topDownInputProperties
 	_change_skill()
+	
+	Events.connect('player_dodging_started', _on_dodge_started)
+	Events.connect('player_dodging_finished', _on_dodge_finished)
 	super()
 
 func _physics_process(delta):
@@ -38,13 +36,13 @@ func _change_skill():
 		swordAttack.hide()
 		lanternAttack.process_mode = Node.PROCESS_MODE_INHERIT
 		lanternAttack.show()
-		_turn_on_wandering_lantern()
+		#_turn_on_wandering_lantern()
 	else:
 		current_skill = swordAttack
 		
 		lanternAttack.process_mode = Node.PROCESS_MODE_DISABLED
 		lanternAttack.hide()
-		_turn_off_wandering_lantern()
+		#_turn_off_wandering_lantern()
 		swordAttack.process_mode = Node.PROCESS_MODE_INHERIT
 		swordAttack.show()
 		
@@ -55,9 +53,27 @@ func _start_attack():
 	if (current_skill == lanternAttack):
 		wanderingLight.hide()
 		attackLight.show()
-		current_skill.rotate(deg_to_rad(-67.5))
-	current_skill.start()
-	
+		# current_skill.rotate(deg_to_rad(-67.5))
+		
+	topDownMovement.skip_animation = true
+	print('Start ', _get_animation_name())
+	current_skill.start({animation_name=_get_animation_name()})
+	await current_skill.skillactived
+	print('Activated')
+	topDownMovement.skip_animation = false
+
+# Should move to Cleave or Skill? Or maybe it is dependent of the actor
+func _get_animation_name():
+	var animation = "attack"
+	if (direction.x < 0):
+		animation += "Left"
+	elif (direction.x > 0):
+		animation += "Right"
+	elif (direction.y < 0):
+		animation += "Up"	
+	elif (direction.y > 0):
+		animation += "Down"
+	return animation
 	
 func _turn_on_wandering_lantern():
 	wanderingLantern.process_mode = Node.PROCESS_MODE_INHERIT
@@ -68,8 +84,20 @@ func _turn_off_wandering_lantern():
 	wanderingLantern.hide()
 	
 func _end_attack():
-	attackLight.hide()
-	wanderingLight.show()
+	# attackLight.hide()
+	# wanderingLight.show()
+	pass
 
 func _on_lantern_skillactivated():
 	_end_attack()
+
+func _on_health_changed(old_value, new_value):
+	if (new_value <= 0 && is_inside_tree()):
+		health.reset()
+		get_tree().reload_current_scene()
+		
+func _on_dodge_started():
+	topDownMovement.skip_animation = true
+	
+func _on_dodge_finished():
+	topDownMovement.skip_animation = false

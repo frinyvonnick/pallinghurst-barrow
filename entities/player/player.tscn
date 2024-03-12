@@ -1,15 +1,20 @@
-[gd_scene load_steps=25 format=3 uid="uid://ct1pleqq81l3g"]
+[gd_scene load_steps=38 format=3 uid="uid://ct1pleqq81l3g"]
 
 [ext_resource type="Script" path="res://entities/player/player.gd" id="1_unixv"]
-[ext_resource type="Texture2D" uid="uid://7u7rndviyhil" path="res://assets/char_a_p1_0bas_humn_v01.png" id="2_feftq"]
 [ext_resource type="Texture2D" uid="uid://rnglwrgori7e" path="res://assets/cone-light.jpg" id="3_5sp7r"]
-[ext_resource type="Script" path="res://components/top_down_holder.gd" id="3_bfhb7"]
+[ext_resource type="Texture2D" uid="uid://bt62ulqd0nswf" path="res://assets/rodolphe.png" id="3_qho4c"]
 [ext_resource type="Script" path="res://components/top_down_input/top_down_input.gd" id="4_6dr58"]
+[ext_resource type="Animation" uid="uid://bpdqehf7sxqyx" path="res://entities/player/attackLeft.res" id="4_bydxy"]
+[ext_resource type="Animation" uid="uid://dvhp81blu22v2" path="res://entities/player/attackRight.res" id="5_c186v"]
 [ext_resource type="PackedScene" uid="uid://ddijfxjrhmvlf" path="res://components/combat/skills/cleave/cleave.tscn" id="6_t88dn"]
+[ext_resource type="Animation" uid="uid://c0rcnxdkdlq1v" path="res://entities/player/attackUp.res" id="6_uxjnl"]
 [ext_resource type="Script" path="res://components/top_down_input/top_down_input_properties.gd" id="6_xbeno"]
+[ext_resource type="Animation" uid="uid://cryf227sceng5" path="res://entities/player/attackDown.res" id="7_8126b"]
 [ext_resource type="Script" path="res://components/movement/top_down_movement.gd" id="8_x7b01"]
 [ext_resource type="Script" path="res://components/top_down_input/top_down_dodge.gd" id="9_mfhbn"]
 [ext_resource type="Script" path="res://components/combat/health.gd" id="9_qruve"]
+[ext_resource type="PackedScene" uid="uid://baepuvs4irrjp" path="res://entities/sword/sword.tscn" id="11_ud6u2"]
+[ext_resource type="PackedScene" uid="uid://d1vttlh7v50xb" path="res://entities/lantern/lantern.tscn" id="15_vqx5s"]
 
 [sub_resource type="Resource" id="Resource_fvknp"]
 script = ExtResource("6_xbeno")
@@ -30,13 +35,758 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [Vector2i(1, 4)]
+"values": [Vector2i(0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TopDownHolder/Anchor:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-12, -12)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("TopDownHolder/Anchor:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("TopDownHolder/Anchor:z_index")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("TopDownHolder/Anchor/LanternAttackHolder/Cleave:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-2.36841]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("TopDownHolder/Anchor/LanternAttackHolder/Cleave:z_index")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("TopDownHolder/Anchor/LanternAttackHolder/Cleave/CollisionShape2D:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-14.2503, -19.3813)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("TopDownHolder/Anchor/LanternAttackHolder/Cleave:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-0.662629, 9.50969)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("TopDownHolder/Anchor/SwordCleave:rotation")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-3.73326]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("TopDownHolder/Anchor/SwordCleave:position")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_tgfqm"]
+resource_name = "dodgeDown"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 6), Vector2i(1, 6), Vector2i(2, 6), Vector2i(3, 6), Vector2i(4, 6), Vector2i(5, 6), Vector2i(6, 6), Vector2i(7, 6)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TopDownHolder/Anchor:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-12, -13.3333), Vector2(-14.6667, -10.6667), Vector2(-17.3333, -8), Vector2(-17.3333, -8), Vector2(-17.3333, -8), Vector2(-17.3333, -8), Vector2(-14.6667, -9.33333), Vector2(-12, -13.3333)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TopDownHolder/Anchor:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-2.9147]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("TopDownHolder/Anchor/LanternAttackHolder/Cleave:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.509636]
+}
+
+[sub_resource type="Animation" id="Animation_ratcv"]
+resource_name = "dodgeLeft"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 5), Vector2i(1, 5), Vector2i(2, 5), Vector2i(3, 5), Vector2i(4, 5), Vector2i(5, 5), Vector2i(6, 5), Vector2i(7, 5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TopDownHolder/Anchor:position")
+tracks/2/interp = 0
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(6.66667, -9.33333), Vector2(14.6667, -8), Vector2(24, -6.66666), Vector2(24, -6.66666), Vector2(24, -6.66666), Vector2(24, -6.66666), Vector2(14.6667, -8), Vector2(6.66667, -9.33333)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("TopDownHolder/Anchor:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-2.9147]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("TopDownHolder/Anchor/LanternAttackHolder/Cleave:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.509636]
+}
+
+[sub_resource type="Animation" id="Animation_yy4r4"]
+resource_name = "dodgeRight"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:flip_h")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:frame_coords")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 5), Vector2i(1, 5), Vector2i(2, 5), Vector2i(3, 5), Vector2i(4, 5), Vector2i(5, 5), Vector2i(6, 5), Vector2i(7, 5)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TopDownHolder/Anchor:z_index")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("TopDownHolder/Anchor:position")
+tracks/3/interp = 0
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.5, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-8, -9.33333), Vector2(-16, -8), Vector2(-25.3333, -6.66666), Vector2(-25.3333, -6.66667), Vector2(-25.3333, -6.66667), Vector2(-6.66667, -9.33333)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("TopDownHolder/Anchor:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [-2.9147, -2.9147, -2.9147, -2.9147]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("TopDownHolder/Anchor/LanternAttackHolder/Cleave:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.509636]
+}
+
+[sub_resource type="Animation" id="Animation_yr2hi"]
+resource_name = "dodgeUp"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 4), Vector2i(1, 4), Vector2i(2, 4), Vector2i(3, 4), Vector2i(4, 4), Vector2i(5, 4), Vector2i(6, 4), Vector2i(7, 4)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TopDownHolder/Anchor:position")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(12, -12), Vector2(2.66667, -14.6667), Vector2(2.66667, -21.3333), Vector2(2.66667, -21.3333), Vector2(2.66667, -20), Vector2(2.66667, -21.3333), Vector2(1.33334, -13.3333), Vector2(12, -12)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TopDownHolder/Anchor:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-2.9147]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("TopDownHolder/Anchor:z_index")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [-1]
+}
+
+[sub_resource type="Animation" id="Animation_mkycc"]
+resource_name = "idleDown"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 9), Vector2i(1, 9), Vector2i(2, 9), Vector2i(3, 9), Vector2i(4, 9), Vector2i(5, 9), Vector2i(6, 9), Vector2i(7, 9)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TopDownHolder/Anchor:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [-2.61799, -2.79253, -2.61799]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("TopDownHolder/Anchor:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-13.3333, -12), Vector2(-13.3333, -12), Vector2(-13.3333, -12), Vector2(-13.3333, -12)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("TopDownHolder/Anchor/LanternAttackHolder/Cleave/CollisionShape2D:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-15.1589, -23.5797)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("TopDownHolder/Anchor:z_index")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("TopDownHolder/Anchor/SwordCleave:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("TopDownHolder/Anchor/SwordCleave:rotation")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-1.36834]
+}
+
+[sub_resource type="Animation" id="Animation_id20r"]
+resource_name = "idleLeft"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 8), Vector2i(1, 8), Vector2i(2, 8), Vector2i(3, 8), Vector2i(4, 8), Vector2i(5, 8), Vector2i(6, 8), Vector2i(7, 8)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TopDownHolder/Anchor:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-2.66667, -8), Vector2(-2.66667, -8), Vector2(-5.33333, -8), Vector2(-6.66667, -8), Vector2(-5.33333, -8), Vector2(-2.66667, -8), Vector2(-1.33334, -8), Vector2(-1.33334, -8)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("TopDownHolder/Anchor:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.619592]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("TopDownHolder/Anchor:z_index")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("TopDownHolder/Anchor/LanternAttackHolder/Cleave/CollisionShape2D:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(14.2628, -14.0451)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("TopDownHolder/Anchor/LanternAttackHolder/Cleave:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.523599]
+}
+
+[sub_resource type="Animation" id="Animation_fevr4"]
+resource_name = "idleRight"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:flip_h")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:frame_coords")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 8), Vector2i(1, 8), Vector2i(2, 8), Vector2i(3, 8), Vector2i(4, 8), Vector2i(5, 8), Vector2i(6, 8), Vector2i(7, 8)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TopDownHolder/Anchor:z_index")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("TopDownHolder/Anchor:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-3.07876]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("TopDownHolder/Anchor:position")
+tracks/4/interp = 0
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1.33333, -8), Vector2(2.66666, -8), Vector2(5.33333, -8), Vector2(5.33333, -8), Vector2(4, -8), Vector2(1.33333, -8), Vector2(1.33333, -8), Vector2(1.33333, -8), Vector2(1.33333, -8)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("TopDownHolder/Anchor/LanternAttackHolder/Cleave/CollisionShape2D:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-22.1037, 2.82474)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("TopDownHolder/Anchor/LanternAttackHolder/Cleave:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.523599]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("TopDownHolder/Anchor/SwordCleave:rotation")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-1.35263]
+}
+
+[sub_resource type="Animation" id="Animation_8i6w6"]
+resource_name = "idleUp"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:flip_h")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:frame_coords")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 7), Vector2i(1, 7), Vector2i(2, 7), Vector2i(3, 7), Vector2i(4, 7), Vector2i(5, 7), Vector2i(6, 7), Vector2i(7, 7)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TopDownHolder/Anchor:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(12, -12)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("TopDownHolder/Anchor:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [-2.61799, -2.79253, -2.61799]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("TopDownHolder/Anchor/LanternAttackHolder/Cleave:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("TopDownHolder/Anchor:z_index")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [-1]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("TopDownHolder/Anchor/SwordCleave:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.8326]
 }
 
 [sub_resource type="Animation" id="Animation_5bicj"]
 resource_name = "walkDown"
-length = 0.6
+length = 0.8
 loop_mode = 1
+step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -44,50 +794,281 @@ tracks/0/path = NodePath("Sprite2D:frame_coords")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [Vector2i(0, 4), Vector2i(1, 4), Vector2i(2, 4), Vector2i(3, 4), Vector2i(4, 4), Vector2i(5, 4)]
+"values": [Vector2i(0, 12), Vector2i(1, 12), Vector2i(2, 12), Vector2i(3, 12), Vector2i(4, 12), Vector2i(5, 12), Vector2i(6, 12), Vector2i(7, 12), Vector2i(0, 13), Vector2i(1, 13), Vector2i(2, 13), Vector2i(3, 13), Vector2i(4, 13), Vector2i(5, 13), Vector2i(6, 13), Vector2i(7, 13)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TopDownHolder/Anchor:position")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1.33333, -29.3333), Vector2(-5.33333, -17.3333), Vector2(-5.33334, -20), Vector2(4.76837e-06, -25.3333), Vector2(-2.563e-06, -28), Vector2(-5.33334, -18.6667), Vector2(-5.33333, -20), Vector2(9.53674e-07, -25.3333)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TopDownHolder/Anchor:z_index")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("TopDownHolder/Anchor/LanternAttackHolder/Cleave/CollisionShape2D:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-17.7783, -32.9333)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("TopDownHolder/Anchor/SwordCleave:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.434587]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("TopDownHolder/Anchor:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
 }
 
 [sub_resource type="Animation" id="Animation_rysk1"]
 resource_name = "walkLeft"
-length = 0.6
+length = 0.8
 loop_mode = 1
+step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/path = NodePath("Sprite2D:flip_h")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 1.6),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [Vector2i(0, 7), Vector2i(1, 7), Vector2i(2, 7), Vector2i(3, 7), Vector2i(4, 7), Vector2i(5, 7)]
+"values": [false, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:frame_coords")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 14), Vector2i(1, 14), Vector2i(2, 14), Vector2i(3, 14), Vector2i(4, 14), Vector2i(5, 14), Vector2i(6, 14), Vector2i(7, 14), Vector2i(0, 15), Vector2i(1, 15), Vector2i(2, 15), Vector2i(3, 15), Vector2i(4, 15), Vector2i(5, 15), Vector2i(6, 15), Vector2i(7, 15)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TopDownHolder/Anchor:position")
+tracks/2/interp = 0
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.15, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-17.3333, -16), Vector2(-22.6667, -26.6667), Vector2(-22.6667, -38.6667), Vector2(-24, -40), Vector2(-16, -9.33333), Vector2(0, -12), Vector2(-2.66667, -18.6667), Vector2(13.3333, -20), Vector2(17.3333, -20), Vector2(5.33333, -9.33333)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("TopDownHolder/Anchor:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0907571]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("TopDownHolder/Anchor/LanternAttackHolder/Cleave/CollisionShape2D:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(19.1538, -26.5855)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("TopDownHolder/Anchor/LanternAttackHolder/Cleave:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-2.57087]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("TopDownHolder/Anchor:z_index")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [-1]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("TopDownHolder/Anchor/SwordCleave:rotation")
+tracks/7/interp = 0
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-1.27933]
 }
 
 [sub_resource type="Animation" id="Animation_6oosh"]
 resource_name = "walkRight"
-length = 0.6
+length = 0.8
 loop_mode = 1
+step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/path = NodePath("Sprite2D:flip_h")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [Vector2i(0, 6), Vector2i(1, 6), Vector2i(2, 6), Vector2i(3, 6), Vector2i(4, 6), Vector2i(5, 6)]
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:frame_coords")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 14), Vector2i(1, 14), Vector2i(2, 14), Vector2i(3, 14), Vector2i(4, 14), Vector2i(5, 14), Vector2i(6, 14), Vector2i(7, 14), Vector2i(0, 15), Vector2i(1, 15), Vector2i(2, 15), Vector2i(3, 15), Vector2i(4, 15), Vector2i(5, 15), Vector2i(6, 15), Vector2i(7, 15)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TopDownHolder/Anchor:z_index")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("TopDownHolder/Anchor:position")
+tracks/3/interp = 0
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.15, 0.2, 0.266667, 0.3, 0.35, 0.4, 0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(17.3333, -17.3333), Vector2(-1.33333, -13.3333), Vector2(-13.3333, -18.6667), Vector2(-13.3333, -20), Vector2(-12, -14.6667), Vector2(6.66667, -8), Vector2(8, -12), Vector2(18.6667, -21.3333), Vector2(24, -28), Vector2(24, -40), Vector2(25.3333, -41.3333), Vector2(25.3333, -36), Vector2(24, -17.3333), Vector2(20, -24), Vector2(20, -24)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("TopDownHolder/Anchor/LanternAttackHolder/Cleave/CollisionShape2D:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-23.122, -1.48364)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("TopDownHolder/Anchor/LanternAttackHolder/Cleave:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-2.57087]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("TopDownHolder/Anchor:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("TopDownHolder/Anchor/SwordCleave:rotation")
+tracks/7/interp = 0
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.57603]
 }
 
 [sub_resource type="Animation" id="Animation_4mpbc"]
 resource_name = "walkUp"
-length = 0.6
+length = 0.8
 loop_mode = 1
+step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -95,20 +1076,126 @@ tracks/0/path = NodePath("Sprite2D:frame_coords")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 1.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [Vector2i(0, 5), Vector2i(1, 5), Vector2i(2, 5), Vector2i(3, 5), Vector2i(4, 5), Vector2i(5, 5)]
+"values": [Vector2i(0, 10), Vector2i(1, 10), Vector2i(2, 10), Vector2i(3, 10), Vector2i(4, 10), Vector2i(5, 10), Vector2i(6, 10), Vector2i(7, 10), Vector2i(0, 11), Vector2i(1, 11), Vector2i(2, 11), Vector2i(3, 11), Vector2i(4, 11), Vector2i(5, 11), Vector2i(6, 11), Vector2i(7, 11), Vector2i(2, 10)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TopDownHolder/Anchor:z_index")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [-1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TopDownHolder/Anchor:position")
+tracks/2/interp = 0
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(9.33333, -16), Vector2(5.33334, -28), Vector2(4, -28), Vector2(9.33333, -12), Vector2(9.33333, -14.6667), Vector2(4, -29.3333), Vector2(4, -29.3333), Vector2(9.33333, -13.3333)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("TopDownHolder/Anchor/LanternAttackHolder/Cleave/CollisionShape2D:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(18.3546, 17.9694)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("TopDownHolder/Anchor:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0907571]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("TopDownHolder/Anchor/LanternAttackHolder/Cleave:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-0.662629, 9.50969)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("TopDownHolder/Anchor/LanternAttackHolder/Cleave:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-2.36841]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("TopDownHolder/Anchor/SwordCleave:rotation")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.708604]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gs60t"]
 _data = {
 "RESET": SubResource("Animation_55k60"),
+"attackDown": ExtResource("7_8126b"),
+"attackLeft": ExtResource("4_bydxy"),
+"attackRight": ExtResource("5_c186v"),
+"attackUp": ExtResource("6_uxjnl"),
+"dodgeDown": SubResource("Animation_tgfqm"),
+"dodgeLeft": SubResource("Animation_ratcv"),
+"dodgeRight": SubResource("Animation_yy4r4"),
+"dodgeUp": SubResource("Animation_yr2hi"),
+"idleDown": SubResource("Animation_mkycc"),
+"idleLeft": SubResource("Animation_id20r"),
+"idleRight": SubResource("Animation_fevr4"),
+"idleUp": SubResource("Animation_8i6w6"),
 "walkDown": SubResource("Animation_5bicj"),
 "walkLeft": SubResource("Animation_rysk1"),
 "walkRight": SubResource("Animation_6oosh"),
 "walkUp": SubResource("Animation_4mpbc")
 }
+
+[sub_resource type="Resource" id="Resource_xjqmc"]
+script = ExtResource("6_xbeno")
+speed = 150.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_aettp"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_85gw8"]
+radius = 2.5
+height = 32.0
 
 [sub_resource type="Gradient" id="Gradient_bxfoe"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
@@ -121,28 +1208,22 @@ fill_to = Vector2(1, 0.5)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_crcbn"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_85gw8"]
-radius = 2.5
-height = 32.0
-
-[sub_resource type="Resource" id="Resource_xjqmc"]
-script = ExtResource("6_xbeno")
-speed = 150.0
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_aettp"]
-
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("swordAttack", "lanternAttack", "attackLight", "wanderingLight", "wanderingLantern", "health") groups=["player"]]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("swordAttack", "lanternAttack", "attackLight", "wanderingLight", "wanderingLantern", "topDownDodge", "topDownMovement", "topDownInput", "health", "animationPlayer") groups=["player"]]
 z_index = 1
 position = Vector2(72, 104)
 scale = Vector2(0.75, 0.75)
 script = ExtResource("1_unixv")
+swordAttack = NodePath("TopDownHolder/Anchor/SwordCleave")
+lanternAttack = NodePath("TopDownHolder/Anchor/LanternAttackHolder/Cleave")
+attackLight = NodePath("TopDownHolder/Anchor/LanternAttackHolder/Cleave/CollisionShape2D/PointLight2D")
+wanderingLight = NodePath("TopDownHolder/Anchor/LanternWanderingHolder/PointLight2D")
+wanderingLantern = NodePath("TopDownHolder/Anchor/LanternWanderingHolder")
+topDownDodge = NodePath("TopDownDodge")
+topDownMovement = NodePath("TopDownMovement")
+topDownInput = NodePath("TopDownInput")
 topDownInputProperties = SubResource("Resource_fvknp")
-swordAttack = NodePath("WeaponHolder/Cleave")
-lanternAttack = NodePath("LanternAttackHolder/Cleave")
-attackLight = NodePath("LanternAttackHolder/Cleave/PointLight2D")
-wanderingLight = NodePath("LanternWanderingHolder/PointLight2D")
-wanderingLantern = NodePath("LanternWanderingHolder")
 health = NodePath("Health")
+animationPlayer = NodePath("AnimationPlayer")
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -150,112 +1231,32 @@ scale = Vector2(1.26667, 1)
 shape = SubResource("RectangleShape2D_kewgs")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(3, 3)
+zoom = Vector2(2, 2)
 position_smoothing_enabled = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 1
 position = Vector2(0, -10.6667)
-texture = ExtResource("2_feftq")
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_qho4c")
 hframes = 8
-vframes = 8
-frame = 33
+vframes = 16
+frame = 8
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_gs60t")
 }
 
-[node name="LanternAttackHolder" type="Node2D" parent="." node_paths=PackedStringArray("actor")]
-position = Vector2(0, -10.6667)
-script = ExtResource("3_bfhb7")
-actor = NodePath("..")
-
-[node name="TorchLight" type="Node2D" parent="LanternAttackHolder"]
-visible = false
-
-[node name="PointLight2D" type="PointLight2D" parent="LanternAttackHolder/TorchLight"]
-position = Vector2(10.6667, 6.10352e-05)
-rotation = -1.5708
-color = Color(0.996078, 0.592157, 0.129412, 1)
-energy = 0.8
-shadow_enabled = true
-texture = ExtResource("3_5sp7r")
-offset = Vector2(0, 85)
-texture_scale = 0.5
-
-[node name="PointLight2DBack" type="PointLight2D" parent="LanternAttackHolder/TorchLight"]
-position = Vector2(10.6667, 4.57764e-05)
-rotation = 1.57079
-color = Color(0.996078, 0.592157, 0.129412, 1)
-energy = 0.8
-shadow_enabled = true
-texture = ExtResource("3_5sp7r")
-offset = Vector2(-1, 0)
-texture_scale = 0.05
-
-[node name="Cleave" parent="LanternAttackHolder" node_paths=PackedStringArray("collisionShape2D", "emitter") instance=ExtResource("6_t88dn")]
-speed = 20.0
-angle = 67.5
-preparation_time = 0.1
-recovery_time = 2.0
-collisionShape2D = NodePath("CollisionShape2D")
-emitter = NodePath("../..")
-type = 1
-
-[node name="PointLight2D" type="PointLight2D" parent="LanternAttackHolder/Cleave"]
-position = Vector2(16, 3.05176e-05)
-texture = SubResource("GradientTexture2D_fayur")
-texture_scale = 1.5
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LanternAttackHolder/Cleave"]
-position = Vector2(16, 3.05176e-05)
-scale = Vector2(2.5, 2.5)
-shape = SubResource("CircleShape2D_crcbn")
-
-[node name="LanternWanderingHolder" type="Node2D" parent="." node_paths=PackedStringArray("actor")]
-position = Vector2(0, -10.6667)
-script = ExtResource("3_bfhb7")
-actor = NodePath("..")
-
-[node name="PointLight2D" type="PointLight2D" parent="LanternWanderingHolder"]
-position = Vector2(16, 0)
-texture = SubResource("GradientTexture2D_fayur")
-texture_scale = 1.5
-
-[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="LanternWanderingHolder"]
-position = Vector2(21.3333, 3.05176e-05)
-radius = 20.0
-avoidance_layers = 4
-
-[node name="WeaponHolder" type="Node2D" parent="." node_paths=PackedStringArray("actor")]
-position = Vector2(0, -10.6667)
-script = ExtResource("3_bfhb7")
-actor = NodePath("..")
-
-[node name="Cleave" parent="WeaponHolder" node_paths=PackedStringArray("collisionShape2D", "emitter") instance=ExtResource("6_t88dn")]
-rotation = -1.1781
-speed = 20.0
-angle = 67.5
-preparation_time = 0.1
-recovery_time = 0.25
-collisionShape2D = NodePath("CollisionShape2D")
-emitter = NodePath("../..")
-range = 24.0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WeaponHolder/Cleave"]
-position = Vector2(10.6667, 3.05176e-05)
-rotation = -1.5708
-shape = SubResource("CapsuleShape2D_85gw8")
-
 [node name="TopDownInput" type="Node" parent="." node_paths=PackedStringArray("actor")]
 script = ExtResource("4_6dr58")
 actor = NodePath("..")
 properties = SubResource("Resource_xjqmc")
 
-[node name="TopDownDodge" type="Node" parent="." node_paths=PackedStringArray("actor")]
+[node name="TopDownDodge" type="Node" parent="." node_paths=PackedStringArray("actor", "animationPlayer")]
 script = ExtResource("9_mfhbn")
 actor = NodePath("..")
+animationPlayer = NodePath("../AnimationPlayer")
 
 [node name="TopDownMovement" type="Node" parent="." node_paths=PackedStringArray("animationPlayer", "actor")]
 script = ExtResource("8_x7b01")
@@ -274,5 +1275,101 @@ position = Vector2(-0.683, -13.333)
 scale = Vector2(0.9, 1.1)
 shape = SubResource("CapsuleShape2D_aettp")
 
-[connection signal="skillactived" from="LanternAttackHolder/Cleave" to="." method="_on_lantern_skillactivated"]
+[node name="TopDownHolder" type="Node2D" parent="."]
+
+[node name="Anchor" type="Node2D" parent="TopDownHolder"]
+z_index = 1
+position = Vector2(-12, -12)
+
+[node name="SwordCleave" parent="TopDownHolder/Anchor" node_paths=PackedStringArray("collisionShape2D", "emitter") instance=ExtResource("6_t88dn")]
+z_index = 1
+position = Vector2(0, 0)
+rotation = -3.73326
+speed = 20.0
+angle = 67.5
+preparation_time = 0.1
+recovery_time = 0.25
+collisionShape2D = NodePath("CollisionShape2D")
+emitter = NodePath("../../..")
+range = 24.0
+
+[node name="Sword" parent="TopDownHolder/Anchor/SwordCleave" instance=ExtResource("11_ud6u2")]
+scale = Vector2(0.5, 0.5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TopDownHolder/Anchor/SwordCleave"]
+position = Vector2(-2.02656e-06, -17.3333)
+scale = Vector2(1, 0.67)
+shape = SubResource("CapsuleShape2D_85gw8")
+
+[node name="LanternWanderingHolder" type="Node2D" parent="TopDownHolder/Anchor"]
+visible = false
+position = Vector2(0, -10.6667)
+
+[node name="PointLight2D" type="PointLight2D" parent="TopDownHolder/Anchor/LanternWanderingHolder"]
+position = Vector2(16, 0)
+texture = SubResource("GradientTexture2D_fayur")
+texture_scale = 1.5
+
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="TopDownHolder/Anchor/LanternWanderingHolder"]
+position = Vector2(21.3333, 3.05176e-05)
+radius = 20.0
+avoidance_layers = 4
+
+[node name="LanternAttackHolder" type="Node2D" parent="TopDownHolder/Anchor"]
+position = Vector2(0, -10.6667)
+
+[node name="TorchLight" type="Node2D" parent="TopDownHolder/Anchor/LanternAttackHolder"]
+visible = false
+
+[node name="PointLight2D" type="PointLight2D" parent="TopDownHolder/Anchor/LanternAttackHolder/TorchLight"]
+position = Vector2(10.6667, 6.10352e-05)
+rotation = -1.5708
+color = Color(0.996078, 0.592157, 0.129412, 1)
+energy = 0.8
+shadow_enabled = true
+texture = ExtResource("3_5sp7r")
+offset = Vector2(0, 85)
+texture_scale = 0.5
+
+[node name="PointLight2DBack" type="PointLight2D" parent="TopDownHolder/Anchor/LanternAttackHolder/TorchLight"]
+position = Vector2(10.6667, 4.57764e-05)
+rotation = 1.57079
+color = Color(0.996078, 0.592157, 0.129412, 1)
+energy = 0.8
+shadow_enabled = true
+texture = ExtResource("3_5sp7r")
+offset = Vector2(-1, 0)
+texture_scale = 0.05
+
+[node name="Cleave" parent="TopDownHolder/Anchor/LanternAttackHolder" node_paths=PackedStringArray("collisionShape2D", "emitter") instance=ExtResource("6_t88dn")]
+visible = false
+z_index = 1
+position = Vector2(-0.662629, 9.50969)
+rotation = -2.36841
+speed = 20.0
+angle = 67.5
+preparation_time = 0.1
+recovery_time = 2.0
+collisionShape2D = NodePath("CollisionShape2D")
+emitter = NodePath("../../../..")
+type = 1
+
+[node name="Lantern" parent="TopDownHolder/Anchor/LanternAttackHolder/Cleave" instance=ExtResource("15_vqx5s")]
+position = Vector2(-1.66893e-06, 1.90735e-06)
+rotation = -2.0944
+scale = Vector2(0.3, 0.3)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TopDownHolder/Anchor/LanternAttackHolder/Cleave"]
+visible = false
+position = Vector2(-14.2503, -19.3813)
+scale = Vector2(3.5, 3.5)
+shape = SubResource("CircleShape2D_crcbn")
+
+[node name="PointLight2D" type="PointLight2D" parent="TopDownHolder/Anchor/LanternAttackHolder/Cleave/CollisionShape2D"]
+position = Vector2(-0.0719219, 0.244106)
+scale = Vector2(0.285714, 0.285714)
+texture = SubResource("GradientTexture2D_fayur")
+texture_scale = 1.5
+
 [connection signal="health_changed" from="Health" to="." method="_on_health_changed"]
+[connection signal="skillactived" from="TopDownHolder/Anchor/LanternAttackHolder/Cleave" to="." method="_on_lantern_skillactivated"]
