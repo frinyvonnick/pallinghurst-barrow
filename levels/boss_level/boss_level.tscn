@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://byqiikcrcr3b6"]
+[gd_scene load_steps=14 format=3 uid="uid://byqiikcrcr3b6"]
 
 [ext_resource type="Script" path="res://levels/boss_level/boss_level.gd" id="1_1s26r"]
 [ext_resource type="PackedScene" uid="uid://ct1pleqq81l3g" path="res://entities/characters/player/player.tscn" id="1_qrw1g"]
@@ -8,6 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://c8rg4hgix726c" path="res://components/tilemap.tscn" id="7_ohfno"]
 [ext_resource type="PackedScene" uid="uid://cfwhbeq4x0et2" path="res://components/ui/UI.tscn" id="7_vtgvi"]
 [ext_resource type="Shader" path="res://components/shaders/fog.gdshader" id="8_tspkm"]
+[ext_resource type="AudioStream" uid="uid://bwmvk1noae1ak" path="res://assets/sound/mud02.ogg" id="9_p2qii"]
+[ext_resource type="AudioStream" uid="uid://tylwflmtcdi0" path="res://assets/sound/dungeon_ambient_1.ogg" id="10_gyeg0"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_0ewhd"]
 frequency = 0.0075
@@ -31,9 +33,10 @@ position = Vector2(272, 208)
 script = ExtResource("1_1s26r")
 player = NodePath("Player")
 
-[node name="Player" parent="." instance=ExtResource("1_qrw1g")]
+[node name="Player" parent="." node_paths=PackedStringArray("footstep_sound") instance=ExtResource("1_qrw1g")]
 z_index = 10
 position = Vector2(338, 240)
+footstep_sound = NodePath("../Footstep")
 
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(336, 144)
@@ -177,3 +180,12 @@ avoidance_layers = 2
 [node name="NavigationObstacle2D6" type="NavigationObstacle2D" parent="."]
 vertices = PackedVector2Array(88, 192, 88, 200, 120, 200, 120, 192)
 avoidance_layers = 2
+
+[node name="Footstep" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_p2qii")
+volume_db = -5.0
+
+[node name="Music" type="AudioStreamPlayer2D" parent="."]
+process_mode = 3
+stream = ExtResource("10_gyeg0")
+autoplay = true

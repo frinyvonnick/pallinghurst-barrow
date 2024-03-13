@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://dlxmcyp77uccs"]
+[gd_scene load_steps=8 format=3 uid="uid://dlxmcyp77uccs"]
 
 [ext_resource type="Texture2D" uid="uid://05sj6tnpgdh4" path="res://assets/backgrounds/Manor.png" id="1_f8u75"]
 [ext_resource type="Script" path="res://levels/manor_evening/manor_evening.gd" id="1_rtuja"]
 [ext_resource type="Shader" path="res://components/shaders/blur.gdshader" id="2_al8ef"]
 [ext_resource type="PackedScene" uid="uid://d313je3pdtsvf" path="res://entities/items/torch/torch.tscn" id="2_b41cq"]
 [ext_resource type="PackedScene" uid="uid://cfwhbeq4x0et2" path="res://components/ui/UI.tscn" id="5_aghun"]
+[ext_resource type="AudioStream" uid="uid://diqmrcc6nk4mm" path="res://assets/sound/fire.wav" id="6_4850r"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1viy8"]
 shader = ExtResource("2_al8ef")
@@ -23,21 +24,35 @@ texture = ExtResource("1_f8u75")
 [node name="Chandelier" type="Node2D" parent="."]
 
 [node name="Torch" parent="Chandelier" instance=ExtResource("2_b41cq")]
+process_mode = 3
 position = Vector2(448, 16)
+torch_energy = Vector2(0.2, 0.5)
+torch_scale = Vector2(1, 1.5)
 
 [node name="Torch2" parent="Chandelier" instance=ExtResource("2_b41cq")]
+process_mode = 3
 position = Vector2(496, 16)
+torch_energy = Vector2(0.2, 0.5)
+torch_scale = Vector2(1, 1.5)
 
 [node name="Torch3" parent="Chandelier" instance=ExtResource("2_b41cq")]
+process_mode = 3
 position = Vector2(608, 16)
+torch_energy = Vector2(0.2, 0.5)
+torch_scale = Vector2(1, 1.5)
 
 [node name="Torch4" parent="Chandelier" instance=ExtResource("2_b41cq")]
+process_mode = 3
 position = Vector2(552, 16)
+torch_energy = Vector2(0.2, 0.5)
+torch_scale = Vector2(1, 1.5)
 
 [node name="Cheminee" type="Node2D" parent="."]
 
 [node name="Torch" parent="Cheminee" instance=ExtResource("2_b41cq")]
+process_mode = 3
 position = Vector2(528, 304)
+torch_scale = Vector2(3, 5)
 
 [node name="ColorRect" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_1viy8")
@@ -55,3 +70,8 @@ energy = 0.2
 blend_mode = 1
 
 [node name="Ui" parent="." instance=ExtResource("5_aghun")]
+
+[node name="Music" type="AudioStreamPlayer2D" parent="."]
+process_mode = 3
+stream = ExtResource("6_4850r")
+autoplay = true

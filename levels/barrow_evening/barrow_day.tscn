@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://dwf6r8xu853xx"]
+[gd_scene load_steps=5 format=3 uid="uid://dwf6r8xu853xx"]
 
 [ext_resource type="Script" path="res://levels/barrow_day/barrow_day.gd" id="1_cyhww"]
 [ext_resource type="PackedScene" uid="uid://cfwhbeq4x0et2" path="res://components/ui/UI.tscn" id="2_p4leh"]
 [ext_resource type="PackedScene" uid="uid://c6xnfw87gom1" path="res://entities/decors/barrow/barrow.tscn" id="3_dl4je"]
+[ext_resource type="AudioStream" uid="uid://e3i8rrukjct5" path="res://assets/sound/Birds and Wind - Ambient.ogg" id="4_t6ksf"]
 
 [node name="BarrowDay" type="Node2D"]
 script = ExtResource("1_cyhww")
@@ -14,3 +15,9 @@ position = Vector2(32, 32)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(1, 0.831373, 0.819608, 1)
+
+[node name="Music" type="AudioStreamPlayer2D" parent="."]
+process_mode = 3
+stream = ExtResource("4_t6ksf")
+volume_db = -5.0
+autoplay = true

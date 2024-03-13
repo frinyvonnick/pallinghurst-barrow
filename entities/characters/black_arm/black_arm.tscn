@@ -4,14 +4,14 @@
 [ext_resource type="PackedScene" uid="uid://cqegoxve6kb63" path="res://entities/characters/black_arm/black_hand/black_hand.tscn" id="2_cltwj"]
 [ext_resource type="PackedScene" uid="uid://cgwbx008pc5op" path="res://components/tail/root.tscn" id="3_0ai2f"]
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_bd0ox"]
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_ghi60"]
 vertices = PackedVector2Array(53, -129, 98, -98, 129, -53, 139, 0, 129, 53, 98, 98, 53, 129, 0, 139, -53, 129, -98, 98, -129, 53, -139, 0, -129, -53, -98, -98, -53, -129, 0, -139)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(150, 0, 138.582, 57.4025, 106.066, 106.066, 57.4025, 138.582, -2.67029e-05, 150, -57.4025, 138.582, -106.066, 106.066, -138.582, 57.4025, -150, -4.95911e-05, -138.582, -57.4026, -106.066, -106.066, -57.4025, -138.582, 6.10352e-05, -150, 57.4026, -138.582, 106.066, -106.066, 138.582, -57.4024)])
 source_geometry_group_name = &"navigation_polygon_source_group"
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4r2m6"]
-radius = 75.0
+radius = 100.0
 
 [node name="BlackArm" type="Node2D" node_paths=PackedStringArray("sightCollisionShape", "black_hand")]
 script = ExtResource("1_3qpdo")
@@ -25,7 +25,7 @@ black_hand = NodePath("BlackHand")
 sight = NodePath("../Sight")
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
-navigation_polygon = SubResource("NavigationPolygon_bd0ox")
+navigation_polygon = SubResource("NavigationPolygon_ghi60")
 use_edge_connections = false
 navigation_layers = 2
 

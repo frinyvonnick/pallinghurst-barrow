@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bundreggeqcun"]
+[gd_scene load_steps=11 format=3 uid="uid://bundreggeqcun"]
 
 [ext_resource type="Script" path="res://levels/barrow_night/barrow_day.gd" id="1_eer38"]
 [ext_resource type="PackedScene" uid="uid://cfwhbeq4x0et2" path="res://components/ui/UI.tscn" id="2_au037"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cq5kmu7xx7c6y" path="res://entities/items/torch/texture.tres" id="4_le81v"]
 [ext_resource type="Script" path="res://entities/items/torch/torch.gd" id="5_0ww1w"]
 [ext_resource type="Shader" path="res://components/shaders/fog.gdshader" id="6_x0y1m"]
+[ext_resource type="AudioStream" uid="uid://c2k7el54b45f5" path="res://assets/sound/atmoseerie01.mp3.mp3" id="7_hmjbp"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_ts8nt"]
 frequency = 0.0075
@@ -58,3 +59,9 @@ material = SubResource("ShaderMaterial_t4w3a")
 offset_right = 640.0
 offset_bottom = 360.0
 color = Color(0.172549, 0.847059, 0.921569, 1)
+
+[node name="Music" type="AudioStreamPlayer2D" parent="."]
+process_mode = 3
+stream = ExtResource("7_hmjbp")
+volume_db = -10.0
+autoplay = true

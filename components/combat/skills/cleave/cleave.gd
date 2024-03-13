@@ -11,6 +11,7 @@ var targetRotation
 var elapsedTime = 0.0
 
 signal recovery_progressed(old_value: float, new_value: float, max_value: float)
+signal cleave_prepared()
 
 func start(msg:= {}):
 	super()
@@ -51,6 +52,7 @@ func _physics_process(delta):
 		if (elapsedTime >= preparation_time):
 			elapsedTime = 0
 			collisionShape2D.set_disabled(false)
+			cleave_prepared.emit()
 			activate()
 
 	if (_state == States.RECOVERY):

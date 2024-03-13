@@ -8,6 +8,8 @@ extends Actor
 @export var topDownMovement: TopDownMovement
 @export var topDownInput: TopDownInput
 @export var topDownInputProperties: TopDownInputProperties
+@export var footstep_sound: AudioStreamPlayer2D
+@export var attack_sound: AudioStreamPlayer2D
 
 var current_skill: Cleave
 
@@ -25,6 +27,12 @@ func _physics_process(delta):
 		_start_attack()
 	if (Input.is_action_just_pressed("switch_weapon")):
 		_change_skill()
+	
+	if (velocity.length() > 0 && !footstep_sound.playing):
+		footstep_sound.play()
+		
+	if (velocity.length() == 0 && footstep_sound.playing):
+		footstep_sound.stop()
 
 func _change_skill():
 	if (current_skill == swordAttack):
@@ -74,7 +82,10 @@ func _on_dodge_started():
 	
 func _on_dodge_finished():
 	topDownMovement.skip_animation = false
-
+	
+	
+func _on_attack_prepared():
+	attack_sound.play()
 
 func _on_lantern_recovery_progressed(old_value, new_value, max_value):
 	Events.emit_signal('player_cooldown_progressed', 'lantern', old_value, new_value, max_value)

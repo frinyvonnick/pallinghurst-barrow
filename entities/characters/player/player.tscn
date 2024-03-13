@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://ct1pleqq81l3g"]
+[gd_scene load_steps=41 format=3 uid="uid://ct1pleqq81l3g"]
 
 [ext_resource type="Script" path="res://entities/characters/player/player.gd" id="1_unixv"]
 [ext_resource type="Texture2D" uid="uid://bt62ulqd0nswf" path="res://assets/rodolphe.png" id="3_qho4c"]
@@ -15,6 +15,7 @@
 [ext_resource type="Script" path="res://components/combat/health.gd" id="9_qruve"]
 [ext_resource type="Texture2D" uid="uid://kfseugek4cxu" path="res://assets/weapons.png" id="13_6iki5"]
 [ext_resource type="PackedScene" uid="uid://d1vttlh7v50xb" path="res://entities/items/lantern/lantern.tscn" id="15_vqx5s"]
+[ext_resource type="AudioStream" uid="uid://yyhtutgiqli6" path="res://assets/sound/sword sound.wav" id="16_jn58b"]
 
 [sub_resource type="Resource" id="Resource_fvknp"]
 script = ExtResource("6_xbeno")
@@ -459,6 +460,22 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [-2]
+}
+
+[sub_resource type="Animation" id="Animation_xy41o"]
+resource_name = "hurt"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:material:shader_parameter/tint_effect_factor")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 1.0, 0.0]
 }
 
 [sub_resource type="Animation" id="Animation_mkycc"]
@@ -1297,22 +1314,6 @@ tracks/7/keys = {
 "values": [-0.708604]
 }
 
-[sub_resource type="Animation" id="Animation_xy41o"]
-resource_name = "hurt"
-length = 0.2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:material:shader_parameter/tint_effect_factor")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [0.0, 1.0, 0.0]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gs60t"]
 _data = {
 "RESET": SubResource("Animation_55k60"),
@@ -1356,7 +1357,7 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(1, 0.5)
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("swordAttack", "lanternAttack", "attackLight", "topDownDodge", "topDownMovement", "topDownInput", "health", "animationPlayer") groups=["player"]]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("swordAttack", "lanternAttack", "attackLight", "topDownDodge", "topDownMovement", "topDownInput", "attack_sound", "health", "animationPlayer") groups=["player"]]
 z_index = 1
 y_sort_enabled = true
 position = Vector2(0, -19)
@@ -1369,6 +1370,7 @@ topDownDodge = NodePath("TopDownDodge")
 topDownMovement = NodePath("TopDownMovement")
 topDownInput = NodePath("TopDownInput")
 topDownInputProperties = SubResource("Resource_fvknp")
+attack_sound = NodePath("Sword")
 health = NodePath("Health")
 animationPlayer = NodePath("AnimationPlayer")
 metadata/_edit_group_ = true
@@ -1493,10 +1495,16 @@ scale = Vector2(0.285714, 0.285714)
 radius = 20.0
 avoidance_layers = 4
 
+[node name="Sword" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("16_jn58b")
+volume_db = -10.0
+
 [connection signal="health_changed" from="Health" to="." method="_on_health_changed"]
+[connection signal="cleave_prepared" from="TopDownHolder/Anchor/SwordCleave" to="." method="_on_attack_prepared"]
 [connection signal="recovery_progressed" from="TopDownHolder/Anchor/SwordCleave" to="." method="_on_sword_recovery_progressed"]
 [connection signal="skillactived" from="TopDownHolder/Anchor/SwordCleave" to="." method="_on_sword_skillactivated"]
 [connection signal="skillended" from="TopDownHolder/Anchor/SwordCleave" to="." method="_on_sword_skillactivated"]
+[connection signal="cleave_prepared" from="TopDownHolder/Anchor/LanternAttackHolder/Cleave" to="." method="_on_attack_prepared"]
 [connection signal="recovery_progressed" from="TopDownHolder/Anchor/LanternAttackHolder/Cleave" to="." method="_on_lantern_recovery_progressed"]
 [connection signal="skillactived" from="TopDownHolder/Anchor/LanternAttackHolder/Cleave" to="." method="_on_lantern_skillactivated"]
 [connection signal="skillended" from="TopDownHolder/Anchor/LanternAttackHolder/Cleave" to="." method="_on_lantern_skillactivated"]

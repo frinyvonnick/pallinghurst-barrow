@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dlj1yr725p5gp"]
+[gd_scene load_steps=12 format=3 uid="uid://dlj1yr725p5gp"]
 
 [ext_resource type="Script" path="res://levels/credits/menu.gd" id="1_xv2gp"]
 [ext_resource type="PackedScene" uid="uid://c6xnfw87gom1" path="res://entities/decors/barrow/barrow.tscn" id="2_ux4eq"]
@@ -8,6 +8,7 @@
 [ext_resource type="FontFile" uid="uid://81sgrtnlhuij" path="res://assets/fonts/NotJamOldStyle11.ttf" id="6_qu44t"]
 [ext_resource type="FontFile" uid="uid://v85jry8mqm1y" path="res://assets/fonts/NotJamOldStyle14.ttf" id="7_1us4a"]
 [ext_resource type="Texture2D" uid="uid://bxhw08n5x66h3" path="res://assets/ui/Boss.png" id="7_ecnpy"]
+[ext_resource type="AudioStream" uid="uid://dpknewnj22b5i" path="res://assets/sound/42b4b.ogg" id="9_xc2io"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3762k"]
 shader = ExtResource("4_nkme8")
@@ -117,3 +118,8 @@ texture = ExtResource("7_ecnpy")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(1, 0.831373, 0.819608, 1)
+
+[node name="Music" type="AudioStreamPlayer2D" parent="."]
+process_mode = 3
+stream = ExtResource("9_xc2io")
+autoplay = true

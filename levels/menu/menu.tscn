@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://b4jdv5w4k46cn"]
+[gd_scene load_steps=16 format=3 uid="uid://b4jdv5w4k46cn"]
 
 [ext_resource type="PackedScene" uid="uid://c6xnfw87gom1" path="res://entities/decors/barrow/barrow.tscn" id="1_h30ep"]
 [ext_resource type="Script" path="res://levels/menu/menu.gd" id="1_wpxd2"]
@@ -8,6 +8,7 @@
 [ext_resource type="FontFile" uid="uid://81sgrtnlhuij" path="res://assets/fonts/NotJamOldStyle11.ttf" id="5_smtup"]
 [ext_resource type="FontFile" uid="uid://v85jry8mqm1y" path="res://assets/fonts/NotJamOldStyle14.ttf" id="6_flteu"]
 [ext_resource type="Script" path="res://levels/menu/Start.gd" id="7_akis1"]
+[ext_resource type="AudioStream" uid="uid://dpknewnj22b5i" path="res://assets/sound/42b4b.ogg" id="9_jat2l"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3762k"]
 shader = ExtResource("3_vqupv")
@@ -150,3 +151,8 @@ animationPlayer = NodePath("../AnimationPlayer")
 libraries = {
 "": SubResource("AnimationLibrary_r0q8n")
 }
+
+[node name="Music" type="AudioStreamPlayer2D" parent="."]
+process_mode = 3
+stream = ExtResource("9_jat2l")
+autoplay = true

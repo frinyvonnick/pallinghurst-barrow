@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dwdgy22jftexi"]
+[gd_scene load_steps=9 format=3 uid="uid://dwdgy22jftexi"]
 
 [ext_resource type="Script" path="res://levels/manor_night/manor_night.gd" id="1_tyq40"]
 [ext_resource type="Texture2D" uid="uid://05sj6tnpgdh4" path="res://assets/backgrounds/Manor.png" id="1_yu0oj"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cq5kmu7xx7c6y" path="res://entities/items/torch/texture.tres" id="3_ln76q"]
 [ext_resource type="Script" path="res://entities/items/torch/torch.gd" id="4_3blsv"]
 [ext_resource type="PackedScene" uid="uid://cfwhbeq4x0et2" path="res://components/ui/UI.tscn" id="6_w4o83"]
+[ext_resource type="AudioStream" uid="uid://c2k7el54b45f5" path="res://assets/sound/atmoseerie01.mp3.mp3" id="7_h2dhg"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1viy8"]
 shader = ExtResource("2_gnqy6")
@@ -64,3 +65,9 @@ offset_bottom = 644.0
 scale = Vector2(1.01827, 1.01717)
 
 [node name="Ui" parent="." instance=ExtResource("6_w4o83")]
+
+[node name="Music" type="AudioStreamPlayer2D" parent="."]
+process_mode = 3
+stream = ExtResource("7_h2dhg")
+volume_db = -10.0
+autoplay = true
