@@ -66,5 +66,4 @@ func _hide_black_arms():
 func _show_black_arms():
 	for black_arm in black_arms:
 		black_arm.process_mode = Node.PROCESS_MODE_INHERIT
-		black_arm.reset()
 		black_arm.show()

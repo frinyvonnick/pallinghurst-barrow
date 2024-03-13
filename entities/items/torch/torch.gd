@@ -4,13 +4,14 @@ extends Node2D
 @export var pointLight : PointLight2D
 @export var torch_energy: Vector2 = Vector2(0.5, 1)
 @export var torch_scale: Vector2 = Vector2(1.2, 2)
+@export var torch_color: Color = Color.html('fe9721')
 
 var rng = RandomNumberGenerator.new()
 var timeElapsed = 0
 var is_off: bool = false
 
-func interpolate(a, b, t):
-	return a * (1 - t) + b * t
+func _ready():
+	pointLight.color = torch_color
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -34,3 +35,6 @@ func turn_off():
 	
 func turn_on():
 	is_off = false
+
+func interpolate(a, b, t):
+	return a * (1 - t) + b * t

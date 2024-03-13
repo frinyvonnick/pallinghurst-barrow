@@ -35,7 +35,7 @@ z_index = 10
 position = Vector2(480, 48)
 
 [node name="Marker2D" type="Marker2D" parent="."]
-position = Vector2(344, 158)
+position = Vector2(336, 144)
 
 [node name="Boss" parent="." node_paths=PackedStringArray("marker", "torchs", "black_arms") instance=ExtResource("5_mq7me")]
 z_index = 10
@@ -60,48 +60,51 @@ z_index = 2
 
 [node name="Torch3" parent="Torches" instance=ExtResource("3_bhv5j")]
 position = Vector2(24, 144)
-torch_energy = Vector2(1, 2)
 torch_scale = Vector2(3, 4)
+torch_color = Color(0.172549, 0.847059, 0.921569, 1)
 
 [node name="Torch4" parent="Torches" instance=ExtResource("3_bhv5j")]
 position = Vector2(664, 144)
-torch_energy = Vector2(1, 2)
 torch_scale = Vector2(3, 4)
+torch_color = Color(0.172549, 0.847059, 0.921569, 1)
 
 [node name="Torch5" parent="Torches" instance=ExtResource("3_bhv5j")]
 position = Vector2(150, 352)
-torch_energy = Vector2(1, 2)
 torch_scale = Vector2(3, 4)
+torch_color = Color(0.172549, 0.847059, 0.921569, 1)
 
 [node name="Torch6" parent="Torches" instance=ExtResource("3_bhv5j")]
 position = Vector2(536, 352)
-torch_energy = Vector2(1, 2)
 torch_scale = Vector2(3, 4)
+torch_color = Color(0.172549, 0.847059, 0.921569, 1)
 
 [node name="Torch" parent="Torches" instance=ExtResource("3_bhv5j")]
 position = Vector2(208, -32)
-torch_energy = Vector2(1, 2)
 torch_scale = Vector2(3, 4)
+torch_color = Color(0.172549, 0.847059, 0.921569, 1)
 
 [node name="Torch2" parent="Torches" instance=ExtResource("3_bhv5j")]
 position = Vector2(464, -40)
-torch_energy = Vector2(1, 2)
 torch_scale = Vector2(3, 4)
+torch_color = Color(0.172549, 0.847059, 0.921569, 1)
 
 [node name="BlackArms" type="Node2D" parent="."]
 
 [node name="BlackArm" parent="BlackArms" instance=ExtResource("4_q6oio")]
 process_mode = 4
+visible = false
 position = Vector2(456, 40)
 radius = 300.0
 
 [node name="BlackArm2" parent="BlackArms" instance=ExtResource("4_q6oio")]
 process_mode = 4
+visible = false
 position = Vector2(231, 40)
 radius = 300.0
 
 [node name="BlackArm3" parent="BlackArms" node_paths=PackedStringArray("sightCollisionShape", "black_hand") instance=ExtResource("4_q6oio")]
 process_mode = 4
+visible = false
 position = Vector2(104, 168)
 radius = 300.0
 sightCollisionShape = NodePath("../BlackArm2/Sight/CollisionShape2D")
@@ -109,6 +112,7 @@ black_hand = NodePath("../BlackArm2/BlackHand")
 
 [node name="BlackArm4" parent="BlackArms" node_paths=PackedStringArray("sightCollisionShape", "black_hand") instance=ExtResource("4_q6oio")]
 process_mode = 4
+visible = false
 position = Vector2(584, 168)
 radius = 300.0
 sightCollisionShape = NodePath("../BlackArm2/Sight/CollisionShape2D")
@@ -116,6 +120,7 @@ black_hand = NodePath("../BlackArm2/BlackHand")
 
 [node name="BlackArm5" parent="BlackArms" node_paths=PackedStringArray("sightCollisionShape", "black_hand") instance=ExtResource("4_q6oio")]
 process_mode = 4
+visible = false
 position = Vector2(232, 280)
 radius = 300.0
 sightCollisionShape = NodePath("../BlackArm2/Sight/CollisionShape2D")
@@ -123,6 +128,7 @@ black_hand = NodePath("../BlackArm2/BlackHand")
 
 [node name="BlackArm6" parent="BlackArms" node_paths=PackedStringArray("sightCollisionShape", "black_hand") instance=ExtResource("4_q6oio")]
 process_mode = 4
+visible = false
 position = Vector2(456, 280)
 radius = 300.0
 sightCollisionShape = NodePath("../BlackArm2/Sight/CollisionShape2D")

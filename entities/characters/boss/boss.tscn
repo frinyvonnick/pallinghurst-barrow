@@ -1097,7 +1097,8 @@ vframes = 13
 frame = 40
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1.33333, 26.6667)
+position = Vector2(0, 21.3333)
+scale = Vector2(0.665, 0.665)
 shape = SubResource("CircleShape2D_mf0qx")
 
 [node name="TopDownMovement" type="Node" parent="." node_paths=PackedStringArray("animationPlayer", "actor")]
@@ -1114,6 +1115,7 @@ shape = SubResource("CircleShape2D_76jyq")
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 path_desired_distance = 10.0
 path_max_distance = 300.0
+path_postprocessing = 1
 avoidance_enabled = true
 avoidance_layers = 2
 avoidance_mask = 2

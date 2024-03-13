@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://cqegoxve6kb63"]
+[gd_scene load_steps=21 format=3 uid="uid://cqegoxve6kb63"]
 
 [ext_resource type="Script" path="res://entities/characters/black_arm/black_hand/black_hand.gd" id="1_c1ty3"]
 [ext_resource type="Texture2D" uid="uid://ctobkwm4e1wgt" path="res://assets/black_hand.png" id="2_u25r7"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://components/state_machine/attack_state.gd" id="6_sg6el"]
 [ext_resource type="Script" path="res://components/top_down_holder.gd" id="7_nokr4"]
 [ext_resource type="Script" path="res://components/state_machine/retreat_state.gd" id="7_rcuv6"]
+[ext_resource type="Script" path="res://entities/characters/black_arm/black_hand/reset_state.gd" id="8_sd1re"]
 [ext_resource type="Script" path="res://components/combat/skills/tick.gd" id="9_jituk"]
 [ext_resource type="Script" path="res://entities/_old/old_ghost/label.gd" id="10_somsa"]
 [ext_resource type="Script" path="res://components/combat/hurt_box.gd" id="11_xgr1e"]
@@ -121,6 +122,9 @@ script = ExtResource("6_sg6el")
 script = ExtResource("7_rcuv6")
 navigationAgent = NodePath("../../NavigationAgent2D")
 speed = 125.0
+
+[node name="reset_state" type="Node2D" parent="StateMachine"]
+script = ExtResource("8_sd1re")
 
 [node name="WeaponHolder" type="Node2D" parent="." node_paths=PackedStringArray("actor")]
 script = ExtResource("7_nokr4")

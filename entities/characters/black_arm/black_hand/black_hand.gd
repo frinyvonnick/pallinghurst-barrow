@@ -28,3 +28,6 @@ func _physics_process(delta):
 func _on_wounded(event: AttackEvent):
 	if (event.type == AttackEvent.Types.LIGHT && event.body == self):
 		stateMachine.transition_to('retreat_state')
+
+func reset():
+	stateMachine.transition_to('reset_state')

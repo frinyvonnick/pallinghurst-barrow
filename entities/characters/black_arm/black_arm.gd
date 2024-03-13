@@ -30,4 +30,4 @@ func generate_circle_polygon(radius: float, num_sides: int, position: Vector2) -
 	return polygon
 
 func reset():
-	black_hand.reset_position()
+	black_hand.reset()
