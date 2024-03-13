@@ -51,6 +51,7 @@ energy = 0.62
 blend_mode = 1
 
 [node name="Player" parent="." instance=ExtResource("2_hgrke")]
+position = Vector2(64, 64)
 
 [node name="BlackArm" parent="." instance=ExtResource("6_4dmai")]
 process_mode = 4

@@ -6,8 +6,6 @@ extends Actor
 var current_skill: Cleave
 
 @export var attackLight: PointLight2D
-@export var wanderingLight: PointLight2D
-@export var wanderingLantern: Node2D
 @export var topDownDodge: TopDownDodge
 @export var topDownMovement: TopDownMovement
 @export var topDownInput: TopDownInput
@@ -36,13 +34,11 @@ func _change_skill():
 		swordAttack.hide()
 		lanternAttack.process_mode = Node.PROCESS_MODE_INHERIT
 		lanternAttack.show()
-		#_turn_on_wandering_lantern()
 	else:
 		current_skill = swordAttack
 		
 		lanternAttack.process_mode = Node.PROCESS_MODE_DISABLED
 		lanternAttack.hide()
-		#_turn_off_wandering_lantern()
 		swordAttack.process_mode = Node.PROCESS_MODE_INHERIT
 		swordAttack.show()
 		
@@ -51,24 +47,12 @@ func _start_attack():
 	if (current_skill.is_recovering()): return
 	
 	if (current_skill == lanternAttack):
-		wanderingLight.hide()
 		attackLight.show()
-		# current_skill.rotate(deg_to_rad(-67.5))
 		
 	current_skill.start()
 	await current_skill.skillactived
-
-func _turn_on_wandering_lantern():
-	wanderingLantern.process_mode = Node.PROCESS_MODE_INHERIT
-	wanderingLantern.show()
-
-func _turn_off_wandering_lantern():
-	wanderingLantern.process_mode = Node.PROCESS_MODE_DISABLED
-	wanderingLantern.hide()
 	
 func _end_attack():
-	# attackLight.hide()
-	# wanderingLight.show()
 	pass
 
 func _on_lantern_skillactivated():

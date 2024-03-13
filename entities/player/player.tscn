@@ -1,7 +1,6 @@
-[gd_scene load_steps=38 format=3 uid="uid://ct1pleqq81l3g"]
+[gd_scene load_steps=37 format=3 uid="uid://ct1pleqq81l3g"]
 
 [ext_resource type="Script" path="res://entities/player/player.gd" id="1_unixv"]
-[ext_resource type="Texture2D" uid="uid://rnglwrgori7e" path="res://assets/cone-light.jpg" id="3_5sp7r"]
 [ext_resource type="Texture2D" uid="uid://bt62ulqd0nswf" path="res://assets/rodolphe.png" id="3_qho4c"]
 [ext_resource type="Script" path="res://components/top_down_input/top_down_input.gd" id="4_6dr58"]
 [ext_resource type="Animation" uid="uid://bpdqehf7sxqyx" path="res://entities/player/attackLeft.res" id="4_bydxy"]
@@ -13,7 +12,7 @@
 [ext_resource type="Script" path="res://components/movement/top_down_movement.gd" id="8_x7b01"]
 [ext_resource type="Script" path="res://components/top_down_input/top_down_dodge.gd" id="9_mfhbn"]
 [ext_resource type="Script" path="res://components/combat/health.gd" id="9_qruve"]
-[ext_resource type="PackedScene" uid="uid://baepuvs4irrjp" path="res://entities/sword/sword.tscn" id="11_ud6u2"]
+[ext_resource type="Texture2D" uid="uid://kfseugek4cxu" path="res://assets/weapons.png" id="13_6iki5"]
 [ext_resource type="PackedScene" uid="uid://d1vttlh7v50xb" path="res://entities/lantern/lantern.tscn" id="15_vqx5s"]
 
 [sub_resource type="Resource" id="Resource_fvknp"]
@@ -83,7 +82,7 @@ tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [1]
+"values": [0]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
@@ -100,62 +99,98 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("TopDownHolder/Anchor/LanternAttackHolder/Cleave:z_index")
+tracks/6/path = NodePath("TopDownHolder/Anchor/LanternAttackHolder/Cleave/CollisionShape2D:position")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
+"update": 0,
+"values": [Vector2(-14.2503, -19.3813)]
 }
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("TopDownHolder/Anchor/LanternAttackHolder/Cleave/CollisionShape2D:position")
+tracks/7/path = NodePath("TopDownHolder/Anchor/LanternAttackHolder/Cleave:position")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-14.2503, -19.3813)]
+"values": [Vector2(-0.662629, 9.50969)]
 }
 tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("TopDownHolder/Anchor/LanternAttackHolder/Cleave:position")
+tracks/8/path = NodePath("TopDownHolder/Anchor/SwordCleave:rotation")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-0.662629, 9.50969)]
+"values": [-3.73326]
 }
 tracks/9/type = "value"
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/path = NodePath("TopDownHolder/Anchor/SwordCleave:rotation")
+tracks/9/path = NodePath("TopDownHolder/Anchor/SwordCleave:position")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [-3.73326]
+"values": [Vector2(0, 0)]
 }
 tracks/10/type = "value"
 tracks/10/imported = false
 tracks/10/enabled = true
-tracks/10/path = NodePath("TopDownHolder/Anchor/SwordCleave:position")
+tracks/10/path = NodePath("TopDownHolder/Anchor/SwordCleave:z_index")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
+"update": 1,
+"values": [0]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("TopDownHolder/Anchor/LanternAttackHolder:z_index")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Sprite2D:z_index")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("TopDownHolder/Anchor/LanternAttackHolder/Cleave:z_index")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
 }
 
 [sub_resource type="Animation" id="Animation_tgfqm"]
@@ -399,7 +434,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [-1]
+"values": [-2]
 }
 
 [sub_resource type="Animation" id="Animation_mkycc"]
@@ -779,7 +814,7 @@ tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [-1]
+"values": [-2]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
@@ -821,7 +856,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(1.33333, -29.3333), Vector2(-5.33333, -17.3333), Vector2(-5.33334, -20), Vector2(4.76837e-06, -25.3333), Vector2(-2.563e-06, -28), Vector2(-5.33334, -18.6667), Vector2(-5.33333, -20), Vector2(9.53674e-07, -25.3333)]
+"values": [Vector2(-9.33333, -14.6667), Vector2(-5.33333, -17.3333), Vector2(-5.33334, -20), Vector2(4.76837e-06, -25.3333), Vector2(-2.563e-06, -28), Vector2(-5.33334, -18.6667), Vector2(-5.33333, -20), Vector2(9.53674e-07, -25.3333)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -833,7 +868,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [1]
+"values": [0]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -870,6 +905,30 @@ tracks/5/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [0.0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Sprite2D:flip_h")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("TopDownHolder/Anchor/LanternAttackHolder/Cleave:rotation")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-2.36841]
 }
 
 [sub_resource type="Animation" id="Animation_rysk1"]
@@ -1006,74 +1065,110 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("TopDownHolder/Anchor:z_index")
-tracks/2/interp = 1
+tracks/2/path = NodePath("TopDownHolder/Anchor:position")
+tracks/2/interp = 0
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [1]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("TopDownHolder/Anchor:position")
-tracks/3/interp = 0
-tracks/3/loop_wrap = true
-tracks/3/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.15, 0.2, 0.266667, 0.3, 0.35, 0.4, 0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(17.3333, -17.3333), Vector2(-1.33333, -13.3333), Vector2(-13.3333, -18.6667), Vector2(-13.3333, -20), Vector2(-12, -14.6667), Vector2(6.66667, -8), Vector2(8, -12), Vector2(18.6667, -21.3333), Vector2(24, -28), Vector2(24, -40), Vector2(25.3333, -41.3333), Vector2(25.3333, -36), Vector2(24, -17.3333), Vector2(20, -24), Vector2(20, -24)]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("TopDownHolder/Anchor/LanternAttackHolder/Cleave/CollisionShape2D:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-23.122, -1.48364)]
+}
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("TopDownHolder/Anchor/LanternAttackHolder/Cleave/CollisionShape2D:position")
+tracks/4/path = NodePath("TopDownHolder/Anchor/LanternAttackHolder/Cleave:rotation")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-23.122, -1.48364)]
+"values": [-2.57087]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("TopDownHolder/Anchor/LanternAttackHolder/Cleave:rotation")
+tracks/5/path = NodePath("TopDownHolder/Anchor:rotation")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [-2.57087]
+"values": [0.0]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("TopDownHolder/Anchor:rotation")
-tracks/6/interp = 1
+tracks/6/path = NodePath("TopDownHolder/Anchor/SwordCleave:rotation")
+tracks/6/interp = 0
 tracks/6/loop_wrap = true
 tracks/6/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0.0]
+"values": [1.57603]
 }
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("TopDownHolder/Anchor/SwordCleave:rotation")
-tracks/7/interp = 0
+tracks/7/path = NodePath("TopDownHolder/Anchor:z_index")
+tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [1.57603]
+"update": 1,
+"values": [-1]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("TopDownHolder/Anchor/SwordCleave:z_index")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [-1]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("TopDownHolder/Anchor/LanternAttackHolder:z_index")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [-1]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Sprite2D:z_index")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 1,
+"values": []
 }
 
 [sub_resource type="Animation" id="Animation_4mpbc"]
@@ -1103,7 +1198,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [-1]
+"values": [-2]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -1209,6 +1304,8 @@ speed = 150.0
 radius = 2.5
 height = 32.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_crcbn"]
+
 [sub_resource type="Gradient" id="Gradient_bxfoe"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
@@ -1218,18 +1315,15 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(1, 0.5)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_crcbn"]
-
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("swordAttack", "lanternAttack", "attackLight", "wanderingLight", "wanderingLantern", "topDownDodge", "topDownMovement", "topDownInput", "health", "animationPlayer") groups=["player"]]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("swordAttack", "lanternAttack", "attackLight", "topDownDodge", "topDownMovement", "topDownInput", "health", "animationPlayer") groups=["player"]]
 z_index = 1
-position = Vector2(72, 104)
+y_sort_enabled = true
+position = Vector2(0, -19)
 scale = Vector2(0.75, 0.75)
 script = ExtResource("1_unixv")
 swordAttack = NodePath("TopDownHolder/Anchor/SwordCleave")
 lanternAttack = NodePath("TopDownHolder/Anchor/LanternAttackHolder/Cleave")
 attackLight = NodePath("TopDownHolder/Anchor/LanternAttackHolder/Cleave/CollisionShape2D/PointLight2D")
-wanderingLight = NodePath("TopDownHolder/Anchor/LanternWanderingHolder/PointLight2D")
-wanderingLantern = NodePath("TopDownHolder/Anchor/LanternWanderingHolder")
 topDownDodge = NodePath("TopDownDodge")
 topDownMovement = NodePath("TopDownMovement")
 topDownInput = NodePath("TopDownInput")
@@ -1248,7 +1342,6 @@ zoom = Vector2(2, 2)
 position_smoothing_enabled = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-z_index = 1
 position = Vector2(0, -10.6667)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("3_qho4c")
@@ -1291,11 +1384,9 @@ shape = SubResource("CapsuleShape2D_aettp")
 [node name="TopDownHolder" type="Node2D" parent="."]
 
 [node name="Anchor" type="Node2D" parent="TopDownHolder"]
-z_index = 1
 position = Vector2(-12, -12)
 
 [node name="SwordCleave" parent="TopDownHolder/Anchor" node_paths=PackedStringArray("collisionShape2D", "emitter") instance=ExtResource("6_t88dn")]
-z_index = 1
 position = Vector2(0, 0)
 rotation = -3.73326
 speed = 20.0
@@ -1306,48 +1397,21 @@ collisionShape2D = NodePath("CollisionShape2D")
 emitter = NodePath("../../..")
 range = 24.0
 
-[node name="Sword" parent="TopDownHolder/Anchor/SwordCleave" instance=ExtResource("11_ud6u2")]
+[node name="Sword2" type="Sprite2D" parent="TopDownHolder/Anchor/SwordCleave"]
+position = Vector2(-0.0628371, -11.9998)
 scale = Vector2(0.5, 0.5)
+texture = ExtResource("13_6iki5")
+hframes = 4
+vframes = 2
+frame = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TopDownHolder/Anchor/SwordCleave"]
 position = Vector2(-2.02656e-06, -17.3333)
 scale = Vector2(1, 0.67)
 shape = SubResource("CapsuleShape2D_85gw8")
 
-[node name="LanternWanderingHolder" type="Node2D" parent="TopDownHolder/Anchor"]
-visible = false
-position = Vector2(0, -10.6667)
-
-[node name="PointLight2D" type="PointLight2D" parent="TopDownHolder/Anchor/LanternWanderingHolder"]
-position = Vector2(16, 0)
-texture = SubResource("GradientTexture2D_fayur")
-texture_scale = 1.5
-
 [node name="LanternAttackHolder" type="Node2D" parent="TopDownHolder/Anchor"]
 position = Vector2(0, -10.6667)
-
-[node name="TorchLight" type="Node2D" parent="TopDownHolder/Anchor/LanternAttackHolder"]
-visible = false
-
-[node name="PointLight2D" type="PointLight2D" parent="TopDownHolder/Anchor/LanternAttackHolder/TorchLight"]
-position = Vector2(10.6667, 6.10352e-05)
-rotation = -1.5708
-color = Color(0.996078, 0.592157, 0.129412, 1)
-energy = 0.8
-shadow_enabled = true
-texture = ExtResource("3_5sp7r")
-offset = Vector2(0, 85)
-texture_scale = 0.5
-
-[node name="PointLight2DBack" type="PointLight2D" parent="TopDownHolder/Anchor/LanternAttackHolder/TorchLight"]
-position = Vector2(10.6667, 4.57764e-05)
-rotation = 1.57079
-color = Color(0.996078, 0.592157, 0.129412, 1)
-energy = 0.8
-shadow_enabled = true
-texture = ExtResource("3_5sp7r")
-offset = Vector2(-1, 0)
-texture_scale = 0.05
 
 [node name="Cleave" parent="TopDownHolder/Anchor/LanternAttackHolder" node_paths=PackedStringArray("collisionShape2D", "emitter") instance=ExtResource("6_t88dn")]
 position = Vector2(-0.662629, 9.50969)
@@ -1373,6 +1437,7 @@ shape = SubResource("CircleShape2D_crcbn")
 [node name="PointLight2D" type="PointLight2D" parent="TopDownHolder/Anchor/LanternAttackHolder/Cleave/CollisionShape2D"]
 position = Vector2(-0.0719219, 0.244106)
 scale = Vector2(0.285714, 0.285714)
+shadow_enabled = true
 texture = SubResource("GradientTexture2D_fayur")
 texture_scale = 1.5
 

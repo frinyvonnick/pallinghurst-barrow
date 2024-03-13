@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=12 format=3 uid="uid://n5sh4h1hppd7"]
+[gd_resource type="TileSet" load_steps=15 format=3 uid="uid://n5sh4h1hppd7"]
 
 [ext_resource type="Texture2D" uid="uid://0a4hsg6qhemc" path="res://assets/Dungeon tileset.png" id="1_f4rbk"]
 
@@ -33,6 +33,12 @@ polygon = PackedVector2Array(-8, -8, -8, 8, 8, 8, 8, -8)
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_pq1ii"]
 polygon = PackedVector2Array(-8, -8, -8, -2.375, 8, -2.625, 8, 8, 8, -8)
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_age6w"]
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_cgkot"]
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_pdvit"]
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wf5qg"]
 texture = ExtResource("1_f4rbk")
 0:0/0 = 0
@@ -63,9 +69,11 @@ texture = ExtResource("1_f4rbk")
 6:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 6:0/0/physics_layer_0/angular_velocity = 0.0
 7:0/0 = 0
+7:0/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_age6w")
 7:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 7:0/0/physics_layer_0/angular_velocity = 0.0
 8:0/0 = 0
+8:0/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_cgkot")
 8:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 8:0/0/physics_layer_0/angular_velocity = 0.0
 9:0/0 = 0
@@ -121,6 +129,7 @@ texture = ExtResource("1_f4rbk")
 7:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 7:1/0/physics_layer_0/angular_velocity = 0.0
 8:1/0 = 0
+8:1/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_pdvit")
 8:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 8:1/0/physics_layer_0/angular_velocity = 0.0
 9:1/0 = 0

@@ -3,6 +3,8 @@ extends CanvasLayer
 
 @export var text_box: MarginContainer
 
+@export var combat_ui: Control
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	DialogManager.setup_ui(self)

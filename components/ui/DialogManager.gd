@@ -16,6 +16,7 @@ func setup_ui(pUi: UI):
 func start_dialog(pLines):
 	if (is_dialog_started): return
 	
+	ui.combat_ui.hide()
 	get_tree().paused = true
 	lines = pLines
 	_set_text_box_text()
@@ -32,6 +33,7 @@ func _unhandled_input(event):
 			text_box.hide()
 			current_line = 0
 			get_tree().paused = false
+			ui.combat_ui.show()
 		else:
 			_set_text_box_text()
 
