@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://4p5h0ge0qj1u" path="res://components/ui/text_box.tscn" id="1_nhv68"]
 [ext_resource type="Script" path="res://components/ui/UI.gd" id="1_u3i1f"]
-[ext_resource type="Shader" path="res://levels/test/test_animation_health.gdshader" id="3_qmk22"]
+[ext_resource type="Shader" path="res://components/shaders/progress.gdshader" id="3_qmk22"]
 [ext_resource type="Texture2D" uid="uid://udasxd6aawua" path="res://assets/white-circle-free-png.webp" id="4_nm0d2"]
 [ext_resource type="Script" path="res://components/ui/health_bar.gd" id="5_7ks40"]
 
@@ -27,20 +27,24 @@ grow_vertical = 2
 
 [node name="Dialogue" type="MarginContainer" parent="Control"]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
 anchor_bottom = 1.0
+offset_left = -498.0
+offset_top = -128.0
+offset_right = 498.0
 grow_horizontal = 2
-grow_vertical = 2
+grow_vertical = 0
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
 [node name="TextBox" parent="Control/Dialogue" instance=ExtResource("1_nhv68")]
+visible = false
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 8
 
 [node name="Battle" type="MarginContainer" parent="Control"]
 layout_mode = 1

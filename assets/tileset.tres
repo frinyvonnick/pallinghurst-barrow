@@ -1,6 +1,9 @@
-[gd_resource type="TileSet" load_steps=12 format=3 uid="uid://dafe2svx15n8b"]
+[gd_resource type="TileSet" load_steps=16 format=3 uid="uid://dafe2svx15n8b"]
 
 [ext_resource type="Texture2D" uid="uid://crn1y0dfd1scg" path="res://assets/tileset.png" id="1_3aoyr"]
+[ext_resource type="PackedScene" uid="uid://c7ogkv251137s" path="res://components/invisible_wall.tscn" id="2_vl6bp"]
+[ext_resource type="PackedScene" uid="uid://x1xqx7th2b5h" path="res://entities/characters/black_arm/black_arm.tscn" id="3_163sh"]
+[ext_resource type="PackedScene" uid="uid://d313je3pdtsvf" path="res://entities/items/torch/torch.tscn" id="4_3xee7"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_u0bn6"]
 polygon = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
@@ -2714,7 +2717,7 @@ texture_region_size = Vector2i(32, 32)
 3:8/0/texture_origin = Vector2i(0, -16)
 3:8/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 3:8/0/physics_layer_0/angular_velocity = 0.0
-3:8/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16.5, 48, -16, 48.5)
+3:8/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16.5, 48, -16.0867, 47.9065)
 0:11/size_in_atlas = Vector2i(4, 4)
 0:11/0 = 0
 0:11/0/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -2755,6 +2758,11 @@ texture_region_size = Vector2i(32, 32)
 12:8/0/physics_layer_0/angular_velocity = 0.0
 12:8/0/physics_layer_0/polygon_0/points = PackedVector2Array(-24.7487, 122.329, -16.9706, 99.7021, 12.7279, 101.116, 18.3848, 120.915, -4.24265, 123.037)
 
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_3nrgc"]
+scenes/1/scene = ExtResource("2_vl6bp")
+scenes/2/scene = ExtResource("3_163sh")
+scenes/3/scene = ExtResource("4_3xee7")
+
 [resource]
 tile_size = Vector2i(32, 32)
 occlusion_layer_0/light_mask = 1
@@ -2770,3 +2778,4 @@ terrain_set_0/terrain_3/name = "dark_ground"
 terrain_set_0/terrain_3/color = Color(0.898039, 0.423529, 0.027451, 1)
 navigation_layer_0/layers = 1
 sources/0 = SubResource("TileSetAtlasSource_jcxps")
+sources/1 = SubResource("TileSetScenesCollectionSource_3nrgc")

@@ -1,0 +1,14 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://byqkqyunordln"]
+
+[ext_resource type="Shader" path="res://components/shaders/color.gdshader" id="1_cohiq"]
+
+[resource]
+shader = ExtResource("1_cohiq")
+shader_parameter/brightness = 0.0
+shader_parameter/contrast = 1.0
+shader_parameter/saturation = 1.0
+shader_parameter/redVal = 1.0
+shader_parameter/greenVal = 1.0
+shader_parameter/blueVal = 1.0
+shader_parameter/tint_color = Color(0.172549, 0.847059, 0.921569, 0.784314)
+shader_parameter/tint_effect_factor = 1.0

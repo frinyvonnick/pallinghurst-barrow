@@ -1,0 +1,63 @@
+[gd_scene load_steps=8 format=3 uid="uid://dwdgy22jftexi"]
+
+[ext_resource type="Script" path="res://levels/manor_night/manor_night.gd" id="1_tyq40"]
+[ext_resource type="Texture2D" uid="uid://05sj6tnpgdh4" path="res://assets/backgrounds/Manor.png" id="1_yu0oj"]
+[ext_resource type="Shader" path="res://components/shaders/blur.gdshader" id="2_gnqy6"]
+[ext_resource type="Texture2D" uid="uid://cq5kmu7xx7c6y" path="res://entities/items/torch/texture.tres" id="3_ln76q"]
+[ext_resource type="Script" path="res://entities/items/torch/torch.gd" id="4_3blsv"]
+[ext_resource type="PackedScene" uid="uid://cfwhbeq4x0et2" path="res://components/ui/UI.tscn" id="6_w4o83"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1viy8"]
+shader = ExtResource("2_gnqy6")
+shader_parameter/blur_amount = 3.5
+shader_parameter/mix_amount = 0.5
+shader_parameter/color_over = Color(0, 0.215686, 0.25098, 1)
+
+[node name="ManorNight" type="Node2D"]
+script = ExtResource("1_tyq40")
+
+[node name="Manor" type="Sprite2D" parent="."]
+position = Vector2(576, 325)
+scale = Vector2(0.608337, 0.608337)
+texture = ExtResource("1_yu0oj")
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+energy = 0.5
+blend_mode = 1
+
+[node name="PointLight2D" type="PointLight2D" parent="." node_paths=PackedStringArray("pointLight")]
+process_mode = 3
+position = Vector2(160, 96)
+color = Color(0.172549, 0.847059, 0.921569, 1)
+texture = ExtResource("3_ln76q")
+script = ExtResource("4_3blsv")
+pointLight = NodePath(".")
+torch_scale = Vector2(3, 5)
+
+[node name="PointLight2D2" type="PointLight2D" parent="." node_paths=PackedStringArray("pointLight")]
+process_mode = 3
+position = Vector2(1120, 96)
+color = Color(0.172549, 0.847059, 0.921569, 1)
+texture = ExtResource("3_ln76q")
+script = ExtResource("4_3blsv")
+pointLight = NodePath(".")
+torch_scale = Vector2(3, 5)
+
+[node name="PointLight2D3" type="PointLight2D" parent="." node_paths=PackedStringArray("pointLight")]
+process_mode = 3
+position = Vector2(800, 96)
+color = Color(0.172549, 0.847059, 0.921569, 1)
+texture = ExtResource("3_ln76q")
+script = ExtResource("4_3blsv")
+pointLight = NodePath(".")
+torch_scale = Vector2(3, 5)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_1viy8")
+offset_left = -8.0
+offset_top = -4.0
+offset_right = 1142.0
+offset_bottom = 644.0
+scale = Vector2(1.01827, 1.01717)
+
+[node name="Ui" parent="." instance=ExtResource("6_w4o83")]

@@ -4,10 +4,12 @@ extends Movement
 @export var animationPlayer: AnimationPlayer
 
 var skip_animation: bool = false
+var stuck: bool = false
 
 func _physics_process(delta):
 	animate()
-	super(delta)
+	if (!stuck):
+		super(delta)
 
 func animate():
 	if (skip_animation): return

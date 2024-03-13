@@ -1,0 +1,57 @@
+[gd_scene load_steps=7 format=3 uid="uid://dlxmcyp77uccs"]
+
+[ext_resource type="Texture2D" uid="uid://05sj6tnpgdh4" path="res://assets/backgrounds/Manor.png" id="1_f8u75"]
+[ext_resource type="Script" path="res://levels/manor_evening/manor_evening.gd" id="1_rtuja"]
+[ext_resource type="Shader" path="res://components/shaders/blur.gdshader" id="2_al8ef"]
+[ext_resource type="PackedScene" uid="uid://d313je3pdtsvf" path="res://entities/items/torch/torch.tscn" id="2_b41cq"]
+[ext_resource type="PackedScene" uid="uid://cfwhbeq4x0et2" path="res://components/ui/UI.tscn" id="5_aghun"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1viy8"]
+shader = ExtResource("2_al8ef")
+shader_parameter/blur_amount = 3.5
+shader_parameter/mix_amount = 0.0
+shader_parameter/color_over = null
+
+[node name="ManorEvening" type="Node2D"]
+script = ExtResource("1_rtuja")
+
+[node name="Manor" type="Sprite2D" parent="."]
+position = Vector2(576, 325)
+scale = Vector2(0.608337, 0.608337)
+texture = ExtResource("1_f8u75")
+
+[node name="Chandelier" type="Node2D" parent="."]
+
+[node name="Torch" parent="Chandelier" instance=ExtResource("2_b41cq")]
+position = Vector2(448, 16)
+
+[node name="Torch2" parent="Chandelier" instance=ExtResource("2_b41cq")]
+position = Vector2(496, 16)
+
+[node name="Torch3" parent="Chandelier" instance=ExtResource("2_b41cq")]
+position = Vector2(608, 16)
+
+[node name="Torch4" parent="Chandelier" instance=ExtResource("2_b41cq")]
+position = Vector2(552, 16)
+
+[node name="Cheminee" type="Node2D" parent="."]
+
+[node name="Torch" parent="Cheminee" instance=ExtResource("2_b41cq")]
+position = Vector2(528, 304)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_1viy8")
+offset_left = -8.0
+offset_top = -4.0
+offset_right = 1142.0
+offset_bottom = 644.0
+scale = Vector2(1.01827, 1.01717)
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(1, 0.831373, 0.819608, 1)
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+energy = 0.2
+blend_mode = 1
+
+[node name="Ui" parent="." instance=ExtResource("5_aghun")]

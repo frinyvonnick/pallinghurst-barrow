@@ -1,0 +1,119 @@
+[gd_scene load_steps=11 format=3 uid="uid://dlj1yr725p5gp"]
+
+[ext_resource type="Script" path="res://levels/credits/menu.gd" id="1_xv2gp"]
+[ext_resource type="PackedScene" uid="uid://c6xnfw87gom1" path="res://entities/decors/barrow/barrow.tscn" id="2_ux4eq"]
+[ext_resource type="Texture2D" uid="uid://bc5700447qib4" path="res://assets/ui/Rodolphe.png" id="3_0212i"]
+[ext_resource type="Shader" path="res://components/shaders/color.gdshader" id="4_nkme8"]
+[ext_resource type="Texture2D" uid="uid://ckpmxmr0fw7kd" path="res://assets/ui/Bac lui.png" id="5_xcp45"]
+[ext_resource type="FontFile" uid="uid://81sgrtnlhuij" path="res://assets/fonts/NotJamOldStyle11.ttf" id="6_qu44t"]
+[ext_resource type="FontFile" uid="uid://v85jry8mqm1y" path="res://assets/fonts/NotJamOldStyle14.ttf" id="7_1us4a"]
+[ext_resource type="Texture2D" uid="uid://bxhw08n5x66h3" path="res://assets/ui/Boss.png" id="7_ecnpy"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3762k"]
+shader = ExtResource("4_nkme8")
+shader_parameter/brightness = 0.0
+shader_parameter/contrast = 1.0
+shader_parameter/saturation = 1.0
+shader_parameter/redVal = 1.0
+shader_parameter/greenVal = 1.0
+shader_parameter/blueVal = 1.0
+shader_parameter/tint_color = Color(0, 0.215686, 0.25098, 1)
+shader_parameter/tint_effect_factor = 1.0
+
+[sub_resource type="FontVariation" id="FontVariation_ks8j5"]
+base_font = ExtResource("6_qu44t")
+variation_embolden = 1.2
+spacing_glyph = 5
+
+[node name="Menu" type="Node2D"]
+script = ExtResource("1_xv2gp")
+
+[node name="Barrow" parent="." instance=ExtResource("2_ux4eq")]
+
+[node name="Rodolphe" type="Sprite2D" parent="."]
+z_index = 20
+position = Vector2(160, 450)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("3_0212i")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -212.5
+offset_right = 212.5
+offset_bottom = 592.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/Control/MarginContainer"]
+material = SubResource("ShaderMaterial_3762k")
+layout_mode = 2
+texture = ExtResource("5_xcp45")
+region_rect = Rect2(0, 0, 96, 96)
+patch_margin_left = 32
+patch_margin_top = 64
+patch_margin_right = 32
+patch_margin_bottom = 64
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 64
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/MarginContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_fonts/font = SubResource("FontVariation_ks8j5")
+theme_override_font_sizes/font_size = 30
+text = "Pallinghurst
+Barrow"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="Label2" type="Label" parent="CanvasLayer/Control/MarginContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_fonts/font = ExtResource("7_1us4a")
+theme_override_font_sizes/font_size = 24
+text = "Thanks for playing <3"
+
+[node name="Label3" type="Label" parent="CanvasLayer/Control/MarginContainer/MarginContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("7_1us4a")
+theme_override_font_sizes/font_size = 18
+text = "Story : 
+Inspired by Grant Allen short novel
+
+Sounds :
+
+Music :
+"
+
+[node name="Boss" type="Sprite2D" parent="."]
+z_index = 20
+position = Vector2(1072, 450)
+scale = Vector2(0.234, 0.234)
+texture = ExtResource("7_ecnpy")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(1, 0.831373, 0.819608, 1)

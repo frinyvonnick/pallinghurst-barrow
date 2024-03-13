@@ -1,34 +1,98 @@
-[gd_scene load_steps=5 format=3 uid="uid://4p5h0ge0qj1u"]
+[gd_scene load_steps=7 format=3 uid="uid://4p5h0ge0qj1u"]
 
-[ext_resource type="FontFile" uid="uid://dt305t1pocmd2" path="res://assets/InstrumentSerif-Italic.ttf" id="1_don5q"]
 [ext_resource type="Script" path="res://components/ui/text_box.gd" id="1_jl50l"]
+[ext_resource type="Texture2D" uid="uid://ckpmxmr0fw7kd" path="res://assets/ui/Bac lui.png" id="2_rllgp"]
+[ext_resource type="FontFile" uid="uid://v85jry8mqm1y" path="res://assets/fonts/NotJamOldStyle14.ttf" id="6_pb21d"]
 
-[sub_resource type="Gradient" id="Gradient_p1ub8"]
-offsets = PackedFloat32Array(0.924603, 1)
-colors = PackedColorArray(0.900794, 0.900794, 0.900794, 1, 0, 0, 0, 1)
+[sub_resource type="Animation" id="Animation_0xe68"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("NinePatchRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_fcj7a"]
-gradient = SubResource("Gradient_p1ub8")
-width = 48
-height = 48
-fill = 2
-fill_from = Vector2(0.5, 0.5)
+[sub_resource type="Animation" id="Animation_lnqnm"]
+resource_name = "button_blink"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("NinePatchRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
 
-[node name="TextBox" type="MarginContainer" node_paths=PackedStringArray("label")]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ejmro"]
+_data = {
+"RESET": SubResource("Animation_0xe68"),
+"button_blink": SubResource("Animation_lnqnm")
+}
+
+[node name="TextBox" type="MarginContainer" node_paths=PackedStringArray("label", "animationPlayer")]
+process_mode = 3
 clip_contents = true
 offset_right = 900.0
 offset_bottom = 173.0
 size_flags_horizontal = 0
 script = ExtResource("1_jl50l")
-label = NodePath("MarginContainer/Label")
+label = NodePath("MarginContainer2/MarginContainer/Label")
+animationPlayer = NodePath("AnimationPlayer")
 
-[node name="NinePatchRect" type="NinePatchRect" parent="."]
+[node name="MarginContainer2" type="MarginContainer" parent="."]
 layout_mode = 2
-texture = SubResource("GradientTexture2D_fcj7a")
-region_rect = Rect2(16, 16, 32, 16)
-patch_margin_right = 16
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="Background" type="NinePatchRect" parent="MarginContainer2"]
+layout_mode = 2
+texture = ExtResource("2_rllgp")
+region_rect = Rect2(0, 0, 96, 96)
+patch_margin_left = 32
+patch_margin_top = 32
+patch_margin_right = 32
+patch_margin_bottom = 32
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer2"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
@@ -37,11 +101,47 @@ theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
-[node name="Label" type="Label" parent="MarginContainer"]
+[node name="Label" type="Label" parent="MarginContainer2/MarginContainer"]
 clip_contents = true
 custom_minimum_size = Vector2(900, 0)
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("1_don5q")
-theme_override_font_sizes/font_size = 16
+theme_override_fonts/font = ExtResource("6_pb21d")
+theme_override_font_sizes/font_size = 24
 autowrap_mode = 2
+
+[node name="Button" type="MarginContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Button"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+texture = ExtResource("2_rllgp")
+region_rect = Rect2(0, 0, 96, 96)
+patch_margin_left = 24
+patch_margin_top = 24
+patch_margin_right = 24
+patch_margin_bottom = 24
+
+[node name="Label" type="Label" parent="Button"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_pb21d")
+theme_override_font_sizes/font_size = 24
+text = "E"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Button")
+libraries = {
+"": SubResource("AnimationLibrary_ejmro")
+}
+autoplay = "button_blink"

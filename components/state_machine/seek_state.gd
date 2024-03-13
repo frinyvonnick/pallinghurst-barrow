@@ -3,7 +3,6 @@ extends State
 
 @export var navigationAgent: NavigationAgent2D
 @export var speed: float = 100
-@export var range: float = 24
 @export var distance_target: float = 10
 @export var skills: Array[Skill]
 
@@ -15,6 +14,7 @@ func enter(_msg := {}):
 	super()
 	target = _msg.get('target')
 	# sort skills by range
+	navigationAgent.max_speed = speed
 	skills.sort_custom(sort_skills_by_range_ascending)
 	navigationAgent.velocity_computed.connect(_on_velocity_computed)
 	_set_target_position()

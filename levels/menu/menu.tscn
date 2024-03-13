@@ -1,0 +1,152 @@
+[gd_scene load_steps=15 format=3 uid="uid://b4jdv5w4k46cn"]
+
+[ext_resource type="PackedScene" uid="uid://c6xnfw87gom1" path="res://entities/decors/barrow/barrow.tscn" id="1_h30ep"]
+[ext_resource type="Script" path="res://levels/menu/menu.gd" id="1_wpxd2"]
+[ext_resource type="Texture2D" uid="uid://bc5700447qib4" path="res://assets/ui/Rodolphe.png" id="2_e8yy4"]
+[ext_resource type="Shader" path="res://components/shaders/color.gdshader" id="3_vqupv"]
+[ext_resource type="Texture2D" uid="uid://ckpmxmr0fw7kd" path="res://assets/ui/Bac lui.png" id="4_o4k7d"]
+[ext_resource type="FontFile" uid="uid://81sgrtnlhuij" path="res://assets/fonts/NotJamOldStyle11.ttf" id="5_smtup"]
+[ext_resource type="FontFile" uid="uid://v85jry8mqm1y" path="res://assets/fonts/NotJamOldStyle14.ttf" id="6_flteu"]
+[ext_resource type="Script" path="res://levels/menu/Start.gd" id="7_akis1"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3762k"]
+shader = ExtResource("3_vqupv")
+shader_parameter/brightness = 0.0
+shader_parameter/contrast = 1.0
+shader_parameter/saturation = 1.0
+shader_parameter/redVal = 1.0
+shader_parameter/greenVal = 1.0
+shader_parameter/blueVal = 1.0
+shader_parameter/tint_color = Color(0, 0.215686, 0.25098, 1)
+shader_parameter/tint_effect_factor = 1.0
+
+[sub_resource type="FontVariation" id="FontVariation_ks8j5"]
+base_font = ExtResource("5_smtup")
+variation_embolden = 1.2
+spacing_glyph = 5
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hxq2i"]
+shader = ExtResource("3_vqupv")
+shader_parameter/brightness = 0.0
+shader_parameter/contrast = 1.0
+shader_parameter/saturation = 1.0
+shader_parameter/redVal = 1.0
+shader_parameter/greenVal = 1.0
+shader_parameter/blueVal = 1.0
+shader_parameter/tint_color = Color(1, 1, 1, 1)
+shader_parameter/tint_effect_factor = 1.0
+
+[sub_resource type="Animation" id="Animation_jcrff"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Start:material:shader_parameter/tint_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_npwcw"]
+resource_name = "start"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Start:material:shader_parameter/tint_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_r0q8n"]
+_data = {
+"RESET": SubResource("Animation_jcrff"),
+"start": SubResource("Animation_npwcw")
+}
+
+[node name="Menu" type="Node2D"]
+script = ExtResource("1_wpxd2")
+
+[node name="Barrow" parent="." instance=ExtResource("1_h30ep")]
+
+[node name="Rodolphe" type="Sprite2D" parent="."]
+z_index = 20
+position = Vector2(160, 424)
+scale = Vector2(0.234375, 0.234375)
+texture = ExtResource("2_e8yy4")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -400.0
+offset_bottom = 592.0
+grow_horizontal = 0
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/Control/MarginContainer"]
+material = SubResource("ShaderMaterial_3762k")
+layout_mode = 2
+texture = ExtResource("4_o4k7d")
+region_rect = Rect2(0, 0, 96, 96)
+patch_margin_left = 32
+patch_margin_top = 64
+patch_margin_right = 32
+patch_margin_bottom = 64
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 64
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/MarginContainer/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_fonts/font = SubResource("FontVariation_ks8j5")
+theme_override_font_sizes/font_size = 30
+text = "Pallinghurst
+Barrow"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="Start" type="Label" parent="CanvasLayer/Control/MarginContainer/MarginContainer" node_paths=PackedStringArray("animationPlayer")]
+material = SubResource("ShaderMaterial_hxq2i")
+layout_mode = 2
+theme_override_fonts/font = ExtResource("6_flteu")
+theme_override_font_sizes/font_size = 24
+text = "Press Enter to Start"
+horizontal_alignment = 1
+uppercase = true
+script = ExtResource("7_akis1")
+animationPlayer = NodePath("../AnimationPlayer")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Control/MarginContainer/MarginContainer"]
+libraries = {
+"": SubResource("AnimationLibrary_r0q8n")
+}

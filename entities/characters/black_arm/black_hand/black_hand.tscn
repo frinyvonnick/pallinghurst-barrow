@@ -1,0 +1,172 @@
+[gd_scene load_steps=20 format=3 uid="uid://cqegoxve6kb63"]
+
+[ext_resource type="Script" path="res://entities/characters/black_arm/black_hand/black_hand.gd" id="1_c1ty3"]
+[ext_resource type="Texture2D" uid="uid://ctobkwm4e1wgt" path="res://assets/black_hand.png" id="2_u25r7"]
+[ext_resource type="Script" path="res://components/state_machine/state_machine.gd" id="3_0x0ae"]
+[ext_resource type="Script" path="res://components/state_machine/idle_state.gd" id="4_tenro"]
+[ext_resource type="Script" path="res://components/state_machine/seek_state.gd" id="5_pl6rd"]
+[ext_resource type="Script" path="res://components/state_machine/attack_state.gd" id="6_sg6el"]
+[ext_resource type="Script" path="res://components/top_down_holder.gd" id="7_nokr4"]
+[ext_resource type="Script" path="res://components/state_machine/retreat_state.gd" id="7_rcuv6"]
+[ext_resource type="Script" path="res://components/combat/skills/tick.gd" id="9_jituk"]
+[ext_resource type="Script" path="res://entities/_old/old_ghost/label.gd" id="10_somsa"]
+[ext_resource type="Script" path="res://components/combat/hurt_box.gd" id="11_xgr1e"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sbtt0"]
+radius = 8.0
+height = 24.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yncp3"]
+radius = 13.3333
+
+[sub_resource type="LabelSettings" id="LabelSettings_tep7l"]
+font_size = 8
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yt8rc"]
+
+[sub_resource type="Animation" id="Animation_7tiju"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_52mm2"]
+resource_name = "attack"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 0), Vector2i(1, 0), Vector2i(2, 0), Vector2i(3, 0), Vector2i(4, 0), Vector2i(5, 0), Vector2i(6, 0), Vector2i(7, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_g5tfr"]
+resource_name = "move"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 1), Vector2i(0, 1), Vector2i(1, 1), Vector2i(2, 1), Vector2i(3, 1), Vector2i(4, 1), Vector2i(5, 1), Vector2i(6, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jkgc1"]
+_data = {
+"RESET": SubResource("Animation_7tiju"),
+"attack": SubResource("Animation_52mm2"),
+"move": SubResource("Animation_g5tfr")
+}
+
+[node name="BlackHand" type="CharacterBody2D" node_paths=PackedStringArray("attack", "sprite", "stateMachine", "animationPlayer")]
+z_index = 1
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_c1ty3")
+attack = NodePath("WeaponHolder/Tick")
+sprite = NodePath("Sprite2D")
+stateMachine = NodePath("StateMachine")
+animationPlayer = NodePath("AnimationPlayer")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_u25r7")
+flip_h = true
+hframes = 8
+vframes = 2
+frame = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("CapsuleShape2D_sbtt0")
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("3_0x0ae")
+initial_state = NodePath("idle_state")
+
+[node name="idle_state" type="Node2D" parent="StateMachine"]
+script = ExtResource("4_tenro")
+
+[node name="seek_state" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("navigationAgent", "skills")]
+script = ExtResource("5_pl6rd")
+navigationAgent = NodePath("../../NavigationAgent2D")
+speed = 60.0
+skills = [NodePath("../../WeaponHolder/Tick")]
+
+[node name="attack_state" type="Node2D" parent="StateMachine"]
+script = ExtResource("6_sg6el")
+
+[node name="retreat_state" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("navigationAgent")]
+script = ExtResource("7_rcuv6")
+navigationAgent = NodePath("../../NavigationAgent2D")
+speed = 125.0
+
+[node name="WeaponHolder" type="Node2D" parent="." node_paths=PackedStringArray("actor")]
+script = ExtResource("7_nokr4")
+actor = NodePath("..")
+
+[node name="Tick" type="Area2D" parent="WeaponHolder" node_paths=PackedStringArray("collisionShape2D", "emitter")]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("9_jituk")
+collisionShape2D = NodePath("CollisionShape2D")
+emitter = NodePath("../..")
+range = 16.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WeaponHolder/Tick"]
+scale = Vector2(0.8, 0.8)
+shape = SubResource("CircleShape2D_yncp3")
+debug_color = Color(0.905882, 0.247059, 0.305882, 0.419608)
+
+[node name="Label" type="Label" parent="." node_paths=PackedStringArray("stateMachine")]
+offset_left = -18.0
+offset_top = -32.0
+offset_right = 22.0
+offset_bottom = -9.0
+label_settings = SubResource("LabelSettings_tep7l")
+horizontal_alignment = 1
+script = ExtResource("10_somsa")
+stateMachine = NodePath("../StateMachine")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_desired_distance = 0.1
+target_desired_distance = 0.1
+navigation_layers = 2
+avoidance_enabled = true
+max_speed = 60.0
+avoidance_layers = 4
+avoidance_mask = 4
+debug_enabled = true
+debug_path_custom_color = Color(1, 0.0823529, 1, 1)
+
+[node name="HurtBox" type="Area2D" parent="."]
+script = ExtResource("11_xgr1e")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+shape = SubResource("CircleShape2D_yt8rc")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_jkgc1")
+}

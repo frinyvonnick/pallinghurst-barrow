@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://d313je3pdtsvf"]
+
+[ext_resource type="Script" path="res://entities/items/torch/torch.gd" id="1_4a3pe"]
+[ext_resource type="Texture2D" uid="uid://dijqtiav7jbek" path="res://assets/items/weapons.png" id="2_175bq"]
+[ext_resource type="Texture2D" uid="uid://cq5kmu7xx7c6y" path="res://entities/items/torch/texture.tres" id="2_hsr6f"]
+
+[node name="Torch" type="Node2D" node_paths=PackedStringArray("pointLight")]
+script = ExtResource("1_4a3pe")
+pointLight = NodePath("PointLight2D")
+metadata/_edit_group_ = true
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(0, -8)
+color = Color(0.996078, 0.592157, 0.129412, 1)
+shadow_enabled = true
+shadow_color = Color(0, 0, 0, 0.207843)
+shadow_filter_smooth = 50.0
+texture = ExtResource("2_hsr6f")
+
+[node name="Weapons" type="Sprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_175bq")
+hframes = 4
+vframes = 2
+frame = 4

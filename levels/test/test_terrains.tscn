@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dqwd5txc3hgd3"]
 
 [ext_resource type="TileSet" uid="uid://dafe2svx15n8b" path="res://assets/tileset.tres" id="2_lgyxf"]
-[ext_resource type="PackedScene" uid="uid://ct1pleqq81l3g" path="res://entities/player/player.tscn" id="2_utqnk"]
+[ext_resource type="PackedScene" uid="uid://ct1pleqq81l3g" path="res://entities/characters/player/player.tscn" id="2_utqnk"]
 
 [node name="TestTerrains" type="Node2D"]
 y_sort_enabled = true

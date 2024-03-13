@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://12bh6bj0ld1x"]
 
-[ext_resource type="Shader" path="res://levels/test/test_blur.gdshader" id="1_3fj1m"]
+[ext_resource type="Shader" path="res://components/shaders/blur.gdshader" id="1_3fj1m"]
 [ext_resource type="Texture2D" uid="uid://kfseugek4cxu" path="res://assets/weapons.png" id="2_6ru3o"]
-[ext_resource type="PackedScene" uid="uid://d313je3pdtsvf" path="res://entities/torch/torch.tscn" id="2_b0ydk"]
+[ext_resource type="PackedScene" uid="uid://d313je3pdtsvf" path="res://entities/items/torch/torch.tscn" id="2_b0ydk"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wbxmm"]
 shader = ExtResource("1_3fj1m")
@@ -30,4 +30,3 @@ texture = ExtResource("2_6ru3o")
 [node name="Torch" parent="." instance=ExtResource("2_b0ydk")]
 z_index = 4
 position = Vector2(-32, -8)
-energy = Vector2(0.855, 1)
