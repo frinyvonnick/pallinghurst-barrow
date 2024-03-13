@@ -9,7 +9,6 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _on_changed(actor, old_value, new_value):
 	if (!actor is Player): 
-		print(old_value, ' ', new_value)
 		return 
 	var shaderMaterial:ShaderMaterial = material
 	shaderMaterial.set_shader_parameter('health', new_value / actor.health.max)

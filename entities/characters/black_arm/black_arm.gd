@@ -1,3 +1,4 @@
+@tool
 class_name BlackArm
 extends Node2D
 

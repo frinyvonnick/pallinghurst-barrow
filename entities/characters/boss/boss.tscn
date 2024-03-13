@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://qtpumr7s7som"]
+[gd_scene load_steps=37 format=3 uid="uid://qtpumr7s7som"]
 
 [ext_resource type="Script" path="res://entities/characters/boss/boss.gd" id="1_374jo"]
 [ext_resource type="Material" uid="uid://byqkqyunordln" path="res://components/shaders/ghost_effect.tres" id="2_fsckc"]
@@ -1057,6 +1057,35 @@ tracks/5/keys = {
 "values": [false]
 }
 
+[sub_resource type="Animation" id="Animation_kggyt"]
+resource_name = "hurt"
+length = 0.2
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:material:shader_parameter/tint_effect_factor")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:material:shader_parameter/tint_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0.172549, 0.847059, 0.921569, 0.784314), Color(1, 1, 1, 1), Color(0.172549, 0.847059, 0.921569, 0.784314)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5tkbd"]
 _data = {
 "RESET": SubResource("Animation_coiyp"),
@@ -1064,6 +1093,7 @@ _data = {
 "attackLeft": SubResource("Animation_d7vaq"),
 "attackRight": SubResource("Animation_rj3yb"),
 "attackUp": SubResource("Animation_kfcva"),
+"hurt": SubResource("Animation_kggyt"),
 "idleDown": SubResource("Animation_2bvgc"),
 "idleLeft": SubResource("Animation_tkxqj"),
 "idleRight": SubResource("Animation_omlb5"),
@@ -1077,6 +1107,7 @@ _data = {
 [node name="Boss" type="CharacterBody2D" node_paths=PackedStringArray("attack", "stateMachine", "phaseState", "weaponSprite", "topDownMovement", "health", "animationPlayer")]
 z_index = 1
 scale = Vector2(0.75, 0.75)
+collision_layer = 2
 script = ExtResource("1_374jo")
 attack = NodePath("WeaponHolder/Cleave")
 stateMachine = NodePath("StateMachine")
@@ -1153,6 +1184,7 @@ navigationAgent = NodePath("../../NavigationAgent2D")
 
 [node name="Health" type="Area2D" parent="." node_paths=PackedStringArray("actor")]
 script = ExtResource("9_5lryl")
+max = 300.0
 actor = NodePath("..")
 sensible_types = Array[int]([0])
 
@@ -1200,6 +1232,7 @@ position = Vector2(8, 0)
 shape = SubResource("CircleShape2D_pqdsb")
 
 [node name="Label" type="Label" parent="." node_paths=PackedStringArray("stateMachine")]
+visible = false
 offset_left = -18.0
 offset_top = -32.0
 offset_right = 22.0

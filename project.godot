@@ -33,6 +33,10 @@ shapes/navigation/enable_link_connections_xray=false
 shapes/navigation/enable_agent_paths=false
 shapes/navigation/enable_agent_paths_xray=false
 
+[display]
+
+window/size/resizable=false
+
 [input]
 
 up={

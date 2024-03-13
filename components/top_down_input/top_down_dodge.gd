@@ -35,7 +35,11 @@ func _physics_process(delta):
 		is_recovering = false
 		time_elapsed = 0
 	
+	var old_time_elapsed = time_elapsed
 	time_elapsed += delta
+	
+	if (is_recovering):
+		Events.emit_signal('player_cooldown_progressed', 'dodge', old_time_elapsed, time_elapsed, dodge_recovering_duration)
 
 func _play_dodge_animation():
 	var animation = "dodge"

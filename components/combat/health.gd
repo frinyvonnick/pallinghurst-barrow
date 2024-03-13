@@ -40,4 +40,5 @@ func reset():
 		
 func _on_wounded(event):
 	if (event.body != actor || sensible_types.find(event.type) == -1): return
+	actor.animationPlayer.play('hurt')
 	reduce(event.damage)

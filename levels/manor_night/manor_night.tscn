@@ -33,6 +33,7 @@ texture = ExtResource("3_ln76q")
 script = ExtResource("4_3blsv")
 pointLight = NodePath(".")
 torch_scale = Vector2(3, 5)
+torch_color = Color(0.172549, 0.847059, 0.921569, 1)
 
 [node name="PointLight2D2" type="PointLight2D" parent="." node_paths=PackedStringArray("pointLight")]
 process_mode = 3
@@ -42,6 +43,7 @@ texture = ExtResource("3_ln76q")
 script = ExtResource("4_3blsv")
 pointLight = NodePath(".")
 torch_scale = Vector2(3, 5)
+torch_color = Color(0.172549, 0.847059, 0.921569, 1)
 
 [node name="PointLight2D3" type="PointLight2D" parent="." node_paths=PackedStringArray("pointLight")]
 process_mode = 3
@@ -51,6 +53,7 @@ texture = ExtResource("3_ln76q")
 script = ExtResource("4_3blsv")
 pointLight = NodePath(".")
 torch_scale = Vector2(3, 5)
+torch_color = Color(0.172549, 0.847059, 0.921569, 1)
 
 [node name="ColorRect" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_1viy8")

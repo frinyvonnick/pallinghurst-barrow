@@ -3,13 +3,14 @@ extends Skill
 
 @export var speed: float = 2.0
 @export var angle: float = 270.0
-
 @export var preparation_time: float = 0.25
 @export var recovery_time: float = 0.5
-var animation_name: String
 
+var animation_name: String
 var targetRotation
 var elapsedTime = 0.0
+
+signal recovery_progressed(old_value: float, new_value: float, max_value: float)
 
 func start(msg:= {}):
 	super()
@@ -42,6 +43,7 @@ func activate():
 	emitter.topDownMovement.skip_animation = false
 	skillactived.emit()
 	_state = States.RECOVERY
+	elapsedTime = 0
 
 func _physics_process(delta):
 	if (_state == States.PREPARE):
@@ -57,5 +59,8 @@ func _physics_process(delta):
 		if (elapsedTime >= recovery_time):
 			elapsedTime = 0
 			end()
-
+			
+	var old_elapsed_time = elapsedTime
 	elapsedTime += delta
+	if (_state == States.RECOVERY):
+		recovery_progressed.emit(old_elapsed_time, elapsedTime, recovery_time)

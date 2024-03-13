@@ -1,8 +1,25 @@
-[gd_scene load_steps=7 format=3 uid="uid://4p5h0ge0qj1u"]
+[gd_scene load_steps=14 format=3 uid="uid://4p5h0ge0qj1u"]
 
 [ext_resource type="Script" path="res://components/ui/text_box.gd" id="1_jl50l"]
 [ext_resource type="Texture2D" uid="uid://ckpmxmr0fw7kd" path="res://assets/ui/Bac lui.png" id="2_rllgp"]
+[ext_resource type="Texture2D" uid="uid://bi23e82y34knw" path="res://assets/ui/Mother.png" id="3_w3ip5"]
+[ext_resource type="Texture2D" uid="uid://bc5700447qib4" path="res://assets/ui/Rodolphe.png" id="4_itvwp"]
+[ext_resource type="Texture2D" uid="uid://ln7q8rtuhur8" path="res://assets/ui/Daugther.png" id="4_ivrma"]
+[ext_resource type="Texture2D" uid="uid://bla1bv55ntmwt" path="res://assets/ui/Doctor.png" id="5_ckqlv"]
+[ext_resource type="Texture2D" uid="uid://bxhw08n5x66h3" path="res://assets/ui/Boss.png" id="6_4hm77"]
 [ext_resource type="FontFile" uid="uid://v85jry8mqm1y" path="res://assets/fonts/NotJamOldStyle14.ttf" id="6_pb21d"]
+[ext_resource type="Shader" path="res://components/shaders/color.gdshader" id="9_leqmc"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lpyx0"]
+shader = ExtResource("9_leqmc")
+shader_parameter/brightness = 0.0
+shader_parameter/contrast = 1.0
+shader_parameter/saturation = 1.0
+shader_parameter/redVal = 1.0
+shader_parameter/greenVal = 1.0
+shader_parameter/blueVal = 1.0
+shader_parameter/tint_color = Color(0, 0.215686, 0.25098, 1)
+shader_parameter/tint_effect_factor = 1.0
 
 [sub_resource type="Animation" id="Animation_0xe68"]
 length = 0.001
@@ -66,24 +83,116 @@ _data = {
 "button_blink": SubResource("Animation_lnqnm")
 }
 
-[node name="TextBox" type="MarginContainer" node_paths=PackedStringArray("label", "animationPlayer")]
+[node name="TextBox" type="BoxContainer" node_paths=PackedStringArray("label", "animationPlayer", "characters", "LeftTag", "RightTag")]
 process_mode = 3
-clip_contents = true
-offset_right = 900.0
-offset_bottom = 173.0
-size_flags_horizontal = 0
+custom_minimum_size = Vector2(0, 356)
+offset_right = 964.0
+offset_bottom = 96.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 2
+vertical = true
 script = ExtResource("1_jl50l")
-label = NodePath("MarginContainer2/MarginContainer/Label")
-animationPlayer = NodePath("AnimationPlayer")
+label = NodePath("MarginContainer/MarginContainer2/MarginContainer/Label")
+animationPlayer = NodePath("MarginContainer/AnimationPlayer")
+characters = [NodePath("Left/Rodolphe"), NodePath("Right/Mother"), NodePath("Right/Daughter"), NodePath("Right/Doctor"), NodePath("Right/Boss")]
+LeftTag = NodePath("MarginContainer/LeftName/MarginContainer/Label")
+RightTag = NodePath("MarginContainer/RightName/MarginContainer/Label")
 
-[node name="MarginContainer2" type="MarginContainer" parent="."]
+[node name="Left" type="Control" parent="."]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="Rodolphe" type="TextureRect" parent="Left"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_top = -226.0
+offset_right = 2048.0
+offset_bottom = 1822.0
+grow_horizontal = 2
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("4_itvwp")
+
+[node name="Right" type="Control" parent="."]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+
+[node name="Mother" type="TextureRect" parent="Right"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -340.0
+offset_top = -226.0
+offset_right = 1708.0
+offset_bottom = 1822.0
+grow_horizontal = 2
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("3_w3ip5")
+
+[node name="Daughter" type="TextureRect" parent="Right"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -340.0
+offset_top = -226.0
+offset_right = 1708.0
+offset_bottom = 1822.0
+grow_horizontal = 2
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("4_ivrma")
+
+[node name="Doctor" type="TextureRect" parent="Right"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -340.0
+offset_top = -226.0
+offset_right = 1708.0
+offset_bottom = 1822.0
+grow_horizontal = 2
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("5_ckqlv")
+
+[node name="Boss" type="TextureRect" parent="Right"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -340.0
+offset_top = -226.0
+offset_right = 1708.0
+offset_bottom = 1822.0
+grow_horizontal = 2
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("6_4hm77")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/margin_top = 0
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer"]
+z_index = 1
 layout_mode = 2
 theme_override_constants/margin_left = 16
-theme_override_constants/margin_top = 16
+theme_override_constants/margin_top = 40
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
-[node name="Background" type="NinePatchRect" parent="MarginContainer2"]
+[node name="Background" type="NinePatchRect" parent="MarginContainer/MarginContainer2"]
 layout_mode = 2
 texture = ExtResource("2_rllgp")
 region_rect = Rect2(0, 0, 96, 96)
@@ -92,7 +201,7 @@ patch_margin_top = 32
 patch_margin_right = 32
 patch_margin_bottom = 32
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer2"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/MarginContainer2"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
@@ -101,7 +210,7 @@ theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
-[node name="Label" type="Label" parent="MarginContainer2/MarginContainer"]
+[node name="Label" type="Label" parent="MarginContainer/MarginContainer2/MarginContainer"]
 clip_contents = true
 custom_minimum_size = Vector2(900, 0)
 layout_mode = 2
@@ -110,7 +219,8 @@ theme_override_fonts/font = ExtResource("6_pb21d")
 theme_override_font_sizes/font_size = 24
 autowrap_mode = 2
 
-[node name="Button" type="MarginContainer" parent="."]
+[node name="Button" type="MarginContainer" parent="MarginContainer"]
+z_index = 1
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
@@ -119,7 +229,7 @@ theme_override_constants/margin_top = 0
 theme_override_constants/margin_right = 0
 theme_override_constants/margin_bottom = 0
 
-[node name="NinePatchRect" type="NinePatchRect" parent="Button"]
+[node name="NinePatchRect" type="NinePatchRect" parent="MarginContainer/Button"]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
@@ -130,7 +240,7 @@ patch_margin_top = 24
 patch_margin_right = 24
 patch_margin_bottom = 24
 
-[node name="Label" type="Label" parent="Button"]
+[node name="Label" type="Label" parent="MarginContainer/Button"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("6_pb21d")
@@ -139,7 +249,75 @@ text = "E"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="LeftName" type="MarginContainer" parent="MarginContainer"]
+z_index = 1
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
+
+[node name="NinePatchRect" type="NinePatchRect" parent="MarginContainer/LeftName"]
+material = SubResource("ShaderMaterial_lpyx0")
+layout_mode = 2
+size_flags_vertical = 8
+texture = ExtResource("2_rllgp")
+region_rect = Rect2(0, 0, 96, 96)
+patch_margin_left = 24
+patch_margin_top = 24
+patch_margin_right = 24
+patch_margin_bottom = 24
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/LeftName"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_right = 16
+
+[node name="Label" type="Label" parent="MarginContainer/LeftName/MarginContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("6_pb21d")
+theme_override_font_sizes/font_size = 24
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RightName" type="MarginContainer" parent="MarginContainer"]
+z_index = 1
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 0
+
+[node name="NinePatchRect2" type="NinePatchRect" parent="MarginContainer/RightName"]
+material = SubResource("ShaderMaterial_lpyx0")
+layout_mode = 2
+size_flags_vertical = 8
+texture = ExtResource("2_rllgp")
+region_rect = Rect2(0, 0, 96, 96)
+patch_margin_left = 24
+patch_margin_top = 24
+patch_margin_right = 24
+patch_margin_bottom = 24
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/RightName"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_right = 16
+
+[node name="Label" type="Label" parent="MarginContainer/RightName/MarginContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("6_pb21d")
+theme_override_font_sizes/font_size = 24
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MarginContainer"]
 root_node = NodePath("../Button")
 libraries = {
 "": SubResource("AnimationLibrary_ejmro")

@@ -44,6 +44,7 @@ texture = ExtResource("4_le81v")
 script = ExtResource("5_0ww1w")
 pointLight = NodePath(".")
 torch_scale = Vector2(2, 3)
+torch_color = Color(0.172549, 0.847059, 0.921569, 1)
 
 [node name="Fog" type="ParallaxBackground" parent="."]
 layer = 1

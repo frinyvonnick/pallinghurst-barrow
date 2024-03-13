@@ -2,7 +2,7 @@ extends Node
 
 var ui: UI
 
-var lines: Array[String]
+var lines: Array
 var current_line: int
 
 var is_dialog_started: bool

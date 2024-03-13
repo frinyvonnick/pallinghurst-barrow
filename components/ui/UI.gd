@@ -1,7 +1,7 @@
 class_name UI
 extends CanvasLayer
 
-@export var text_box: MarginContainer
+@export var text_box: TextBox
 
 @export var combat_ui: Control
 

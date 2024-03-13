@@ -1,7 +1,8 @@
-[gd_scene load_steps=37 format=3 uid="uid://ct1pleqq81l3g"]
+[gd_scene load_steps=40 format=3 uid="uid://ct1pleqq81l3g"]
 
 [ext_resource type="Script" path="res://entities/characters/player/player.gd" id="1_unixv"]
 [ext_resource type="Texture2D" uid="uid://bt62ulqd0nswf" path="res://assets/rodolphe.png" id="3_qho4c"]
+[ext_resource type="Shader" path="res://components/shaders/color.gdshader" id="3_xx85y"]
 [ext_resource type="Script" path="res://components/top_down_input/top_down_input.gd" id="4_6dr58"]
 [ext_resource type="Animation" uid="uid://bpdqehf7sxqyx" path="res://entities/characters/player/attackLeft.res" id="4_bydxy"]
 [ext_resource type="Animation" uid="uid://dvhp81blu22v2" path="res://entities/characters/player/attackRight.res" id="5_c186v"]
@@ -19,8 +20,19 @@
 script = ExtResource("6_xbeno")
 speed = 150.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_kewgs"]
-size = Vector2(16, 8)
+[sub_resource type="CircleShape2D" id="CircleShape2D_40w8t"]
+radius = 9.32277
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ddav3"]
+shader = ExtResource("3_xx85y")
+shader_parameter/brightness = 0.0
+shader_parameter/contrast = 1.0
+shader_parameter/saturation = 1.0
+shader_parameter/redVal = 1.0
+shader_parameter/greenVal = 1.0
+shader_parameter/blueVal = 1.0
+shader_parameter/tint_color = Color(1, 0.34902, 0.356863, 1)
+shader_parameter/tint_effect_factor = 0.0
 
 [sub_resource type="Animation" id="Animation_55k60"]
 length = 0.001
@@ -191,6 +203,18 @@ tracks/13/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [0]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("Sprite2D:material:shader_parameter/tint_effect_factor")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
 }
 
 [sub_resource type="Animation" id="Animation_tgfqm"]
@@ -1273,6 +1297,22 @@ tracks/7/keys = {
 "values": [-0.708604]
 }
 
+[sub_resource type="Animation" id="Animation_xy41o"]
+resource_name = "hurt"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:material:shader_parameter/tint_effect_factor")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 1.0, 0.0]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gs60t"]
 _data = {
 "RESET": SubResource("Animation_55k60"),
@@ -1284,6 +1324,7 @@ _data = {
 "dodgeLeft": SubResource("Animation_ratcv"),
 "dodgeRight": SubResource("Animation_yy4r4"),
 "dodgeUp": SubResource("Animation_yr2hi"),
+"hurt": SubResource("Animation_xy41o"),
 "idleDown": SubResource("Animation_mkycc"),
 "idleLeft": SubResource("Animation_id20r"),
 "idleRight": SubResource("Animation_fevr4"),
@@ -1334,14 +1375,15 @@ metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 21.3333)
-scale = Vector2(1.26667, 1)
-shape = SubResource("RectangleShape2D_kewgs")
+scale = Vector2(0.815, 0.815)
+shape = SubResource("CircleShape2D_40w8t")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2, 2)
 position_smoothing_enabled = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_ddav3")
 position = Vector2(0, -10.6667)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("3_qho4c")
@@ -1373,6 +1415,7 @@ actor = NodePath("..")
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("9_qruve")
+max = 200.0
 actor = NodePath("..")
 sensible_types = Array[int]([0])
 
@@ -1438,10 +1481,10 @@ shape = SubResource("CircleShape2D_crcbn")
 position = Vector2(-0.0719219, 0.244106)
 scale = Vector2(0.285714, 0.285714)
 color = Color(0.996078, 0.592157, 0.129412, 1)
-energy = 0.8
+energy = 0.5
 shadow_enabled = true
 texture = SubResource("GradientTexture2D_fayur")
-texture_scale = 2.5
+texture_scale = 3.0
 
 [node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="TopDownHolder/Anchor/LanternAttackHolder/Cleave/CollisionShape2D"]
 position = Vector2(-3.33786e-06, 8.58307e-06)
@@ -1451,5 +1494,9 @@ radius = 20.0
 avoidance_layers = 4
 
 [connection signal="health_changed" from="Health" to="." method="_on_health_changed"]
+[connection signal="recovery_progressed" from="TopDownHolder/Anchor/SwordCleave" to="." method="_on_sword_recovery_progressed"]
 [connection signal="skillactived" from="TopDownHolder/Anchor/SwordCleave" to="." method="_on_sword_skillactivated"]
+[connection signal="skillended" from="TopDownHolder/Anchor/SwordCleave" to="." method="_on_sword_skillactivated"]
+[connection signal="recovery_progressed" from="TopDownHolder/Anchor/LanternAttackHolder/Cleave" to="." method="_on_lantern_recovery_progressed"]
 [connection signal="skillactived" from="TopDownHolder/Anchor/LanternAttackHolder/Cleave" to="." method="_on_lantern_skillactivated"]
+[connection signal="skillended" from="TopDownHolder/Anchor/LanternAttackHolder/Cleave" to="." method="_on_lantern_skillactivated"]

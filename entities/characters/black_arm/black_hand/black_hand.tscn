@@ -144,6 +144,7 @@ shape = SubResource("CircleShape2D_yncp3")
 debug_color = Color(0.905882, 0.247059, 0.305882, 0.419608)
 
 [node name="Label" type="Label" parent="." node_paths=PackedStringArray("stateMachine")]
+visible = false
 offset_left = -18.0
 offset_top = -32.0
 offset_right = 22.0

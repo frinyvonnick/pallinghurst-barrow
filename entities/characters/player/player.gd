@@ -29,6 +29,7 @@ func _physics_process(delta):
 func _change_skill():
 	if (current_skill == swordAttack):
 		current_skill = lanternAttack
+		Events.emit_signal('player_weapon_changed', 'lantern')
 		
 		swordAttack.process_mode = Node.PROCESS_MODE_DISABLED
 		swordAttack.hide()
@@ -36,6 +37,7 @@ func _change_skill():
 		lanternAttack.show()
 	else:
 		current_skill = swordAttack
+		Events.emit_signal('player_weapon_changed', 'sword')
 		
 		lanternAttack.process_mode = Node.PROCESS_MODE_DISABLED
 		lanternAttack.hide()
@@ -72,3 +74,11 @@ func _on_dodge_started():
 	
 func _on_dodge_finished():
 	topDownMovement.skip_animation = false
+
+
+func _on_lantern_recovery_progressed(old_value, new_value, max_value):
+	Events.emit_signal('player_cooldown_progressed', 'lantern', old_value, new_value, max_value)
+
+
+func _on_sword_recovery_progressed(old_value, new_value, max_value):
+	Events.emit_signal('player_cooldown_progressed', 'sword', old_value, new_value, max_value)
