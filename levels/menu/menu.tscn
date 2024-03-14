@@ -156,3 +156,6 @@ libraries = {
 process_mode = 3
 stream = ExtResource("9_jat2l")
 autoplay = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(576, 324)

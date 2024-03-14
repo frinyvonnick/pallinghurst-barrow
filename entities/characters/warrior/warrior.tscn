@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://entities/characters/warrior/warrior.gd" id="1_c0ge6"]
 [ext_resource type="Material" uid="uid://byqkqyunordln" path="res://components/shaders/ghost_effect.tres" id="2_5ibal"]
-[ext_resource type="Texture2D" uid="uid://db1hwkwfn3qgl" path="res://assets/warrior.png" id="2_8im78"]
+[ext_resource type="Texture2D" uid="uid://gc27v4odiiof" path="res://assets/characters/warrior.png" id="2_8im78"]
 [ext_resource type="Script" path="res://components/state_machine/state_machine.gd" id="3_5eq4l"]
 [ext_resource type="Script" path="res://components/movement/top_down_movement.gd" id="3_khsvr"]
 [ext_resource type="Script" path="res://components/state_machine/retreat_state.gd" id="4_f563m"]
@@ -11,7 +11,7 @@
 [ext_resource type="Script" path="res://components/state_machine/attack_state.gd" id="7_ypw64"]
 [ext_resource type="Script" path="res://components/combat/health.gd" id="8_e26pw"]
 [ext_resource type="PackedScene" uid="uid://ddijfxjrhmvlf" path="res://components/combat/skills/cleave/cleave.tscn" id="10_laxoy"]
-[ext_resource type="Texture2D" uid="uid://kfseugek4cxu" path="res://assets/weapons.png" id="10_lu0ga"]
+[ext_resource type="Texture2D" uid="uid://dijqtiav7jbek" path="res://assets/items/weapons.png" id="10_lu0ga"]
 [ext_resource type="Script" path="res://components/combat/skills/rush.gd" id="11_iw7jy"]
 [ext_resource type="Script" path="res://entities/_old/old_ghost/label.gd" id="13_3v7oe"]
 

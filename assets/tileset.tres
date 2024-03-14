@@ -1,7 +1,7 @@
 [gd_resource type="TileSet" load_steps=17 format=3 uid="uid://dafe2svx15n8b"]
 
 [ext_resource type="Texture2D" uid="uid://dlcm6oa4v5amm" path="res://assets/tilesets/tileset.png" id="1_3aoyr"]
-[ext_resource type="PackedScene" path="res://components/invisible_wall.tscn" id="2_vl6bp"]
+[ext_resource type="PackedScene" uid="uid://c7ogkv251137s" path="res://components/invisible_wall.tscn" id="2_vl6bp"]
 [ext_resource type="PackedScene" uid="uid://x1xqx7th2b5h" path="res://entities/characters/black_arm/black_arm.tscn" id="3_163sh"]
 [ext_resource type="PackedScene" uid="uid://d313je3pdtsvf" path="res://entities/items/torch/torch.tscn" id="4_3xee7"]
 

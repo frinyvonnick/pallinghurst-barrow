@@ -10,9 +10,10 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1viy8"]
 shader = ExtResource("2_gnqy6")
-shader_parameter/blur_amount = 3.5
-shader_parameter/mix_amount = 0.5
-shader_parameter/color_over = Color(0, 0.215686, 0.25098, 1)
+shader_parameter/blur_type = 0
+shader_parameter/blur_amount = 20
+shader_parameter/blur_radius = 1.0
+shader_parameter/blur_direction = Vector2(1, 1)
 
 [node name="ManorNight" type="Node2D"]
 script = ExtResource("1_tyq40")

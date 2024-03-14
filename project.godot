@@ -35,7 +35,7 @@ shapes/navigation/enable_agent_paths_xray=false
 
 [display]
 
-window/size/resizable=false
+window/stretch/mode="canvas_items"
 
 [input]
 

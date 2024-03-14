@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=3 uid="uid://di23ko2nyiqwn"]
 
-[ext_resource type="PackedScene" path="res://components/tilemap.tscn" id="1_5rejr"]
+[ext_resource type="PackedScene" uid="uid://c8rg4hgix726c" path="res://components/tilemap.tscn" id="1_5rejr"]
 [ext_resource type="Script" path="res://levels/alley/alley.gd" id="1_gprf2"]
 [ext_resource type="Script" path="res://components/trigger.gd" id="2_asmvq"]
 [ext_resource type="PackedScene" uid="uid://ct1pleqq81l3g" path="res://entities/characters/player/player.tscn" id="2_bt820"]

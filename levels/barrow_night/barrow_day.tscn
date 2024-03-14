@@ -65,3 +65,6 @@ process_mode = 3
 stream = ExtResource("7_hmjbp")
 volume_db = -10.0
 autoplay = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(576, 324)
