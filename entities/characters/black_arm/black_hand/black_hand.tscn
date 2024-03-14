@@ -1,7 +1,7 @@
 [gd_scene load_steps=21 format=3 uid="uid://cqegoxve6kb63"]
 
 [ext_resource type="Script" path="res://entities/characters/black_arm/black_hand/black_hand.gd" id="1_c1ty3"]
-[ext_resource type="Texture2D" uid="uid://ctobkwm4e1wgt" path="res://assets/black_hand.png" id="2_u25r7"]
+[ext_resource type="Texture2D" uid="uid://bp8rc8a3p6w61" path="res://assets/characters/black_hand.png" id="2_u25r7"]
 [ext_resource type="Script" path="res://components/state_machine/state_machine.gd" id="3_0x0ae"]
 [ext_resource type="Script" path="res://components/state_machine/idle_state.gd" id="4_tenro"]
 [ext_resource type="Script" path="res://components/state_machine/seek_state.gd" id="5_pl6rd"]
